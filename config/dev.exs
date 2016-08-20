@@ -39,5 +39,5 @@ config :seiyu_watch, SeiyuWatch.Repo,
   username: "root",
   password: "",
   database: "seiyu_watch_dev",
-  hostname: "localhost",
+  hostname: "mysql",
   pool_size: 10

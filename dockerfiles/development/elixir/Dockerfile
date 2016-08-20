@@ -3,6 +3,7 @@ FROM elixir:1.2.6-slim
 RUN set -x && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
+  mysql-client \
   nodejs \
   npm \
   inotify-tools \
