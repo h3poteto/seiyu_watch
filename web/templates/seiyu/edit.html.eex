@@ -1,0 +1,6 @@
+<h2>Edit seiyu</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: seiyu_path(@conn, :update, @seiyu) %>
+
+<%= link "Back", to: seiyu_path(@conn, :index) %>
