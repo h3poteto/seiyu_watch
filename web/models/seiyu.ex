@@ -16,4 +16,5 @@ defmodule SeiyuWatch.Seiyu do
     |> cast(params, [:name, :wiki_url])
     |> validate_required([:name, :wiki_url])
   end
+
 end
