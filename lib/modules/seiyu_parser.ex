@@ -76,6 +76,9 @@ defmodule SeiyuWatch.SeiyuParser do
     Enum.any?(categories, fn
       %{"ns" => _num, "title" => category} -> category == "Category:日本の女性声優"
     end
+    ) || Enum.any?(categories, fn
+      %{"ns" => _num, "title" => category} -> category == "Category:日本の男性声優"
+    end
     )
   end
 
