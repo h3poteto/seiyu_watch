@@ -9,5 +9,6 @@ defmodule SeiyuWatch.Repo.Migrations.CreateSeiyu do
       timestamps()
     end
 
+    create unique_index(:seiyus, [:name])
   end
 end
