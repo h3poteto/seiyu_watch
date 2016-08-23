@@ -14,7 +14,7 @@ defmodule SeiyuWatch.SeiyuAppearance do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:wiki_appearances, :revision])
-    |> validate_required([:wiki_appearances, :revision])
+    |> cast(params, [:wiki_appearances, :revision, :seiyu_id])
+    |> validate_required([:wiki_appearances, :revision, :seiyu_id])
   end
 end
