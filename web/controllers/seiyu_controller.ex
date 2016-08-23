@@ -15,16 +15,10 @@ defmodule SeiyuWatch.SeiyuController do
   end
 
   def create(conn, %{"seiyu" => seiyu_params}) do
-    case SeiyuWatch.SeiyuParser.save(seiyu_params["name"]) do
-      {:ok, _seiyu} ->
-        conn
-        |> put_flash(:info, "Seiyu created successfully.")
-        |> redirect(to: seiyu_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
-      {:failed, _name} ->
-        render(conn, "new.html")
-    end
+    Task.start_link(fn -> SeiyuWatch.SeiyuParser.save(seiyu_params["name"]) end)
+    conn
+    |> put_flash(:info, "声優登録リクエストを受け付けました")
+    |> redirect(to: seiyu_path(conn, :index))
   end
 
   def show(conn, %{"id" => id}) do

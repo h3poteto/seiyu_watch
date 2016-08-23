@@ -16,7 +16,7 @@
       <td><%= seiyu.wiki_url %></td>
 
       <td class="text-right">
-        <%= link "Show", to: seiyu_path(@conn, :show, seiyu), class: "btn btn-default btn-xs" %>
+        <%#= link "Show", to: seiyu_path(@conn, :show, seiyu), class: "btn btn-default btn-xs" %>
         <%= link "Delete", to: seiyu_path(@conn, :delete, seiyu), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
