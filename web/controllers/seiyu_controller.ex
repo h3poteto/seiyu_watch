@@ -1,5 +1,6 @@
 defmodule SeiyuWatch.SeiyuController do
   use SeiyuWatch.Web, :controller
+  use SeiyuWatch.SeiyuParser
 
   alias SeiyuWatch.Seiyu
 
@@ -14,41 +15,15 @@ defmodule SeiyuWatch.SeiyuController do
   end
 
   def create(conn, %{"seiyu" => seiyu_params}) do
-    changeset = Seiyu.changeset(%Seiyu{}, seiyu_params)
-
-    case Repo.insert(changeset) do
-      {:ok, _seiyu} ->
-        conn
-        |> put_flash(:info, "Seiyu created successfully.")
-        |> redirect(to: seiyu_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
-    end
+    Task.start_link(fn -> SeiyuWatch.SeiyuParser.save(seiyu_params["name"]) end)
+    conn
+    |> put_flash(:info, "声優登録リクエストを受け付けました")
+    |> redirect(to: seiyu_path(conn, :index))
   end
 
   def show(conn, %{"id" => id}) do
     seiyu = Repo.get!(Seiyu, id)
     render(conn, "show.html", seiyu: seiyu)
-  end
-
-  def edit(conn, %{"id" => id}) do
-    seiyu = Repo.get!(Seiyu, id)
-    changeset = Seiyu.changeset(seiyu)
-    render(conn, "edit.html", seiyu: seiyu, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "seiyu" => seiyu_params}) do
-    seiyu = Repo.get!(Seiyu, id)
-    changeset = Seiyu.changeset(seiyu, seiyu_params)
-
-    case Repo.update(changeset) do
-      {:ok, seiyu} ->
-        conn
-        |> put_flash(:info, "Seiyu updated successfully.")
-        |> redirect(to: seiyu_path(conn, :show, seiyu))
-      {:error, changeset} ->
-        render(conn, "edit.html", seiyu: seiyu, changeset: changeset)
-    end
   end
 
   def delete(conn, %{"id" => id}) do
