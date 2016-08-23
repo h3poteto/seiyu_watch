@@ -2,7 +2,7 @@ defmodule SeiyuWatch.SeiyuControllerTest do
   use SeiyuWatch.ConnCase
 
   alias SeiyuWatch.Seiyu
-  @valid_attrs %{name: "some content", wiki_url: "some content"}
+  @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do

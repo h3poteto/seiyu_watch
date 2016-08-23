@@ -4,7 +4,6 @@ defmodule SeiyuWatch.Repo.Migrations.CreateSeiyu do
   def change do
     create table(:seiyus) do
       add :name, :string
-      add :wiki_url, :text
 
       timestamps()
     end

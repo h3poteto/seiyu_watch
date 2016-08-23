@@ -3,7 +3,6 @@ defmodule SeiyuWatch.Seiyu do
 
   schema "seiyus" do
     field :name, :string
-    field :wiki_url, :string
 
     timestamps()
   end
@@ -13,8 +12,8 @@ defmodule SeiyuWatch.Seiyu do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :wiki_url])
-    |> validate_required([:name, :wiki_url])
+    |> cast(params, [:name])
+    |> validate_required([:name])
   end
 
 end

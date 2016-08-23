@@ -3,7 +3,7 @@ defmodule SeiyuWatch.SeiyuTest do
 
   alias SeiyuWatch.Seiyu
 
-  @valid_attrs %{name: "some content", wiki_url: "some content"}
+  @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

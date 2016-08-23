@@ -23,7 +23,7 @@ defmodule SeiyuWatch.SeiyuParser do
       |> head_revision
       |> wikitext
       |> String.length > 0 do
-        SeiyuWatch.Seiyu.changeset(%SeiyuWatch.Seiyu{}, %{"name" => name, "wiki_url" => wikipedia_page_request(name)})
+        SeiyuWatch.Seiyu.changeset(%SeiyuWatch.Seiyu{}, %{"name" => name})
         |> Repo.insert
       else
         {:failed, name}
