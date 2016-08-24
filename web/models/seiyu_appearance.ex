@@ -4,6 +4,7 @@ defmodule SeiyuWatch.SeiyuAppearance do
   schema "seiyu_appearances" do
     field :wiki_appearances, :string
     field :revision, :string
+    field :revision_id, :integer
     belongs_to :seiyu, SeiyuWatch.Seiyu
 
     timestamps()
@@ -14,7 +15,7 @@ defmodule SeiyuWatch.SeiyuAppearance do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:wiki_appearances, :revision, :seiyu_id])
-    |> validate_required([:wiki_appearances, :revision, :seiyu_id])
+    |> cast(params, [:wiki_appearances, :revision, :revision_id, :seiyu_id])
+    |> validate_required([:wiki_appearances, :revision, :revision_id, :seiyu_id])
   end
 end

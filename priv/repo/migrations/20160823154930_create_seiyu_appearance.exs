@@ -5,6 +5,7 @@ defmodule SeiyuWatch.Repo.Migrations.CreateSeiyuAppearance do
     create table(:seiyu_appearances) do
       add :wiki_appearances, :text
       add :revision, :string
+      add :revision_id, :integer
       add :seiyu_id, references(:seiyus, on_delete: :nothing)
 
       timestamps()

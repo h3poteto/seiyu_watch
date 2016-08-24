@@ -12,15 +12,14 @@ defmodule SeiyuWatch.SeiyuParser do
 
   def save(name) do
     # 声優であることの確認をする
-    if wikipedia_category_request(name)
-    |> WikipediaResponse.get_response
+    response = wikipedia_page_request(name) |> WikipediaResponse.get_response
+    if response
     |> WikipediaResponse.parse_categories
     |> WikipediaResponse.find_seiyu_category do
       # wikitextであることの確認をする
-      if wikipedia_page_request(name)
-      |> WikipediaResponse.get_response
+      if response
       |> WikipediaResponse.is_wikitext do
-        SeiyuWatch.Seiyu.changeset(%SeiyuWatch.Seiyu{}, %{"name" => name})
+        SeiyuWatch.Seiyu.changeset(%SeiyuWatch.Seiyu{}, %{"name" => name, "wiki_page_id" => WikipediaResponse.page_id(response)})
         |> Repo.insert
       else
         {:failed, name}
@@ -30,12 +29,8 @@ defmodule SeiyuWatch.SeiyuParser do
     end
   end
 
-  defp wikipedia_category_request(name) do
-    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=categories&titles=#{URI.encode(name)}"
-  end
-
   defp wikipedia_page_request(name) do
     # contetnmodel == wikitextのもであればparsetree指定でxml parseされたものが帰る
-    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&titles=#{URI.encode(name)}&rvprop=parsetree|contentmodel"
+    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions|categories&titles=#{URI.encode(name)}&rvprop=contentmodel|parsetree|sha1|ids"
   end
 end
