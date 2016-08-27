@@ -3,7 +3,7 @@ defmodule SeiyuWatch.Repo.Migrations.CreateSeiyuAppearance do
 
   def up do
     create table(:seiyu_appearances) do
-      add :wiki_appearances, :text
+      add :wiki_appearances, :mediumtext
       add :revision, :string
       add :revision_id, :integer
       add :seiyu_id, references(:seiyus, on_delete: :nothing)

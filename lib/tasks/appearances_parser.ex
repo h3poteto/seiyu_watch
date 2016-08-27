@@ -1,0 +1,51 @@
+defmodule SeiyuWatch.AppearancesParser do
+
+  defmacro __using__(_opts) do
+    quote do
+      require SeiyuWatch.Seiyu
+      require SeiyuWatch.SeiyuAppearance
+      require SeiyuWatch.WikipediaResponse
+    end
+  end
+
+  import Ecto.Query, only: [from: 2]
+  alias SeiyuWatch.Repo
+  alias SeiyuWatch.WikipediaResponse
+
+  def check_and_update(seiyu_id) do
+    seiyu = SeiyuWatch.Seiyu
+    |> Repo.get(seiyu_id)
+    |> Repo.preload(seiyu_appearances: (from a in SeiyuWatch.SeiyuAppearance, order_by: [desc: a.inserted_at]))
+
+    response = wikipedia_page_request(seiyu.wiki_page_id) |> WikipediaResponse.get_response
+    cond do
+      seiyu.seiyu_appearances |> Enum.count == 0 ->
+        # 問答無用で保存する
+        save(response, seiyu_id)
+      (seiyu.seiyu_appearances |> hd).revision != WikipediaResponse.revision_id(response) |> elem(1) ->
+        # 差分があるということなのでチェックする
+        check(response, seiyu.seiyu_appearances |> hd)
+    end
+
+  end
+
+  defp save(response, seiyu_id) do
+    SeiyuWatch.SeiyuAppearance.changeset(
+      %SeiyuWatch.SeiyuAppearance{},
+      %{"seiyu_id" => seiyu_id,
+        "revision" => WikipediaResponse.revision_id(response) |> elem(1),
+        "revision_id" => WikipediaResponse.revision_id(response) |> elem(0),
+        "wiki_appearances" => WikipediaResponse.appearances(response) |> WikipediaResponse.to_html
+      })
+    |> Repo.insert
+  end
+
+  defp check(response, seiyu_appearances) do
+  end
+
+
+  defp wikipedia_page_request(wiki_page_id) do
+    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=#{wiki_page_id}&rvprop=content|sha1|ids&rvparse"
+  end
+
+end

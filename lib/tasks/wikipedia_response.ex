@@ -1,5 +1,6 @@
 defmodule SeiyuWatch.WikipediaResponse do
 
+  require IEx
   def get_response(request) do
     url = request
     HTTPoison.start
@@ -42,6 +43,14 @@ defmodule SeiyuWatch.WikipediaResponse do
     end
   end
 
+  def appearances(response) do
+    query(response) |> pages |> single_page |> revision |> parse_content
+  end
+
+  def to_html(appearances) do
+    appearances |> Floki.raw_html
+  end
+
 
   defp query(response) do
     response["query"]
@@ -71,6 +80,25 @@ defmodule SeiyuWatch.WikipediaResponse do
     case revision do
       %{"contentmodel" => "wikitext"} -> revision["parsetree"]
       _ -> nil
+    end
+  end
+
+  defp parse_content(%{"*" => content}) do
+    content |> Floki.parse |> html_parse
+  end
+
+  defp html_parse([x|tl]) do
+    case x do
+      {tag, _, [{_, _, ["出演作品"]}, _]} -> show_list(tl, tag)
+      _ -> html_parse(tl)
+    end
+  end
+
+  defp show_list([x|tl], tag) do
+    case x do
+      {^tag, _, _} -> []
+      _ ->
+        [x] ++ show_list(tl, tag)
     end
   end
 end

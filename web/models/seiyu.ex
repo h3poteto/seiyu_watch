@@ -5,7 +5,7 @@ defmodule SeiyuWatch.Seiyu do
     field :name, :string
     field :wiki_page_id, :integer
     field :appearances_updated_at, Ecto.DateTime
-    has_many :seiyu_appearance, SeiyuWatch.SeiyuAppearance
+    has_many :seiyu_appearances, SeiyuWatch.SeiyuAppearance
 
     timestamps()
   end
