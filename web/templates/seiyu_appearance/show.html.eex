@@ -1,0 +1,23 @@
+<h2>Show seiyu appearance</h2>
+
+<ul>
+
+  <li>
+    <strong>Seiyu:</strong>
+    <%= @seiyu_appearance.seiyu_id %>
+  </li>
+
+  <li>
+    <strong>Wiki appearances:</strong>
+    <%= @seiyu_appearance.wiki_appearances %>
+  </li>
+
+  <li>
+    <strong>Revision:</strong>
+    <%= @seiyu_appearance.revision %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: seiyu_appearance_path(@conn, :edit, @seiyu_appearance) %>
+<%= link "Back", to: seiyu_appearance_path(@conn, :index) %>

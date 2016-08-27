@@ -18,6 +18,7 @@ defmodule SeiyuWatch.Router do
 
     get "/", PageController, :index
     resources "/seiyus", SeiyuController, only: [:index, :new, :create, :delete]
+    resources "/seiyu_appearances", SeiyuAppearanceController, only: [:index]
   end
 
   # Other scopes may use custom stacks.

@@ -4,7 +4,7 @@ defmodule SeiyuWatch.Mixfile do
   def project do
     [app: :seiyu_watch,
      version: "0.0.1",
-     elixir: "~> 1.2",
+     elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -19,12 +19,12 @@ defmodule SeiyuWatch.Mixfile do
   def application do
     [mod: {SeiyuWatch, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :mariaex]]
+                    :phoenix_ecto, :mariaex, :timex]]
   end
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_),     do: ["lib", "web", "lib/modules"]
+  defp elixirc_paths(_),     do: ["lib", "web", "lib/tasks"]
 
   # Specifies your project dependencies.
   #
@@ -38,10 +38,12 @@ defmodule SeiyuWatch.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:timex, "~> 2.2.1"},
+     {:timex, "~> 3.0.8"},
      {:logger_file_backend, "~> 0.0.8"},
      {:httpoison, "~> 0.9.0"},
-     {:poison, "~> 2.2.0"}]
+     {:poison, "~> 2.2.0"},
+     {:quinn, "~> 1.0.0"},
+     {:floki, "~> 0.10.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
