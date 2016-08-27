@@ -14,7 +14,7 @@ defmodule SeiyuWatch.AppearancesParser do
 
   def check_and_update(seiyu_id) do
     seiyu = SeiyuWatch.Seiyu
-    |> Repo.get(seiyu_id)
+    |> Repo.get!(seiyu_id)
     |> Repo.preload(seiyu_appearances: (from a in SeiyuWatch.SeiyuAppearance, order_by: [desc: a.inserted_at]))
 
     response = wikipedia_page_request(seiyu.wiki_page_id) |> WikipediaResponse.get_response
@@ -36,13 +36,22 @@ defmodule SeiyuWatch.AppearancesParser do
         "revision" => WikipediaResponse.revision_id(response) |> elem(1),
         "revision_id" => WikipediaResponse.revision_id(response) |> elem(0),
         "wiki_appearances" => WikipediaResponse.appearances(response) |> WikipediaResponse.to_html
-      })
+      }
+    )
     |> Repo.insert
+    |> after_update_appearances
   end
 
-  defp check(response, seiyu_appearances) do
+  defp check(_response, _seiyu_appearances) do
   end
 
+  defp after_update_appearances(update) do
+    case update do
+      {:ok, appearance} ->
+        Task.start_link(fn -> SeiyuWatch.Seiyu.update_appearances(appearance.seiyu_id) end)
+      _ -> update
+    end
+  end
 
   defp wikipedia_page_request(wiki_page_id) do
     "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=#{wiki_page_id}&rvprop=content|sha1|ids&rvparse"
