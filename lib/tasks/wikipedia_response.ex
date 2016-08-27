@@ -25,10 +25,6 @@ defmodule SeiyuWatch.WikipediaResponse do
     )
   end
 
-  def is_wikitext(response) do
-    query(response) |> pages |> single_page |> revision |> wikitext |> String.length > 0
-  end
-
   def page_id(response) do
     case query(response) |> pages |> single_page do
       %{"pageid" => pageid} -> pageid # もともとIntegerでparseされている
@@ -74,13 +70,6 @@ defmodule SeiyuWatch.WikipediaResponse do
 
   defp revision(%{"revisions" => revisions}) do
     revisions |> hd
-  end
-
-  defp wikitext(revision) do
-    case revision do
-      %{"contentmodel" => "wikitext"} -> revision["parsetree"]
-      _ -> nil
-    end
   end
 
   defp parse_content(%{"*" => content}) do

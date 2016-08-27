@@ -16,21 +16,14 @@ defmodule SeiyuWatch.SeiyuParser do
     if response
     |> WikipediaResponse.parse_categories
     |> WikipediaResponse.find_seiyu_category do
-      # wikitextであることの確認をする
-      if response
-      |> WikipediaResponse.is_wikitext do
-        SeiyuWatch.Seiyu.changeset(%SeiyuWatch.Seiyu{}, %{"name" => name, "wiki_page_id" => WikipediaResponse.page_id(response)})
-        |> Repo.insert
-      else
-        {:failed, name}
-      end
+      SeiyuWatch.Seiyu.changeset(%SeiyuWatch.Seiyu{}, %{"name" => name, "wiki_page_id" => WikipediaResponse.page_id(response)})
+      |> Repo.insert
     else
       {:failed, name}
     end
   end
 
   defp wikipedia_page_request(name) do
-    # contetnmodel == wikitextのもであればparsetree指定でxml parseされたものが帰る
-    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions|categories&titles=#{URI.encode(name)}&rvprop=contentmodel|parsetree|sha1|ids"
+    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions|categories&titles=#{URI.encode(name)}&rvprop=sha1|ids"
   end
 end
