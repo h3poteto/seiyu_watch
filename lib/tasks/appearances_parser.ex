@@ -12,7 +12,7 @@ defmodule SeiyuWatch.AppearancesParser do
   alias SeiyuWatch.Repo
   alias SeiyuWatch.WikipediaResponse
 
-  def check_and_update(seiyu_id) do
+  def check_and_save(seiyu_id) do
     seiyu = SeiyuWatch.Seiyu
     |> Repo.get!(seiyu_id)
     |> Repo.preload(seiyu_appearances: (from a in SeiyuWatch.SeiyuAppearance, order_by: [desc: a.inserted_at]))
@@ -23,8 +23,9 @@ defmodule SeiyuWatch.AppearancesParser do
         # 問答無用で保存する
         save(response, seiyu_id)
       (seiyu.seiyu_appearances |> hd).revision != WikipediaResponse.revision_id(response) |> elem(1) ->
-        # 差分があるということなのでチェックする
-        check(response, seiyu.seiyu_appearances |> hd)
+        # 差分があるということなのでチェックして保存する
+        add(response, seiyu)
+       true -> {:ok, :unchanged}
     end
 
   end
@@ -42,7 +43,10 @@ defmodule SeiyuWatch.AppearancesParser do
     |> after_update_appearances
   end
 
-  defp check(_response, _seiyu_appearances) do
+  def add(response, seiyu) do
+    if WikipediaResponse.appearances(response) |> WikipediaResponse.to_html != (seiyu.seiyu_appearances |> hd).wiki_appearances do
+      save(response, seiyu.id)
+    end
   end
 
   defp after_update_appearances(update) do
