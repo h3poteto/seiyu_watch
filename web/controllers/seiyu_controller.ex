@@ -1,6 +1,5 @@
 defmodule SeiyuWatch.SeiyuController do
   use SeiyuWatch.Web, :controller
-  use SeiyuWatch.SeiyuParser
 
   alias SeiyuWatch.Seiyu
 

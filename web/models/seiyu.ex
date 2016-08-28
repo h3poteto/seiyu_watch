@@ -20,7 +20,7 @@ defmodule SeiyuWatch.Seiyu do
     |> validate_required([:name, :wiki_page_id])
   end
 
-  def update_appearances(seiyu_id) do
+  def update_appearance(seiyu_id) do
     SeiyuWatch.Seiyu
     |> Repo.get!(seiyu_id)
     |> changeset(%{"appearances_updated_at" => Timex.now})
