@@ -8,7 +8,7 @@ defmodule SeiyuWatch.AppearancesDiff do
     belongs_to :current_appearance, SeiyuWatch.SeiyuAppearance
     belongs_to :previous_appearance, SeiyuWatch.SeiyuAppearance
 
-    timestamps()
+    timestamps
   end
 
   @doc """

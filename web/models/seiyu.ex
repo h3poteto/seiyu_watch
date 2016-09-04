@@ -8,7 +8,7 @@ defmodule SeiyuWatch.Seiyu do
     field :appearances_updated_at, Ecto.DateTime
     has_many :seiyu_appearances, SeiyuWatch.SeiyuAppearance
 
-    timestamps()
+    timestamps
   end
 
   @doc """

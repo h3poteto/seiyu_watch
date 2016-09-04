@@ -7,7 +7,7 @@ defmodule SeiyuWatch.SeiyuAppearance do
     field :revision_id, :integer
     belongs_to :seiyu, SeiyuWatch.Seiyu
 
-    timestamps()
+    timestamps
   end
 
   @doc """

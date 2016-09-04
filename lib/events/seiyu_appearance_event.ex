@@ -16,10 +16,11 @@ defmodule SeiyuWatch.SeiyuAppearanceEvent do
 
   def create_diff(appearance) do
     current_appearance = appearance
+    time_from = Timex.shift(Timex.now, days: -7)
     seiyu = (appearance
       |> Repo.preload(:seiyu)
     ).seiyu
-    |> Repo.preload(seiyu_appearances: (from a in SeiyuWatch.SeiyuAppearance, order_by: [desc: a.inserted_at]))
+    |> Repo.preload(seiyu_appearances: (from a in SeiyuWatch.SeiyuAppearance, where: a.inserted_at >= ^time_from, order_by: [asc: a.inserted_at]))
     case seiyu.seiyu_appearances |> Enum.at(1) do
       nil -> {:ok, :no_content}
       value -> SeiyuWatch.AppearancesDiff.create(value, current_appearance)

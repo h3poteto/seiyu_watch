@@ -39,6 +39,7 @@ defmodule SeiyuWatch.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:timex, "~> 3.0.8"},
+     {:timex_ecto, "~> 3.0.4"},
      {:logger_file_backend, "~> 0.0.8"},
      {:httpoison, "~> 0.9.0"},
      {:poison, "~> 2.2.0"},
