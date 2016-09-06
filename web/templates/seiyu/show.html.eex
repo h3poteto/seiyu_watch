@@ -9,12 +9,12 @@
 
   <li>
     <strong>Add:</strong>
-    <%= @diff |> elem(1) %>
+    <%= raw @diff |> elem(1) %>
   </li>
 
   <li>
     <strong>Sub:</strong>
-    <%= @diff |> elem(2) %>
+    <%= raw @diff |> elem(2) %>
   </li>
 
 </ul>
