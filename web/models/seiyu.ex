@@ -48,23 +48,23 @@ defmodule SeiyuWatch.Seiyu do
     {:ok, add_diff, sub_diff}
   end
 
-  defp previous_appearance(seiyu, days) do
+  def previous_appearance(seiyu, days) do
     time_from = Timex.shift(Timex.now, days: days)
     case (seiyu
-    |> Repo.preload(seiyu_appearances: (from a in SeiyuWatch.SeiyuAppearance, where: a.inserted_at >= ^time_from, order_by: [asc: a.inserted_at]))
+    |> Repo.preload(seiyu_appearances: (from a in SeiyuWatch.SeiyuAppearance, where: a.inserted_at < ^time_from, order_by: [desc: a.inserted_at]))
     ).seiyu_appearances
-    |> Enum.at(1) do
+    |> Enum.at(0) do
       nil -> {:error, :no_content}
       value -> {:ok, value}
     end
   end
 
-  defp current_appearance(seiyu, days) do
+  def current_appearance(seiyu, days) do
     time_from = Timex.shift(Timex.now, days: days)
     case (seiyu
     |> Repo.preload(seiyu_appearances: (from a in SeiyuWatch.SeiyuAppearance, where: a.inserted_at >= ^time_from, order_by: [desc: a.inserted_at]))
     ).seiyu_appearances
-    |> Enum.at(1) do
+    |> Enum.at(0) do
       nil -> {:error, :no_content}
       value -> {:ok, value}
     end
