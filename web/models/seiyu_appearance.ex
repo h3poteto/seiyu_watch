@@ -7,7 +7,7 @@ defmodule SeiyuWatch.SeiyuAppearance do
     field :revision_id, :integer
     belongs_to :seiyu, SeiyuWatch.Seiyu
 
-    timestamps()
+    timestamps
   end
 
   @doc """
@@ -17,6 +17,7 @@ defmodule SeiyuWatch.SeiyuAppearance do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:wiki_appearances, :revision, :revision_id, :seiyu_id])
+    |> assoc_constraint(:seiyu)
     |> validate_required([:wiki_appearances, :revision, :revision_id, :seiyu_id])
   end
 end

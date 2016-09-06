@@ -1,6 +1,5 @@
 defmodule SeiyuWatch.WikipediaResponse do
 
-  require IEx
   def get_response(request) do
     url = request
     HTTPoison.start

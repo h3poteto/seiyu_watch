@@ -1,12 +1,5 @@
 defmodule SeiyuWatch.SeiyuParser do
 
-  defmacro __using__(_opts) do
-    quote do
-      require SeiyuWatch.Seiyu
-      require SeiyuWatch.WikipediaResponse
-    end
-  end
-
   alias SeiyuWatch.Repo
   alias SeiyuWatch.WikipediaResponse
 

@@ -1,13 +1,5 @@
 defmodule SeiyuWatch.AppearancesParser do
 
-  defmacro __using__(_opts) do
-    quote do
-      require SeiyuWatch.Seiyu
-      require SeiyuWatch.SeiyuAppearance
-      require SeiyuWatch.WikipediaResponse
-    end
-  end
-
   import Ecto.Query, only: [from: 2]
   alias SeiyuWatch.Repo
   alias SeiyuWatch.WikipediaResponse
@@ -25,13 +17,13 @@ defmodule SeiyuWatch.AppearancesParser do
       (seiyu.seiyu_appearances |> hd).revision != WikipediaResponse.revision_id(response) |> elem(1) ->
         # 差分があるということなのでチェックして保存する
         add(response, seiyu)
-       true -> {:ok, :unchanged}
+      true -> {:ok, :unchanged}
     end
 
   end
 
   defp save(response, seiyu_id) do
-    SeiyuWatch.SeiyuAppearance.changeset(
+    res = SeiyuWatch.SeiyuAppearance.changeset(
       %SeiyuWatch.SeiyuAppearance{},
       %{"seiyu_id" => seiyu_id,
         "revision" => WikipediaResponse.revision_id(response) |> elem(1),
@@ -40,7 +32,7 @@ defmodule SeiyuWatch.AppearancesParser do
       }
     )
     |> Repo.insert
-    |> after_update_appearances
+    Task.start_link(fn -> SeiyuWatch.SeiyuAppearanceEvent.after_update_appearance(res) end)
   end
 
   def add(response, seiyu) do
@@ -49,16 +41,7 @@ defmodule SeiyuWatch.AppearancesParser do
     end
   end
 
-  defp after_update_appearances(update) do
-    case update do
-      {:ok, appearance} ->
-        Task.start_link(fn -> SeiyuWatch.Seiyu.update_appearances(appearance.seiyu_id) end)
-      _ -> update
-    end
-  end
-
   defp wikipedia_page_request(wiki_page_id) do
     "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=#{wiki_page_id}&rvprop=content|sha1|ids&rvparse"
   end
-
 end
