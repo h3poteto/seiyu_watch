@@ -17,7 +17,7 @@ defmodule SeiyuWatch.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/seiyus", SeiyuController, only: [:index, :new, :create, :delete]
+    resources "/seiyus", SeiyuController, only: [:index, :show, :new, :create, :delete]
     resources "/seiyu_appearances", SeiyuAppearanceController, only: [:index]
   end
 

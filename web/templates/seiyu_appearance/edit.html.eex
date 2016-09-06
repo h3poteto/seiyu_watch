@@ -1,6 +1,0 @@
-<h2>Edit seiyu appearance</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: seiyu_appearance_path(@conn, :update, @seiyu_appearance) %>
-
-<%= link "Back", to: seiyu_appearance_path(@conn, :index) %>

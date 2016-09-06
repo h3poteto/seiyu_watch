@@ -8,11 +8,15 @@
   </li>
 
   <li>
-    <strong>Wiki url:</strong>
-    <%= @seiyu.wiki_url %>
+    <strong>Add:</strong>
+    <%= @diff |> elem(1) %>
+  </li>
+
+  <li>
+    <strong>Sub:</strong>
+    <%= @diff |> elem(2) %>
   </li>
 
 </ul>
 
-<%= link "Edit", to: seiyu_path(@conn, :edit, @seiyu) %>
 <%= link "Back", to: seiyu_path(@conn, :index) %>
