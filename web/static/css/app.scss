@@ -1,3 +1,14 @@
 /* This file is for your main application css. */
+/* phoenix.cssは参考のために残しておく，利用しない */
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import "~bootswatch/flatly/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootswatch/flatly/bootswatch";
 @import "page.scss";
+@import "seiyu.scss";
 
+
+/* bootstrapのstyleではflashの切り替えができないため */
+.alert:empty {
+  display: none;
+}
