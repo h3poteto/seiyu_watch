@@ -1,0 +1,19 @@
+{
+    "extends": "eslint:recommended",
+    "env": {
+        "browser": true,
+        "es6": true,
+        "mocha": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true
+        },
+    },
+    "parser": "babel-eslint",
+    "rules": {
+        "semi": [2, "never"],
+        "no-unused-vars": [1, {"vars" : "all", "args" : "after-used"} ]
+    }
+}
