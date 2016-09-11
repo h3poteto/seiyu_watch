@@ -6,6 +6,7 @@ defmodule SeiyuWatch.Repo.Migrations.CreateSeiyu do
       add :name, :string
       add :wiki_page_id, :integer
       add :diffs_updated_at, :datetime
+      add :wiki_url, :text
 
       timestamps()
     end

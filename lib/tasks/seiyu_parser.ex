@@ -9,7 +9,7 @@ defmodule SeiyuWatch.SeiyuParser do
     if response
     |> WikipediaResponse.parse_categories
     |> WikipediaResponse.find_seiyu_category do
-      SeiyuWatch.Seiyu.changeset(%SeiyuWatch.Seiyu{}, %{"name" => name, "wiki_page_id" => WikipediaResponse.page_id(response)})
+      SeiyuWatch.Seiyu.changeset(%SeiyuWatch.Seiyu{}, %{"name" => name, "wiki_page_id" => WikipediaResponse.page_id(response), "wiki_url" => WikipediaResponse.url(response)})
       |> Repo.insert
     else
       {:failed, name}
@@ -17,6 +17,6 @@ defmodule SeiyuWatch.SeiyuParser do
   end
 
   defp wikipedia_page_request(name) do
-    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions|categories&titles=#{URI.encode(name)}&rvprop=sha1|ids"
+    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions|categories|info&titles=#{URI.encode(name)}&rvprop=sha1|ids&inprop=url"
   end
 end
