@@ -42,6 +42,10 @@ defmodule SeiyuWatch.WikipediaResponse do
     query(response) |> pages |> single_page |> revision |> diff
   end
 
+  def url(response) do
+    query(response) |> pages |> single_page |> fullurl
+  end
+
   defp query(response) do
     response["query"]
   end
@@ -71,5 +75,9 @@ defmodule SeiyuWatch.WikipediaResponse do
       0 -> {:error, :no_content}
       _ -> {:ok, content, from, to}
     end
+  end
+
+  defp fullurl(%{"fullurl" => url}) do
+    url
   end
 end

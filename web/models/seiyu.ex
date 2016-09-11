@@ -7,6 +7,7 @@ defmodule SeiyuWatch.Seiyu do
     field :name, :string
     field :wiki_page_id, :integer
     field :diffs_updated_at, Ecto.DateTime
+    field :wiki_url, :string
     has_many :seiyu_diffs, SeiyuWatch.SeiyuDiff
 
     timestamps
@@ -18,8 +19,8 @@ defmodule SeiyuWatch.Seiyu do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :wiki_page_id, :diffs_updated_at])
-    |> validate_required([:name, :wiki_page_id])
+    |> cast(params, [:name, :wiki_page_id, :diffs_updated_at, :wiki_url])
+    |> validate_required([:name, :wiki_page_id, :wiki_url])
   end
 
   def update_diff_timestamp(seiyu_id) do
