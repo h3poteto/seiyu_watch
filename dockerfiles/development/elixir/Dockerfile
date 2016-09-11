@@ -7,6 +7,7 @@ RUN set -x && \
   nodejs \
   npm \
   inotify-tools \
+  git \
   curl && \
   rm -rf /var/lib/apt/lists/* && \
   npm cache clean && \

@@ -4,6 +4,16 @@ defmodule SeiyuWatch.DiffParser do
   alias SeiyuWatch.Repo
   alias SeiyuWatch.WikipediaResponse
 
+  def parse_all_seiyus do
+    SeiyuWatch.Seiyu
+    |> Repo.all
+    |> Enum.each(
+    fn(s) ->
+      update_diff(s.id, -7)
+    end
+    )
+  end
+
   # days以上レコードが溜まっていない場合には，常にprev:即ち一回前との差分を取る
   def update_diff(seiyu_id, days) do
     time_from = Timex.shift(Timex.now, days: days)
