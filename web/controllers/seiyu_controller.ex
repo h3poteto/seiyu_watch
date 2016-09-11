@@ -22,7 +22,7 @@ defmodule SeiyuWatch.SeiyuController do
 
   def show(conn, %{"id" => id}) do
     seiyu = Repo.get!(Seiyu, id)
-    diff = seiyu |> Seiyu.appearances_diff(-7)
+    diff = seiyu |> Seiyu.recent_diff
     render(conn, "show.html", seiyu: seiyu, diff: diff)
   end
 

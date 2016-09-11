@@ -1,22 +1,7 @@
-<h2>Show seiyu</h2>
+<h2><%= @seiyu.name %>の更新情報</h2>
 
-<ul>
+<table class="table table-hover wikipedia-diff">
+  <%= raw @diff |> elem(1) %>
+</table>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @seiyu.name %>
-  </li>
-
-  <li>
-    <strong>Add:</strong>
-    <%= raw @diff |> elem(1) %>
-  </li>
-
-  <li>
-    <strong>Sub:</strong>
-    <%= raw @diff |> elem(2) %>
-  </li>
-
-</ul>
-
-<%= link "Back", to: seiyu_path(@conn, :index) %>
+<%= link "Back", to: seiyu_path(@conn, :index), class: "btn btn-default" %>

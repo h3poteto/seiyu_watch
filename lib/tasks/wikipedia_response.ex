@@ -38,14 +38,9 @@ defmodule SeiyuWatch.WikipediaResponse do
     end
   end
 
-  def appearances(response) do
-    query(response) |> pages |> single_page |> revision |> parse_content
+  def parse_diff(response) do
+    query(response) |> pages |> single_page |> revision |> diff
   end
-
-  def to_html(appearances) do
-    appearances |> Floki.raw_html
-  end
-
 
   defp query(response) do
     response["query"]
@@ -71,22 +66,10 @@ defmodule SeiyuWatch.WikipediaResponse do
     revisions |> hd
   end
 
-  defp parse_content(%{"*" => content}) do
-    content |> Floki.parse |> html_parse
-  end
-
-  defp html_parse([x|tl]) do
-    case x do
-      {tag, _, [{_, _, ["出演作品"]}, _]} -> show_list(tl, tag)
-      _ -> html_parse(tl)
-    end
-  end
-
-  defp show_list([x|tl], tag) do
-    case x do
-      {^tag, _, _} -> []
-      _ ->
-        [x] ++ show_list(tl, tag)
+  defp diff(%{"diff" => %{"*" => content, "from" => from, "to" => to}}) do
+    case content |> String.length do
+      0 -> {:error, :no_content}
+      _ -> {:ok, content, from, to}
     end
   end
 end
