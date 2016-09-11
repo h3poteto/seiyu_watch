@@ -1,13 +1,13 @@
-const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require("path")
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 module.exports = {
   entry: {
-    'css/app.css': './web/static/css/app.scss',
-    'js/app.js': './web/static/js/app.js'
+    "css/app.css": "./web/static/css/app.scss",
+    "js/app.js": "./web/static/js/app.js"
   },
   output: {
-    path: './priv/static',
-    filename: '[name]'
+    path: "./priv/static",
+    filename: "[name]"
   },
   module: {
     loaders: [
@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -45,7 +45,7 @@ module.exports = {
     new ExtractTextPlugin("[name]")
   ],
   resolve: {
-    extensions: ['', '.css', '.scss', 'js'],
-    root: path.resolve(__dirname, 'web/static'),
-  },
+    extensions: ["", ".css", ".scss", "js"],
+    root: path.resolve(__dirname, "web/static")
+  }
 }
