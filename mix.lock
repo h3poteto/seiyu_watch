@@ -12,6 +12,7 @@
   "hackney": {:hex, :hackney, "1.6.1", "ddd22d42db2b50e6a155439c8811b8f6df61a4395de10509714ad2751c6da817", [:rebar3], [{:certifi, "0.4.0", [hex: :certifi, optional: false]}, {:idna, "1.2.0", [hex: :idna, optional: false]}, {:metrics, "1.0.1", [hex: :metrics, optional: false]}, {:mimerl, "1.0.2", [hex: :mimerl, optional: false]}, {:ssl_verify_fun, "1.1.0", [hex: :ssl_verify_fun, optional: false]}]},
   "httpoison": {:hex, :httpoison, "0.9.0", "68187a2daddfabbe7ca8f7d75ef227f89f0e1507f7eecb67e4536b3c516faddb", [:mix], [{:hackney, "~> 1.6.0", [hex: :hackney, optional: false]}]},
   "idna": {:hex, :idna, "1.2.0", "ac62ee99da068f43c50dc69acf700e03a62a348360126260e87f2b54eced86b2", [:rebar3], []},
+  "inflex": {:hex, :inflex, "1.7.0", "4466a34b7d8e871d8164619ba0f3b8410ec782e900f0ae1d3d27a5875a29532e", [:mix], []},
   "logger_file_backend": {:hex, :logger_file_backend, "0.0.8", "1cdf1c492d6f64ee5d76d423cd76e2282ae3a7800468cb8b305bdfd1e775c07b", [:mix], []},
   "mariaex": {:hex, :mariaex, "0.7.7", "620a636ec2276c3fa031ac528039fc9d2bf7992e050e37a56b3c796511e94d6d", [:mix], [{:db_connection, "~> 1.0.0-rc", [hex: :db_connection, optional: false]}, {:decimal, "~> 1.0", [hex: :decimal, optional: false]}]},
   "metrics": {:hex, :metrics, "1.0.1", "25f094dea2cda98213cecc3aeff09e940299d950904393b2a29d191c346a8486", [:rebar3], []},

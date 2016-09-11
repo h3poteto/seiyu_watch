@@ -44,7 +44,8 @@ defmodule SeiyuWatch.Mixfile do
      {:httpoison, "~> 0.9.0"},
      {:poison, "~> 2.2.0"},
      {:quinn, "~> 1.0.0"},
-     {:floki, "~> 0.10.0"}]
+     {:floki, "~> 0.10.0"},
+     {:inflex, "~> 1.7.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

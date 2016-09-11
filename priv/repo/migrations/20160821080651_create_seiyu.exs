@@ -5,7 +5,7 @@ defmodule SeiyuWatch.Repo.Migrations.CreateSeiyu do
     create table(:seiyus) do
       add :name, :string
       add :wiki_page_id, :integer
-      add :appearances_updated_at, :datetime
+      add :diffs_updated_at, :datetime
 
       timestamps()
     end

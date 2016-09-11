@@ -1,0 +1,35 @@
+#seiyu_controller {
+  padding: 0 28px;
+  width: 100%;
+
+  $addedline-color: rgb(234, 255, 234);
+  $addedchange-color: rgb(166, 243, 166);
+  $border-color: rgb(211, 211, 211);
+  $deletedline-color: rgb(255, 236, 236);
+
+  .wikipedia-diff {
+    border: 1px solid $border-color;
+
+    .diff-lineno {
+      background-color: rgb(247, 247, 247);
+      border-left: 1px solid $border-color;
+      font-weight: bold;
+    }
+
+    .diff-marker {
+      border-left: 1px solid $border-color;
+    }
+
+    .diff-deletedline {
+      background-color: $deletedline-color;
+    }
+
+    .diff-addedline {
+      background-color: $addedline-color;
+
+      .diffchange-inline {
+        background-color: $addedchange-color;
+      }
+    }
+  }
+}
