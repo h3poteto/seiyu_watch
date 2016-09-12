@@ -1,5 +1,5 @@
-const path = require("path")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const path = require("path");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
     "css/app.css": "./web/static/css/app.scss",
@@ -48,4 +48,5 @@ module.exports = {
     extensions: ["", ".css", ".scss", "js"],
     root: path.resolve(__dirname, "web/static")
   }
-}
+};
+
