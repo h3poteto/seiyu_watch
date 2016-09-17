@@ -5,10 +5,10 @@ main[data-controller="page_controller"][data-action="index"] {
   }
 
   .top-background {
+    background: url('/images/page/main_background.jpg') no-repeat;
+    background-size: cover;
     color: #fff;
     height: 560px;
-    background: url("/images/page/main_background.jpg") no-repeat;
-    background-size: cover;
 
     .main-title {
       padding-top: 180px;
@@ -34,6 +34,7 @@ main[data-controller="page_controller"][data-action="index"] {
 
     .topic {
       margin-top: 68px;
+
       .title {
         text-align: center;
       }
