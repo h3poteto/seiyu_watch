@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>声優監視ツール</title>
+    <title>SeiyuWatch</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%=  link "声優監視ツール", to: page_path(@conn, :index), class: "navbar-brand" %>
+          <%=  link "SeiyuWatch", to: page_path(@conn, :index), class: "navbar-brand" %>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
