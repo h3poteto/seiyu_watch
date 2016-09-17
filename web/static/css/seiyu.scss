@@ -1,6 +1,9 @@
-#seiyu_controller {
+main[data-controller="seiyu_controller"] {
   padding: 0 28px;
   width: 100%;
+}
+
+main[data-controller="seiyu_controller"][data-action="show"] {
 
   $addedline-color: rgb(234, 255, 234);
   $addedchange-color: rgb(166, 243, 166);

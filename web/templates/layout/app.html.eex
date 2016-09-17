@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SeiyuWatch</title>
+    <title>声優監視ツール</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -43,9 +43,15 @@
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
-    <main role="main" id=<%= controller_module(@conn) |> Inflex.underscore |> String.split(~r/\./) |> Enum.at(1) %>>
+    <main role="main" data-controller=<%= controller_module(@conn) |> Inflex.underscore |> String.split(~r/\./) |> Enum.at(1) %> data-action=<%= action_name(@conn) %>>
       <%= render @view_module, @view_template, assigns %>
     </main>
+
+    <footer class="footer">
+      <div class="container-fluid container">
+        <p class="text-muted">&copy; 2016 Akira Fukushima</p>
+      </div>
+    </footer>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
