@@ -19,3 +19,7 @@ linters:
   QualifyingElement:
     enabled: false
 
+  StringQuotes:
+    enabled: true
+    style: double_quotes
+

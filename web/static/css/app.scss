@@ -1,10 +1,10 @@
 // phoenix.cssは参考のために残しておく，利用しない
-$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
-@import '~bootswatch/cosmo/variables';
-@import '~bootstrap-sass/assets/stylesheets/bootstrap';
-@import '~bootswatch/cosmo/bootswatch';
-@import 'page';
-@import 'seiyu';
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import "~bootswatch/cosmo/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootswatch/cosmo/bootswatch";
+@import "page";
+@import "seiyu";
 
 
 // bootstrapのstyleではflashの切り替えができないため
