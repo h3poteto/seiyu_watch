@@ -4,7 +4,18 @@ defmodule SeiyuWatch.SeiyuController do
   alias SeiyuWatch.Seiyu
 
   def index(conn, _params) do
-    seiyus = Repo.all(Seiyu)
+    seiyus = Seiyu
+    |> order_by(desc: :diffs_updated_at)
+    |> Repo.all
+    ln = fn
+      (1) -> 1
+      (2) -> 2
+      (_) -> 3
+    end
+
+    length = seiyus |> Enum.count |> ln.()
+
+    seiyus = seiyus |> Enum.chunk(length, length, [])
     render(conn, "index.html", seiyus: seiyus)
   end
 
@@ -14,10 +25,17 @@ defmodule SeiyuWatch.SeiyuController do
   end
 
   def create(conn, %{"seiyu" => seiyu_params}) do
-    Task.start_link(fn -> SeiyuWatch.SeiyuParser.save(seiyu_params["name"]) end)
-    conn
-    |> put_flash(:info, "声優登録リクエストを受け付けました")
-    |> redirect(to: seiyu_path(conn, :index))
+    if String.length(seiyu_params["name"]) > 0 do
+      Task.start_link(fn -> SeiyuWatch.SeiyuParser.save(seiyu_params["name"]) end)
+      conn
+      |> put_flash(:info, "声優登録リクエストを受け付けました")
+      |> redirect(to: seiyu_path(conn, :index))
+    else
+      changeset = Seiyu.changeset(%Seiyu{})
+      conn
+      |> put_flash(:error, "声優名を入力してください")
+      |> render("new.html", changeset: changeset)
+    end
   end
 
   def show(conn, %{"id" => id}) do
@@ -37,4 +55,5 @@ defmodule SeiyuWatch.SeiyuController do
     |> put_flash(:info, "Seiyu deleted successfully.")
     |> redirect(to: seiyu_path(conn, :index))
   end
+
 end

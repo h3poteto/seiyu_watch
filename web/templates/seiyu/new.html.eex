@@ -1,4 +1,13 @@
-<h2>New seiyu</h2>
+<h2>声優追加</h2>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">追加できる声優について</h3>
+  </div>
+  <div class="panel-body">
+    こちらでは一覧にない声優を追加することができます．ただし，追加できる声優はWikipediaで声優カテゴリに属している声優のみとなります．Wikipediaにページのない声優や，声優カテゴリに属していない場合には，リクエストを受け付けても登録が完了しない場合があります．
+  </div>
+</div>
 
 <%= render "form.html", changeset: @changeset,
                         action: seiyu_path(@conn, :create) %>

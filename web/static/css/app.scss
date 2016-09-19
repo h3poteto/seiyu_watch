@@ -1,8 +1,9 @@
 // phoenix.cssは参考のために残しておく，利用しない
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-@import "~bootswatch/flatly/variables";
+@import "~bootswatch/cosmo/variables";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
-@import "~bootswatch/flatly/bootswatch";
+@import "~bootswatch/cosmo/bootswatch";
+@import "common";
 @import "page";
 @import "seiyu";
 
@@ -10,4 +11,18 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 // bootstrapのstyleではflashの切り替えができないため
 .alert:empty {
   display: none;
+}
+
+// navbarのmarginが邪魔
+nav.navbar {
+  margin-bottom: 0;
+}
+
+footer.footer {
+  margin-top: 60px;
+  padding-top: 36px;
+
+  .container {
+    text-align: center;
+  }
 }

@@ -1,0 +1,39 @@
+main[data-controller="page_controller"][data-action="index"] {
+
+  .top-background {
+    background: url("/images/page/main_background.jpg") no-repeat;
+    background-size: cover;
+    color: #fff;
+    height: 560px;
+
+    .main-title {
+      padding-top: 180px;
+      @include side-margin-container();
+
+      h1 {
+        font-size: 56px;
+      }
+    }
+
+    .sub-title {
+      padding-top: 36px;
+      @include side-margin-container();
+
+      h4 {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .description {
+    @include side-margin-container();
+
+    .topic {
+      margin-top: 68px;
+
+      .title {
+        text-align: center;
+      }
+    }
+  }
+}

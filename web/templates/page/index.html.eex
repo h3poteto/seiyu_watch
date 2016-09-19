@@ -1,3 +1,26 @@
 <div class="top-background">
-
+  <div class="main-title">
+    <h1>SeiyuWatch</h1>
+  </div>
+  <div class="sub-title">
+    <h4>声優の出演情報を知りたい</h4>
+    <h4>声優を起点にしてアニメを見たい</h4>
+  </div>
+</div>
+<div class="description">
+  <div class="topic">
+    <div class="title">
+      <h2>Wikipediaからの情報を取得</h2>
+    </div>
+  </div>
+  <div class="topic">
+    <div class="title">
+      <h2>一週間以内の更新情報をチェック</h2>
+    </div>
+  </div>
+  <div class="topic">
+    <div class="title">
+      <h2>好きな声優を自由に登録</h2>
+    </div>
+  </div>
 </div>

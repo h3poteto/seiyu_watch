@@ -1,25 +1,26 @@
-<h2>Listing seiyus</h2>
+<h2>声優一覧</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
+<div class="seiyus">
+  <%= for seiyu_groups <- @seiyus do %>
+    <div class="seiyus-ordered">
+      <%= for seiyu <- seiyu_groups do %>
+        <div class="seiyu panel panel-default">
+          <div class="panel-body">
+            <div class="seiyu-name">
+              <%= link seiyu.name, to: seiyu_path(@conn, :show, seiyu), class: "name" %><span class="new"><i class="check fa fa-check-circle"></i></span>
+            </div>
+            <div class="icon">
+              <img src="/images/noimage.png" />
+            </div>
+          </div>
+          <div class="panel-footer">
+            description
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for seiyu <- @seiyus do %>
-    <tr>
-      <td><%= seiyu.name %></td>
 
-      <td class="text-right">
-        <%#= link "Show", to: seiyu_path(@conn, :show, seiyu), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: seiyu_path(@conn, :delete, seiyu), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<%= link "New seiyu", to: seiyu_path(@conn, :new) %>
+<%= link "新規追加", to: seiyu_path(@conn, :new), class: "btn btn-primary" %>

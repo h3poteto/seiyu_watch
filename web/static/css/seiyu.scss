@@ -1,11 +1,56 @@
-#seiyu_controller {
-  padding: 0 28px;
-  width: 100%;
+main[data-controller="seiyu_controller"] {
+  @include side-margin-container();
+}
 
+main[data-controller="seiyu_controller"][data-action="index"] {
+  .seiyus-ordered {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .seiyu {
+    margin-top: 48px;
+    width: 248px;
+
+    .panel-body {
+      padding: 36px 15px;
+
+      .seiyu-name {
+        margin-bottom: 12px;
+        text-align: center;
+
+        .name {
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+
+      .icon {
+        margin: 0 auto;
+        text-align: center;
+
+        img {
+          width: 80px;
+        }
+      }
+    }
+
+    .new {
+      color: $brand-primary;
+      display: inline-block;
+      margin-left: 8px;
+    }
+  }
+}
+
+main[data-controller="seiyu_controller"][data-action="show"] {
   $addedline-color: rgb(234, 255, 234);
   $addedchange-color: rgb(166, 243, 166);
   $border-color: rgb(211, 211, 211);
   $deletedline-color: rgb(255, 236, 236);
+  padding: 0 28px;
+  width: 100%;
 
   .wikipedia-diff {
     border: 1px solid $border-color;
