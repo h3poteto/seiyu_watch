@@ -43,17 +43,4 @@ defmodule SeiyuWatch.SeiyuController do
     diff = seiyu |> Seiyu.recent_diff
     render(conn, "show.html", seiyu: seiyu, diff: diff)
   end
-
-  def delete(conn, %{"id" => id}) do
-    seiyu = Repo.get!(Seiyu, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(seiyu)
-
-    conn
-    |> put_flash(:info, "Seiyu deleted successfully.")
-    |> redirect(to: seiyu_path(conn, :index))
-  end
-
 end
