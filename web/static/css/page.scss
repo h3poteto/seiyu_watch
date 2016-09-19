@@ -1,8 +1,4 @@
 main[data-controller="page_controller"][data-action="index"] {
-  @mixin side-margin-container() {
-    width: 982px;
-    margin: 0 auto;
-  }
 
   .top-background {
     background: url("/images/page/main_background.jpg") no-repeat;

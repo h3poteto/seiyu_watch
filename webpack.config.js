@@ -47,7 +47,7 @@ module.exports = {
     new CopyWebpackPlugin([{ from: "./web/static/assets" }])
   ],
   resolve: {
-    extensions: ["", ".css", ".scss", "js"],
+    extensions: ["", ".css", ".scss", ".js"],
     root: path.resolve(__dirname, "web/static")
   }
 };

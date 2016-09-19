@@ -53,6 +53,8 @@
       </div>
     </footer>
 
+
+    <script src="https://use.fontawesome.com/8913238b79.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

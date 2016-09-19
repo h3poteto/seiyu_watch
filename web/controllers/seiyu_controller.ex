@@ -5,6 +5,15 @@ defmodule SeiyuWatch.SeiyuController do
 
   def index(conn, _params) do
     seiyus = Repo.all(Seiyu)
+    ln = fn
+      (1) -> 1
+      (2) -> 2
+      (_) -> 3
+    end
+
+    length = seiyus |> Enum.count |> ln.()
+
+    seiyus = seiyus |> Enum.chunk(length, length, [])
     render(conn, "index.html", seiyus: seiyus)
   end
 
@@ -44,4 +53,5 @@ defmodule SeiyuWatch.SeiyuController do
     |> put_flash(:info, "Seiyu deleted successfully.")
     |> redirect(to: seiyu_path(conn, :index))
   end
+
 end
