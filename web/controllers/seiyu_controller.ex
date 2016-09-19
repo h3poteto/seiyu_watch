@@ -4,7 +4,9 @@ defmodule SeiyuWatch.SeiyuController do
   alias SeiyuWatch.Seiyu
 
   def index(conn, _params) do
-    seiyus = Repo.all(Seiyu)
+    seiyus = Seiyu
+    |> order_by(desc: :diffs_updated_at)
+    |> Repo.all
     ln = fn
       (1) -> 1
       (2) -> 2
