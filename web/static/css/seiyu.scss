@@ -8,6 +8,7 @@ main[data-controller="seiyu_controller"][data-action="index"] {
     flex-direction: row;
     justify-content: space-between;
   }
+
   .seiyu {
     margin-top: 48px;
     width: 248px;
@@ -20,8 +21,8 @@ main[data-controller="seiyu_controller"][data-action="index"] {
         text-align: center;
 
         .name {
-          font-weight: bold;
           font-size: 18px;
+          font-weight: bold;
         }
       }
 
@@ -36,9 +37,9 @@ main[data-controller="seiyu_controller"][data-action="index"] {
     }
 
     .new {
+      color: $brand-primary;
       display: inline-block;
       margin-left: 8px;
-      color: $brand-primary;
     }
   }
 }
