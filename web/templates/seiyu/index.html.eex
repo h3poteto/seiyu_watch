@@ -7,7 +7,10 @@
         <div class="seiyu panel panel-default">
           <div class="panel-body">
             <div class="seiyu-name">
-              <%= link seiyu.name, to: seiyu_path(@conn, :show, seiyu), class: "name" %><span class="new"><i class="check fa fa-check-circle"></i></span>
+              <%= link seiyu.name, to: seiyu_path(@conn, :show, seiyu), class: "name" %>
+              <%= if seiyu.diffs_updated_at |> Ecto.DateTime.to_erl |> Timex.to_datetime |> Timex.after?(Timex.shift(Timex.now, days: -7)) do %>
+                <span class="new"><i class="check fa fa-check-circle"></i></span>
+              <% end %>
             </div>
             <div class="icon">
               <img src="/images/noimage.png" />
