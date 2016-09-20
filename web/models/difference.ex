@@ -1,10 +1,8 @@
-defmodule SeiyuWatch.SeiyuDiff do
+defmodule SeiyuWatch.Difference do
   use SeiyuWatch.Web, :model
 
-  schema "seiyu_diffs" do
+  schema "differences" do
     field :wiki_diff, :string
-    field :revision_hash, :string
-    field :revision_id, :integer
     field :from, :integer
     field :to, :integer
     belongs_to :seiyu, SeiyuWatch.Seiyu
@@ -17,8 +15,8 @@ defmodule SeiyuWatch.SeiyuDiff do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:wiki_diff, :revision_hash, :revision_id, :from, :to, :seiyu_id])
+    |> cast(params, [:wiki_diff, :from, :to, :seiyu_id])
     |> assoc_constraint(:seiyu)
-    |> validate_required([:wiki_diff, :revision_hash, :revision_id, :from, :to, :seiyu_id])
+    |> validate_required([:wiki_diff, :from, :to, :seiyu_id])
   end
 end

@@ -19,42 +19,56 @@ defmodule SeiyuWatch.DiffParser do
     time_from = Timex.shift(Timex.now, days: days)
     seiyu = SeiyuWatch.Seiyu
     |> Repo.get!(seiyu_id)
-    |> Repo.preload(seiyu_diffs: (from a in SeiyuWatch.SeiyuDiff, where: a.inserted_at < ^time_from, order_by: [desc: a.inserted_at]))
+    |> Repo.preload(differences: (from a in SeiyuWatch.Difference, where: a.inserted_at < ^time_from, order_by: [desc: a.inserted_at]))
 
-    wikipedia_page_request(seiyu.wiki_page_id, prev_revision(seiyu.seiyu_diffs))
+    wikipedia_page_request(seiyu)
     |> WikipediaResponse.get_response
     |> save(seiyu.id)
   end
 
-  # TODO: このように指定しないと，比較方向がおかしくなる
-  # https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=1543998&rvdiffto=61114635&rvprop=sha1|ids&rvstartid=61096294&rvendid=61096294
-  # 現状difffromの指定はできないため，startidで強制的にfromを実現する
-  def wikipedia_page_request(wiki_page_id, prev_rev \\ "prev") do
-    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=#{wiki_page_id}&rvdiffto=#{prev_rev}&rvprop=sha1|ids"
+  def current_revision(seiyu) do
+    wikipedia_current_revision_request(seiyu.wiki_page_id)
+    |> WikipediaResponse.get_response
+    |> WikipediaResponse.revision_id
+    |> elem(0)
   end
 
-  defp prev_revision(seiyu_diffs) do
-    case seiyu_diffs |> Enum.count do
-      0 -> "prev"
-      _ -> (seiyu_diffs |> hd).revision_id
+  def wikipedia_current_revision_request(wiki_page_id) do
+    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=#{wiki_page_id}&rvprop=sha1|ids"
+  end
+
+  # https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=1543998&rvdiffto=61114635&rvprop=sha1|ids&rvstartid=61096294&rvendid=61096294
+  # このように指定しないと，比較方向がおかしくなる
+  # 現状difffromの指定はできないため，startidに旧idを設定し強制的にfromを実現する
+  def wikipedia_page_request(seiyu) do
+    case prev_revision(seiyu.differences) do
+      0 ->
+        "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=#{seiyu.wiki_page_id}&rvdiffto=prev&rvprop=sha1|ids"
+      prev_rev ->
+        "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=#{seiyu.wiki_page_id}&rvdiffto=#{current_revision(seiyu)}&rvprop=sha1|ids&rvstartid=#{prev_rev}&rvendid=#{prev_rev}"
+    end
+  end
+
+  defp prev_revision(differences) do
+    case differences |> Enum.count do
+      0 -> 0
+      _ -> (differences |> hd).to
     end
   end
 
   defp save(response, seiyu_id) do
     case WikipediaResponse.parse_diff(response) do
       {:ok, content, from, to} ->
-        res = SeiyuWatch.SeiyuDiff.changeset(
-        %SeiyuWatch.SeiyuDiff{},
+        res = SeiyuWatch.Difference.changeset(
+        %SeiyuWatch.Difference{},
         %{"seiyu_id" => seiyu_id,
-          "revision_hash" => WikipediaResponse.revision_id(response) |> elem(1),
-          "revision_id" => WikipediaResponse.revision_id(response) |> elem(0),
           "wiki_diff" => content,
           "from" => from,
           "to" => to
         }
       )
       |> Repo.insert
-        Task.start_link(fn -> SeiyuWatch.SeiyuDiffEvent.after_update_diff(res) end)
+        Task.start_link(fn -> SeiyuWatch.DifferenceEvent.after_update_diff(res) end)
       error -> error
     end
   end
