@@ -26,6 +26,9 @@ defmodule SeiyuWatch.DiffParser do
     |> save(seiyu.id)
   end
 
+  # TODO: このように指定しないと，比較方向がおかしくなる
+  # https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=1543998&rvdiffto=61114635&rvprop=sha1|ids&rvstartid=61096294&rvendid=61096294
+  # 現状difffromの指定はできないため，startidで強制的にfromを実現する
   def wikipedia_page_request(wiki_page_id, prev_rev \\ "prev") do
     "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&pageids=#{wiki_page_id}&rvdiffto=#{prev_rev}&rvprop=sha1|ids"
   end

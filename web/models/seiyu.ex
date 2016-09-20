@@ -9,6 +9,7 @@ defmodule SeiyuWatch.Seiyu do
     field :diffs_updated_at, Ecto.DateTime
     field :wiki_url, :string
     has_many :seiyu_diffs, SeiyuWatch.SeiyuDiff
+    has_one :wikipedia, SeiyuWatch.Wikipedia
 
     timestamps
   end
