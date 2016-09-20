@@ -1,7 +1,7 @@
 defmodule SeiyuWatch.Repo.Migrations.CreateSeiyuDiff do
   use Ecto.Migration
 
-  def change do
+  def up do
     create table(:seiyu_diffs) do
       add :wiki_diff, :mediumtext
       add :revision_hash, :string

@@ -6,6 +6,7 @@ defmodule SeiyuWatch.SeiyuDiffEvent do
     case update do
       {:ok, diff} ->
         Task.start_link(fn -> SeiyuWatch.Seiyu.update_diff_timestamp(diff.seiyu_id) end)
+        Task.start_link(fn -> SeiyuWatch.WikiParser.update_wiki(diff.seiyu_id) end)
       _ -> update
     end
   end

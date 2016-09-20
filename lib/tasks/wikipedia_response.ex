@@ -46,6 +46,10 @@ defmodule SeiyuWatch.WikipediaResponse do
     query(response) |> pages |> single_page |> fullurl
   end
 
+  def parse_content(response) do
+    query(response) |> pages |> single_page |> revision |> content
+  end
+
   defp query(response) do
     response["query"]
   end
@@ -79,5 +83,9 @@ defmodule SeiyuWatch.WikipediaResponse do
 
   defp fullurl(%{"fullurl" => url}) do
     url
+  end
+
+  defp content(%{"*" => content}) do
+    content
   end
 end
