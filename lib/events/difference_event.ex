@@ -1,6 +1,6 @@
 # Eventsは基本的にTaskを使うこと
 # 将来的にはEventsだけTaskから切り離し，オリジナルのプロセスを作る可能性がある
-defmodule SeiyuWatch.SeiyuDiffEvent do
+defmodule SeiyuWatch.DifferenceEvent do
 
   def after_update_diff(update) do
     case update do
