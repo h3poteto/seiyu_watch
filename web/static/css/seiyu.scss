@@ -6,7 +6,8 @@ main[data-controller="seiyu_controller"][data-action="index"] {
   .seiyus-ordered {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: flex-start;
   }
 
   .seiyu {
@@ -33,6 +34,13 @@ main[data-controller="seiyu_controller"][data-action="index"] {
         img {
           width: 80px;
         }
+      }
+    }
+
+    .panel-footer {
+      a {
+        color: rgb(51, 51, 51);
+        pointer-events: none;
       }
     }
 

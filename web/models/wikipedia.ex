@@ -17,4 +17,21 @@ defmodule SeiyuWatch.Wikipedia do
     |> assoc_constraint(:seiyu)
     |> validate_required([:content, :seiyu_id])
   end
+
+  # table要素ではなく最初のp要素を取る
+  def head(wikipedia) do
+    wikipedia.content
+    |> Floki.parse
+    |> Enum.map(fn(c) ->
+      case c do
+        {"p", _, _} -> c
+        _ -> nil
+      end
+    end)
+    |> Enum.reject(fn(x) ->
+      x == nil
+    end)
+    |> Enum.slice(0, 2)
+    |> Floki.raw_html
+  end
 end
