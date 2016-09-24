@@ -20,18 +20,22 @@ defmodule SeiyuWatch.Wikipedia do
 
   # table要素ではなく最初のp要素を取る
   def head(wikipedia) do
-    wikipedia.content
-    |> Floki.parse
-    |> Enum.map(fn(c) ->
-      case c do
-        {"p", _, _} -> c
-        _ -> nil
-      end
-    end)
-    |> Enum.reject(fn(x) ->
-      x == nil
-    end)
-    |> Enum.slice(0, 2)
-    |> Floki.raw_html
+    case wikipedia do
+      nil -> "No description"
+      _ ->
+        wikipedia.content
+        |> Floki.parse
+        |> Enum.map(fn(c) ->
+          case c do
+            {"p", _, _} -> c
+            _ -> nil
+          end
+        end)
+        |> Enum.reject(fn(x) ->
+          x == nil
+        end)
+        |> Enum.slice(0, 2)
+        |> Floki.raw_html
+    end
   end
 end
