@@ -22,4 +22,6 @@
   <%= raw @diff |> elem(1) %>
 </table>
 
-<%= link "Back", to: seiyu_path(@conn, :index), class: "btn btn-default" %>
+<div class="controls">
+  <%= link "戻る", to: seiyu_path(@conn, :index), class: "btn btn-default" %>
+</div>

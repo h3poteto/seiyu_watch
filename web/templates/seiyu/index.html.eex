@@ -26,4 +26,6 @@
 </div>
 
 
-<%= link "新規追加", to: seiyu_path(@conn, :new), class: "btn btn-primary" %>
+<div class="controls">
+  <%= link "新規追加", to: seiyu_path(@conn, :new), class: "btn btn-success" %>
+</div>
