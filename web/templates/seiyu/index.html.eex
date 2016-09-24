@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="panel-footer">
-            description
+            <%= raw seiyu.wikipedia |> SeiyuWatch.Wikipedia.head %>
           </div>
         </div>
       <% end %>

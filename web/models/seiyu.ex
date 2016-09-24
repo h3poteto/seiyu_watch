@@ -40,5 +40,4 @@ defmodule SeiyuWatch.Seiyu do
       value -> {:ok, value.wiki_diff}
     end
   end
-
 end

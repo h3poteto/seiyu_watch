@@ -7,6 +7,7 @@ defmodule SeiyuWatch.SeiyuController do
     seiyus = Seiyu
     |> order_by(desc: :diffs_updated_at)
     |> Repo.all
+    |> Repo.preload(:wikipedia)
     ln = fn
       (1) -> 1
       (2) -> 2
@@ -41,6 +42,8 @@ defmodule SeiyuWatch.SeiyuController do
   def show(conn, %{"id" => id}) do
     seiyu = Repo.get!(Seiyu, id)
     diff = seiyu |> Seiyu.recent_diff
-    render(conn, "show.html", seiyu: seiyu, diff: diff)
+    wiki_head = (seiyu |> Repo.preload(:wikipedia)).wikipedia
+    |> SeiyuWatch.Wikipedia.head
+    render(conn, "show.html", seiyu: seiyu, diff: diff, wiki_head: wiki_head)
   end
 end

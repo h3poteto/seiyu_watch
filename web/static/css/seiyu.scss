@@ -6,7 +6,8 @@ main[data-controller="seiyu_controller"][data-action="index"] {
   .seiyus-ordered {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: flex-start;
   }
 
   .seiyu {
@@ -36,6 +37,13 @@ main[data-controller="seiyu_controller"][data-action="index"] {
       }
     }
 
+    .panel-footer {
+      a {
+        color: rgb(51, 51, 51);
+        pointer-events: none;
+      }
+    }
+
     .new {
       color: $brand-primary;
       display: inline-block;
@@ -52,8 +60,20 @@ main[data-controller="seiyu_controller"][data-action="show"] {
   padding: 0 28px;
   width: 100%;
 
+  .wikipedia {
+    margin-bottom: 92px;
+
+    .wikipedia-body {
+      a {
+        color: rgb(51, 51, 51);
+        pointer-events: none;
+      }
+    }
+  }
+
   .wikipedia-diff {
     border: 1px solid $border-color;
+    margin-bottom: 64px;
 
     .diff-lineno {
       background-color: rgb(247, 247, 247);

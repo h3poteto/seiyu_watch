@@ -1,6 +1,21 @@
-<h2><%= @seiyu.name %>の更新情報</h2>
+<div class="page-header">
+  <h2><%= @seiyu.name %></h2>
+</div>
 
-<p><%= link "#{@seiyu.name} - Wikipedia", to: @seiyu.wiki_url %></p>
+<div class="panel panel-primary wikipedia">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= link "#{@seiyu.name}", to: @seiyu.wiki_url %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="wikipedia-body">
+      <%= raw @wiki_head %>
+    </div>
+  </div>
+</div>
+
+<div class="page-header">
+  <h3>更新情報</h3>
+</div>
 <p><%= @seiyu.name %>のWikipediaから，最近更新された情報を表示しています．</p>
 
 <table class="table table-hover wikipedia-diff">
