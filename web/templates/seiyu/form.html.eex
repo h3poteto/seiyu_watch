@@ -9,7 +9,7 @@
     <fieldset>
       <legend>声優</legend>
       <div class="form-group">
-        <%= label f, :name, class: "control-label" %>
+        <%= label f, :name, "名前", class: "control-label" %>
         <%= text_input f, :name, class: "form-control" %>
         <%= error_tag f, :name %>
       </div>
