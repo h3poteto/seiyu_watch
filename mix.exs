@@ -19,7 +19,7 @@ defmodule SeiyuWatch.Mixfile do
   def application do
     [mod: {SeiyuWatch, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :mariaex, :timex, :quantum]]
+                    :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
