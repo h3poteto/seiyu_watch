@@ -5,6 +5,7 @@ defmodule SeiyuWatch.Seiyu do
 
   schema "seiyus" do
     field :name, :string
+    field :icon, :string
     field :wiki_page_id, :integer
     field :diffs_updated_at, Ecto.DateTime
     field :wiki_url, :string
@@ -20,7 +21,7 @@ defmodule SeiyuWatch.Seiyu do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :wiki_page_id, :diffs_updated_at, :wiki_url])
+    |> cast(params, [:name, :icon, :wiki_page_id, :diffs_updated_at, :wiki_url])
     |> validate_required([:name, :wiki_page_id, :wiki_url])
   end
 

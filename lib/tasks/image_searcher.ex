@@ -40,6 +40,10 @@ defmodule SeiyuWatch.ImageSearcher do
     File.write!("/tmp/#{file_name}", body)
   end
 
+  # http://smashingboxes.com/blog/image-upload-in-phoenix
+  def upload(file) do
+  end
+
   def google_search_request(name) do
     "https://www.googleapis.com/customsearch/v1?key=#{google_api_key}&cx=#{google_custom_search_id}&searchType=image&q=#{URI.encode(name)}&num=10"
   end
