@@ -1,11 +1,12 @@
 defmodule SeiyuWatch.Seiyu do
   use SeiyuWatch.Web, :model
+  use Arc.Ecto.Schema
   alias SeiyuWatch.Repo
   import Ecto.Query, only: [from: 2]
 
   schema "seiyus" do
     field :name, :string
-    field :icon, :string
+    field :icon, SeiyuWatch.Icon.Type
     field :wiki_page_id, :integer
     field :diffs_updated_at, Ecto.DateTime
     field :wiki_url, :string

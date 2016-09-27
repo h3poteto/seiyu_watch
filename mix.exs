@@ -19,7 +19,7 @@ defmodule SeiyuWatch.Mixfile do
   def application do
     [mod: {SeiyuWatch, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison]]
+                    :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison, :ex_aws]]
   end
 
   # Specifies which paths to compile per environment.
@@ -46,7 +46,10 @@ defmodule SeiyuWatch.Mixfile do
      {:quinn, "~> 1.0.0"},
      {:floki, "~> 0.10.0"},
      {:inflex, "~> 1.7.0"},
-     {:quantum, git: "https://github.com/c-rack/quantum-elixir.git"}]
+     {:quantum, git: "https://github.com/c-rack/quantum-elixir.git"},
+     {:arc_ecto, "~> 0.4.4"},
+     {:arc, "~> 0.5.2"},
+     {:ex_aws, "~> 0.4.10"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

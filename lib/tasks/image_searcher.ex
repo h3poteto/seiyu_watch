@@ -5,14 +5,19 @@ defmodule SeiyuWatch.ImageSearcher do
 
   require IEx
   def save_image(seiyu_id) do
-    (SeiyuWatch.Seiyu
+    seiyu = SeiyuWatch.Seiyu
     |> Repo.get!(seiyu_id)
-    ).name
+
+    image = seiyu.name
     |> google_search_request
     |> GoogleResponse.get_response
     |> GoogleResponse.parse_images
     |> Enum.at(0)
     |> download
+    case image do
+      {:ok, file_path} -> upload(file_path, seiyu)
+      _ -> :error
+    end
   end
 
   # ダウンロードでつかえそうなもの
@@ -25,7 +30,7 @@ defmodule SeiyuWatch.ImageSearcher do
     result = HTTPoison.get!(url)
     case result do
       %{status_code: 200, headers: headers, body: body} -> save(url, headers, body)
-      %{status_code: _code} -> :error
+      %{status_code: _code} -> {:error, nil}
     end
   end
 
@@ -33,15 +38,20 @@ defmodule SeiyuWatch.ImageSearcher do
   def save(url, headers, body) do
     name = Crypto.md5(url)
     file_name = case headers |> Enum.filter(fn(h) -> h |> elem(0) == "Content-Type" end) |> Enum.at(0) |> elem(1) do
-      "image/jpeg" -> "#{name}.jpg"
-      "image/gif" -> "#{name}.gif"
-      "image/png" -> "#{name}.png"
+                  "image/jpeg" -> "#{name}.jpg"
+                  "image/gif" -> "#{name}.gif"
+                  "image/png" -> "#{name}.png"
+                end
+    file_path = "/tmp/#{file_name}"
+    case File.write!(file_path, body) do
+      :ok -> {:ok, file_path}
+      error -> {error, nil}
     end
-    File.write!("/tmp/#{file_name}", body)
   end
 
   # http://smashingboxes.com/blog/image-upload-in-phoenix
-  def upload(file) do
+  def upload(file, seiyu) do
+    SeiyuWatch.Icon.store({file, seiyu})
   end
 
   def google_search_request(name) do
