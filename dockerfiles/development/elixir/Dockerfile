@@ -8,6 +8,7 @@ RUN set -x && \
   npm \
   inotify-tools \
   git \
+  imagemagick \
   curl && \
   rm -rf /var/lib/apt/lists/* && \
   npm cache clean && \

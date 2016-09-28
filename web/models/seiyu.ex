@@ -1,10 +1,12 @@
 defmodule SeiyuWatch.Seiyu do
   use SeiyuWatch.Web, :model
+  use Arc.Ecto.Schema
   alias SeiyuWatch.Repo
   import Ecto.Query, only: [from: 2]
 
   schema "seiyus" do
     field :name, :string
+    field :icon, SeiyuWatch.Icon.Type
     field :wiki_page_id, :integer
     field :diffs_updated_at, Ecto.DateTime
     field :wiki_url, :string
@@ -21,6 +23,7 @@ defmodule SeiyuWatch.Seiyu do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :wiki_page_id, :diffs_updated_at, :wiki_url])
+    |> cast_attachments(params, [:icon])
     |> validate_required([:name, :wiki_page_id, :wiki_url])
   end
 

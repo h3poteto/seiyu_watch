@@ -13,7 +13,7 @@
               <% end %>
             </div>
             <div class="icon">
-              <img src="/images/noimage.png" />
+              <img src="<%= SeiyuWatch.Icon.url({seiyu.icon, seiyu}, :small) %>" />
             </div>
           </div>
           <div class="panel-footer">

@@ -2,7 +2,6 @@ defmodule SeiyuWatch.WikipediaResponse do
 
   def get_response(request) do
     url = request
-    HTTPoison.start
     result = HTTPoison.get! url
     case result do
       %{status_code: 200, body: body} -> Poison.decode!(body)
