@@ -4,6 +4,9 @@ defmodule SeiyuWatch.ImageSearcher do
   alias SeiyuWatch.GoogleResponse
 
   require IEx
+
+  @file_dir "/tmp"
+
   def save_image(seiyu_id) do
     seiyu = SeiyuWatch.Seiyu
     |> Repo.get!(seiyu_id)
@@ -15,7 +18,7 @@ defmodule SeiyuWatch.ImageSearcher do
     |> Enum.at(0)
     |> download
     case image do
-      {:ok, file_path} -> upload(file_path, seiyu)
+      {:ok, file_name} -> upload(file_name, seiyu)
       _ -> :error
     end
   end
@@ -42,16 +45,21 @@ defmodule SeiyuWatch.ImageSearcher do
                   "image/gif" -> "#{name}.gif"
                   "image/png" -> "#{name}.png"
                 end
-    file_path = "/tmp/#{file_name}"
+    file_path = "#{@file_dir}/#{file_name}"
     case File.write!(file_path, body) do
-      :ok -> {:ok, file_path}
+      :ok -> {:ok, file_name}
       error -> {error, nil}
     end
   end
 
   # http://smashingboxes.com/blog/image-upload-in-phoenix
   def upload(file, seiyu) do
-    SeiyuWatch.Icon.store({file, seiyu})
+    changeset = SeiyuWatch.Seiyu.changeset(seiyu, %{icon: %Plug.Upload{filename: file, path: "#{@file_dir}/#{file}"}})
+    if changeset.valid? do
+      Repo.update(changeset)
+    else
+      :error
+    end
   end
 
   def google_search_request(name) do

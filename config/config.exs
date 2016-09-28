@@ -29,12 +29,18 @@ config :quantum, cron: [
 ]
 
 config :arc,
-  bucket: System.get_env("S3_BUCKET")
+  bucket: System.get_env("S3_BUCKET"),
+  asset_host: "https://s3-#{System.get_env("AWS_REGION")}.amazonaws.com/#{System.get_env("S3_BUCKET")}"
 
 config :ex_aws,
   access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role],
   secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :instance_role],
-  region: System.get_env("AWS_REGION")
+  region: System.get_env("AWS_REGION"),
+  s3: [
+    scheme: "https://",
+    host: "s3-#{System.get_env("AWS_REGION")}.amazonaws.com",
+    region: System.get_env("AWS_REGION")
+  ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

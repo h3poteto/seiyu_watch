@@ -22,7 +22,8 @@ defmodule SeiyuWatch.Seiyu do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :icon, :wiki_page_id, :diffs_updated_at, :wiki_url])
+    |> cast(params, [:name, :wiki_page_id, :diffs_updated_at, :wiki_url])
+    |> cast_attachments(params, [:icon])
     |> validate_required([:name, :wiki_page_id, :wiki_url])
   end
 
