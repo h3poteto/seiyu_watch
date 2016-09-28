@@ -14,9 +14,9 @@ defmodule SeiyuWatch.Icon do
 
   # TODO: resize
   # Define a thumbnail transformation:
-  # def transform(:thumb, _) do
-  #   {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
-  # end
+  def transform(:small, _) do
+    {:convert, "-strip -resize 100x"}
+  end
 
   # Override the persisted filenames:
   def filename(version, _) do
