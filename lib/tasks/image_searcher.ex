@@ -29,7 +29,7 @@ defmodule SeiyuWatch.ImageSearcher do
 
   # 画像
   # https://40.media.tumblr.com/dcfce2754e8c4d8917373f0a1e905686/tumblr_npjs1wR1UQ1ux6tqqo1_1280.jpg
-  def download(url) do
+  defp download(url) do
     result = HTTPoison.get!(url)
     case result do
       %{status_code: 200, headers: headers, body: body} -> save(url, headers, body)
@@ -38,7 +38,7 @@ defmodule SeiyuWatch.ImageSearcher do
   end
 
 
-  def save(url, headers, body) do
+  defp save(url, headers, body) do
     name = Crypto.md5(url)
     file_name = case headers |> Enum.filter(fn(h) -> h |> elem(0) == "Content-Type" end) |> Enum.at(0) |> elem(1) do
                   "image/jpeg" -> "#{name}.jpg"
@@ -53,7 +53,7 @@ defmodule SeiyuWatch.ImageSearcher do
   end
 
   # http://smashingboxes.com/blog/image-upload-in-phoenix
-  def upload(file, seiyu) do
+  defp upload(file, seiyu) do
     changeset = SeiyuWatch.Seiyu.changeset(seiyu, %{icon: %Plug.Upload{filename: file, path: "#{@file_dir}/#{file}"}})
     if changeset.valid? do
       Repo.update(changeset)
