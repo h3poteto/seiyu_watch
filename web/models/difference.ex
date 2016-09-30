@@ -13,6 +13,8 @@ defmodule SeiyuWatch.Difference do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
+
+  # TODO: belongs_toはseiyu_idをパラメータで渡すのやめたい
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:wiki_diff, :from, :to, :seiyu_id])
