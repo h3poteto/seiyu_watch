@@ -3,8 +3,6 @@ defmodule SeiyuWatch.ImageSearcher do
   alias SeiyuWatch.Repo
   alias SeiyuWatch.GoogleResponse
 
-  require IEx
-
   @file_dir "/tmp"
 
   def save_image(seiyu_id) do

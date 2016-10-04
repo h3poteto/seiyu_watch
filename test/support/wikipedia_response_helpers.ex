@@ -1,4 +1,4 @@
-defmodule SeiyuWatch.TestHelpers do
+defmodule SeiyuWatch.WikipediaResponseHelpers do
   def response_category(%{page_id: page_id, fullurl: fullurl, revision_id: revision_id, revision_hash: revision_hash}) do
     %{
       "batchcomplete" => "",

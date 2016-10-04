@@ -1,6 +1,7 @@
 defmodule SeiyuWatch.WikipediaResponseTest do
   use SeiyuWatch.TaskCase
 
+  import SeiyuWatch.WikipediaResponseHelpers
   alias SeiyuWatch.WikipediaResponse
 
   describe "#parse_categories" do

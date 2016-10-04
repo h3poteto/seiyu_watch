@@ -5,7 +5,6 @@ defmodule SeiyuWatch.TaskCase do
     quote do
       alias SeiyuWatch.Repo
 
-      import SeiyuWatch.TestHelpers
       import Ecto
       import Ecto.Changeset
       import Ecto.Query

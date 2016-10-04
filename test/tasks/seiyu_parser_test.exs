@@ -2,6 +2,7 @@ defmodule SeiyuWatch.SeiyuParserTest do
   use SeiyuWatch.TaskCase
 
   import Mock
+  import SeiyuWatch.WikipediaResponseHelpers
   alias SeiyuWatch.SeiyuParser
 
   describe "#save" do
