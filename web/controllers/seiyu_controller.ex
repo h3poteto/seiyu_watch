@@ -35,7 +35,7 @@ defmodule SeiyuWatch.SeiyuController do
     case seiyu_params |> Map.fetch("name") do
       {:ok, name} ->
         if name |> String.strip |> String.length > 0 do
-          Task.start_link(fn -> SeiyuWatch.SeiyuParser.save(name) end)
+          Task.start(fn -> SeiyuWatch.SeiyuParser.save(name) end)
           conn
           |> put_flash(:info, "声優登録リクエストを受け付けました")
           |> redirect(to: seiyu_path(conn, :index))
