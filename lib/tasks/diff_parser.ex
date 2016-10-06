@@ -69,7 +69,8 @@ defmodule SeiyuWatch.DiffParser do
         )
         |> Repo.insert
         {:ok, pid} = Task.Supervisor.start_link()
-        Task.Supervisor.async_nolink(pid, fn -> SeiyuWatch.DifferenceEvent.after_update_diff(res) end)
+        task = Task.Supervisor.async_nolink(pid, fn -> SeiyuWatch.DifferenceEvent.after_update_diff(res) end)
+        {:ok, task}
       error -> error
     end
   end

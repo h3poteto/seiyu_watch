@@ -50,7 +50,7 @@ defmodule SeiyuWatch.Mixfile do
      {:arc_ecto, "~> 0.4.4"},
      {:arc, "~> 0.5.2"},
      {:ex_aws, "~> 0.4.10"},
-     {:mock, "~> 0.1.1", only: :test}]
+     {:mock, git: "https://github.com/jjh42/mock.git", only: :test}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

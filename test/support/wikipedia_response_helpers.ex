@@ -78,4 +78,21 @@ defmodule SeiyuWatch.WikipediaResponseHelpers do
       }
     }
   end
+
+  def response_page(%{revid: revid}) do
+    %{"batchcomplete" => "",
+      "query" => %{
+        "pages" => %{"1543998" => %{"ns" => 0,
+                                    "pageid" => 1543998,
+                                    "revisions" => [
+                                      %{"parentid" => 61347109,
+                                        "revid" => revid,
+                                        "sha1" => "5a4ef6d81f07fc729910e02251a4daf89628cd45"}
+                                    ],
+                                    "title" => "阿澄佳奈"
+                                   }
+                    }
+      }
+    }
+  end
 end
