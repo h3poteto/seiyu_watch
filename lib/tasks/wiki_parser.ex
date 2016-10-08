@@ -13,9 +13,10 @@ defmodule SeiyuWatch.WikiParser do
 
     case seiyu.wikipedia do
       nil ->
-        SeiyuWatch.Wikipedia.changeset(
-          %SeiyuWatch.Wikipedia{},
-          %{"seiyu_id" => seiyu.id,
+        seiyu
+        |> Ecto.build_assoc(:wikipedia)
+        |> SeiyuWatch.Wikipedia.changeset(
+          %{
             "content" => content
           }
         )

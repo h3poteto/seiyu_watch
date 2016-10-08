@@ -15,5 +15,5 @@ config :seiyu_watch, SeiyuWatch.Repo,
   username: "root",
   password: "",
   database: "seiyu_watch_test",
-  hostname: "localhost",
+  hostname: "mysql",
   pool: Ecto.Adapters.SQL.Sandbox

@@ -49,7 +49,8 @@ defmodule SeiyuWatch.Mixfile do
      {:quantum, git: "https://github.com/c-rack/quantum-elixir.git"},
      {:arc_ecto, "~> 0.4.4"},
      {:arc, "~> 0.5.2"},
-     {:ex_aws, "~> 0.4.10"}]
+     {:ex_aws, "~> 0.4.10"},
+     {:mock, git: "https://github.com/jjh42/mock.git", only: :test}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

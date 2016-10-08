@@ -11,7 +11,9 @@ defmodule SeiyuWatch.SeiyuParser do
     |> WikipediaResponse.find_seiyu_category do
       create = SeiyuWatch.Seiyu.changeset(%SeiyuWatch.Seiyu{}, %{"name" => name, "wiki_page_id" => WikipediaResponse.page_id(response), "wiki_url" => WikipediaResponse.url(response)})
       |> Repo.insert
-      Task.start_link(fn -> SeiyuWatch.SeiyuEvent.after_create(create) end)
+      {:ok, pid} = Task.Supervisor.start_link()
+      task = Task.Supervisor.async_nolink(pid, fn -> SeiyuWatch.SeiyuEvent.after_create(create) end)
+      {:ok, task}
     else
       {:failed, name}
     end

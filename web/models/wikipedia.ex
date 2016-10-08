@@ -8,14 +8,16 @@ defmodule SeiyuWatch.Wikipedia do
     timestamps()
   end
 
+  @required_fields ~w(content)
+  @optional_fields ~w()
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:content, :seiyu_id])
+    |> cast(params, @required_fields, @optional_fields)
     |> assoc_constraint(:seiyu)
-    |> validate_required([:content, :seiyu_id])
   end
 
   # table要素ではなく最初のp要素を取る

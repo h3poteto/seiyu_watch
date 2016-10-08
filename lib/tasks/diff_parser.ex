@@ -23,7 +23,7 @@ defmodule SeiyuWatch.DiffParser do
 
     wikipedia_page_request(seiyu)
     |> WikipediaResponse.get_response
-    |> save(seiyu.id)
+    |> save(seiyu)
   end
 
   def current_revision(seiyu) do
@@ -56,19 +56,21 @@ defmodule SeiyuWatch.DiffParser do
     end
   end
 
-  defp save(response, seiyu_id) do
+  defp save(response, seiyu) do
     case WikipediaResponse.parse_diff(response) do
       {:ok, content, from, to} ->
-        res = SeiyuWatch.Difference.changeset(
-        %SeiyuWatch.Difference{},
-        %{"seiyu_id" => seiyu_id,
-          "wiki_diff" => content,
-          "from" => from,
-          "to" => to
-        }
-      )
-      |> Repo.insert
-        Task.start_link(fn -> SeiyuWatch.DifferenceEvent.after_update_diff(res) end)
+        res = seiyu
+        |> Ecto.build_assoc(:differences)
+        |> SeiyuWatch.Difference.changeset(
+          %{"wiki_diff" => content,
+            "from" => from,
+            "to" => to
+          }
+        )
+        |> Repo.insert
+        {:ok, pid} = Task.Supervisor.start_link()
+        task = Task.Supervisor.async_nolink(pid, fn -> SeiyuWatch.DifferenceEvent.after_update_diff(res) end)
+        {:ok, task}
       error -> error
     end
   end

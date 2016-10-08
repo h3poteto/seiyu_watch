@@ -12,11 +12,11 @@ defmodule SeiyuWatch.GoogleResponse do
     response |> items |> images
   end
 
-  def items(%{"items" => items}) do
+  defp items(%{"items" => items}) do
     items
   end
 
-  def images(items) do
+  defp images(items) do
     items |> Enum.map(fn(i) ->
       i["link"]
     end)

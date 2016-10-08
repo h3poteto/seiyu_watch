@@ -10,13 +10,15 @@ defmodule SeiyuWatch.Difference do
     timestamps
   end
 
+  @required_fields ~w(wiki_diff from to seiyu_id)
+  @optional_fields ~w()
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:wiki_diff, :from, :to, :seiyu_id])
+    |> cast(params, @required_fields, @optional_fields)
     |> assoc_constraint(:seiyu)
-    |> validate_required([:wiki_diff, :from, :to, :seiyu_id])
   end
 end

@@ -26,16 +26,24 @@ defmodule SeiyuWatch.SeiyuController do
   end
 
   def create(conn, %{"seiyu" => seiyu_params}) do
-    if String.length(seiyu_params["name"]) > 0 do
-      Task.start_link(fn -> SeiyuWatch.SeiyuParser.save(seiyu_params["name"]) end)
-      conn
-      |> put_flash(:info, "声優登録リクエストを受け付けました")
-      |> redirect(to: seiyu_path(conn, :index))
-    else
+    render_error = fn(conn) ->
       changeset = Seiyu.changeset(%Seiyu{})
       conn
       |> put_flash(:error, "声優名を入力してください")
       |> render("new.html", changeset: changeset)
+    end
+    case seiyu_params |> Map.fetch("name") do
+      {:ok, name} ->
+        if name |> String.strip |> String.length > 0 do
+          Task.start(fn -> SeiyuWatch.SeiyuParser.save(name) end)
+          conn
+          |> put_flash(:info, "声優登録リクエストを受け付けました")
+          |> redirect(to: seiyu_path(conn, :index))
+        else
+          render_error.(conn)
+        end
+      :error ->
+        render_error.(conn)
     end
   end
 
