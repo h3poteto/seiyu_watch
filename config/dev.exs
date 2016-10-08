@@ -35,8 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :seiyu_watch, SeiyuWatch.Repo,
   adapter: Ecto.Adapters.MySQL,
-  username: "root",
-  password: "",
+  username: System.get_env("DB_USER") || "root",
+  password: System.get_env("DB_PASSWORD") || "",
   database: "seiyu_watch_dev",
-  hostname: "mysql",
+  hostname: System.get_env("DB_HOST") || "localhost",
   pool_size: 10
