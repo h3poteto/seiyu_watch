@@ -5,7 +5,7 @@ services:
     volumes:
       - /var/lib/mysql
   mysql:
-    image: mysql:5.6.29
+    image: mysql:5.6
     volumes_from:
       - storage
     ports:
@@ -13,7 +13,7 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
   elixir:
-    build: dockerfiles/development/elixir
+    image: h3poteto/phoenix
     env_file: .docker-env
     volumes:
       - .:/var/opt/app

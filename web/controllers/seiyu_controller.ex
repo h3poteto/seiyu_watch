@@ -3,11 +3,11 @@ defmodule SeiyuWatch.SeiyuController do
 
   alias SeiyuWatch.Seiyu
 
-  def index(conn, _params) do
-    seiyus = Seiyu
-    |> order_by(desc: :diffs_updated_at)
-    |> Repo.all
-    |> Repo.preload(:wikipedia)
+  def index(conn, params) do
+    seiyus = case params do
+               %{"search" => query} -> Seiyu.seiyus(query)
+               _ -> Seiyu.seiyus()
+             end
     ln = fn
       (1) -> 1
       (2) -> 2
