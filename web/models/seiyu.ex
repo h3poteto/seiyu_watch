@@ -2,7 +2,7 @@ defmodule SeiyuWatch.Seiyu do
   use SeiyuWatch.Web, :model
   use Arc.Ecto.Schema
   alias SeiyuWatch.Repo
-  import Ecto.Query, only: [from: 2]
+  import Ecto.Query, only: [from: 2, order_by: 2]
 
   schema "seiyus" do
     field :name, :string
@@ -42,5 +42,21 @@ defmodule SeiyuWatch.Seiyu do
       nil -> {:error, ""}
       value -> {:ok, value.wiki_diff}
     end
+  end
+
+  def seiyus() do
+    SeiyuWatch.Seiyu
+    |> order_by(desc: :diffs_updated_at)
+    |> Repo.all
+    |> Repo.preload(:wikipedia)
+  end
+
+  def seiyus(%{"query" => query}) do
+    search_query = "%#{query}%"
+    q = from s in SeiyuWatch.Seiyu,
+      where: like(s.name, ^search_query),
+      order_by: [desc: :diffs_updated_at]
+    Repo.all(q)
+    |> Repo.preload(:wikipedia)
   end
 end
