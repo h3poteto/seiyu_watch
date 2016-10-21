@@ -9,7 +9,7 @@ services:
     volumes_from:
       - storage
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
   elixir:
