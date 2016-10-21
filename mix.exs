@@ -19,7 +19,8 @@ defmodule SeiyuWatch.Mixfile do
   def application do
     [mod: {SeiyuWatch, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison, :ex_aws]]
+                    :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison, :ex_aws, :arc,
+                    :arc_ecto, :timex_ecto, :floki, :quinn, :inflex, :logger_file_backend]]
   end
 
   # Specifies which paths to compile per environment.
@@ -50,7 +51,9 @@ defmodule SeiyuWatch.Mixfile do
      {:arc_ecto, "~> 0.4.4"},
      {:arc, "~> 0.5.2"},
      {:ex_aws, "~> 0.4.10"},
-     {:mock, git: "https://github.com/jjh42/mock.git", only: :test}]
+     {:mock, git: "https://github.com/jjh42/mock.git", only: :test},
+     {:exrm, "~> 1.0.8", only: :prod}
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
