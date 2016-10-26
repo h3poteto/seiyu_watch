@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :seiyu_watch, SeiyuWatch.Endpoint,
   http: [port: 8080],
-  url: [host: "seiyu-watch.in", port: 80],
+  url: [host: "seiyu.watch", port: 80],
   cache_static_manifest: "priv/static/manifest.json",
   server: true
 
