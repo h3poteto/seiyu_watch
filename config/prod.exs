@@ -68,4 +68,4 @@ config :seiyu_watch, SeiyuWatch.Repo,
   database: "seiyu_watch",
   hostname: System.get_env("DB_HOST") || "${DB_HOST}",
   port: 3306,
-  pool_size: 20
+  pool_size: 5
