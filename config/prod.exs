@@ -58,7 +58,7 @@ config :logger, level: :info
 #
 
 config :seiyu_watch, SeiyuWatch.Endpoint,
-  secret_key_base: {:system, "SECRET_KEY_BASE"}
+  secret_key_base: "${SECRET_KEY_BASE}"
 
 # Configure your database
 config :seiyu_watch, SeiyuWatch.Repo,
