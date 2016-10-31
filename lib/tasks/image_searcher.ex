@@ -5,6 +5,14 @@ defmodule SeiyuWatch.ImageSearcher do
 
   @file_dir "/tmp"
 
+  def update_seiyu_images() do
+    seiyus = SeiyuWatch.Seiyu
+    |> Repo.all()
+
+    Enum.filter(seiyus, fn(s) -> s.icon == nil end)
+    |> Enum.each(fn(s) -> SeiyuWatch.ImageSearcher.save_image(s.id) end)
+  end
+
   def save_image(seiyu_id) do
     seiyu = SeiyuWatch.Seiyu
     |> Repo.get!(seiyu_id)
