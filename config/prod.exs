@@ -69,3 +69,18 @@ config :seiyu_watch, SeiyuWatch.Repo,
   hostname: System.get_env("DB_HOST") || "${DB_HOST}",
   port: 3306,
   pool_size: 5
+
+
+config :arc,
+  bucket: "seiyu-watch",
+  asset_host: "https://s3-ap-northeast-1.amazonaws.com/seiyu-watch"
+
+config :ex_aws,
+  access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role],
+  secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :instance_role],
+  region: "seiyu-watch",
+  s3: [
+    scheme: "https://",
+    host: "s3-ap-northeast-1.amazonaws.com",
+    region: "ap-northeast-1"
+  ]
