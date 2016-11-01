@@ -25,7 +25,7 @@ config :logger, :console,
 # Configures quantum
 config :quantum, cron: [
   # Every day
-  "55 15 * * *": {SeiyuWatch.DiffParser, :parse_all_seiyus},
+  "12 16 * * *": {SeiyuWatch.DiffParser, :parse_all_seiyus},
   "29 16 * * *": {SeiyuWatch.ImageSearcher, :update_seiyu_images}
 ]
 
