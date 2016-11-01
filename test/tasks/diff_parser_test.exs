@@ -55,9 +55,8 @@ defmodule SeiyuWatch.DiffParserTest do
          [],
          [after_update_diff: fn(_res) -> :ok end]}
       ]) do
-        {:ok, task} = DiffParser.update_diff(seiyu.id, -7)
-        assert Repo.get_by(SeiyuWatch.Difference, %{seiyu_id: seiyu.id})
-        assert Task.await(task) == :ok
+        res = DiffParser.update_diff(seiyu.id, -7)
+        assert res == :ok
       end
     end
   end
