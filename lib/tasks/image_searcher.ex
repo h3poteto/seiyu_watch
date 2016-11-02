@@ -10,7 +10,9 @@ defmodule SeiyuWatch.ImageSearcher do
     |> Repo.all()
 
     Enum.filter(seiyus, fn(s) -> s.icon == nil end)
-    |> Enum.each(fn(s) -> SeiyuWatch.ImageSearcher.save_image(s.id) end)
+    |> Enum.each(fn(s) ->
+      Task.start(fn -> SeiyuWatch.ImageSearcher.save_image(s.id) end)
+    end)
   end
 
   def save_image(seiyu_id) do
