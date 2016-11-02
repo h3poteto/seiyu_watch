@@ -20,5 +20,6 @@ defmodule SeiyuWatch.Difference do
     struct
     |> cast(params, @required_fields, @optional_fields)
     |> assoc_constraint(:seiyu)
+    |> unique_constraint(:to, name: :differences_to_from_index)
   end
 end
