@@ -9,7 +9,7 @@ defmodule SeiyuWatch.DiffParser do
     |> Repo.all
     |> Enum.each(
     fn(s) ->
-      update_diff(s.id, -7)
+      Task.start(fn -> SeiyuWatch.DiffParser.update_diff(s.id, -7) end)
     end
     )
   end
@@ -69,7 +69,7 @@ defmodule SeiyuWatch.DiffParser do
         )
         |> Repo.insert
         Task.start(fn -> SeiyuWatch.DifferenceEvent.after_update_diff(res) end)
-        :ok
+        res
       error -> error
     end
   end

@@ -55,7 +55,7 @@ defmodule SeiyuWatch.DiffParserTest do
          [],
          [after_update_diff: fn(_res) -> :ok end]}
       ]) do
-        res = DiffParser.update_diff(seiyu.id, -7)
+        {res, _} = DiffParser.update_diff(seiyu.id, -7)
         assert res == :ok
       end
     end
