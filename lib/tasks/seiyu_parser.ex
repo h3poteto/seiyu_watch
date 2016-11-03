@@ -19,6 +19,6 @@ defmodule SeiyuWatch.SeiyuParser do
   end
 
   def wikipedia_page_request(name) do
-    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions|categories|info&titles=#{URI.encode(name)}&rvprop=sha1|ids&inprop=url"
+    "https://ja.wikipedia.org/w/api.php?format=json&action=query&prop=revisions|categories|info&titles=#{URI.encode(name)}&rvprop=sha1|ids&inprop=url&cllimit=500"
   end
 end
