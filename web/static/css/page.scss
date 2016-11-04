@@ -26,14 +26,38 @@ main[data-controller="page_controller"][data-action="index"] {
   }
 
   .description {
-    @include side-margin-container();
-
     .topic {
-      margin-top: 68px;
+      @include side-margin-container();
+      padding-top: 38px;
+      margin-top: 20px;
 
       .title {
         text-align: center;
+        padding-bottom: 64px;
       }
+
+      .content {
+        color: rgb(112, 112, 112);
+        padding-bottom: 12px;
+      }
+
+      .topic-image {
+        width: 100%;
+      }
+    }
+  }
+
+  .description-inverse {
+    background: url("/images/page/sub_background.jpg") no-repeat;
+    background-size: cover;
+    color: #fff;
+
+    .content-inverse {
+      padding-bottom: 32px;
+    }
+
+    .topic-image {
+      width: 80%;
     }
   }
 }
