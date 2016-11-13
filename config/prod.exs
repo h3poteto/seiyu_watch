@@ -67,6 +67,7 @@ config :seiyu_watch, SeiyuWatch.Repo,
   password: System.get_env("DB_PASSWORD") || "${DB_PASSWORD}",
   database: "seiyu_watch",
   hostname: System.get_env("DB_HOST") || "${DB_HOST}",
+  charset: "utf8mb4",
   port: 3306,
   pool_size: 5
 
