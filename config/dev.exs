@@ -39,4 +39,5 @@ config :seiyu_watch, SeiyuWatch.Repo,
   password: System.get_env("DB_PASSWORD") || "",
   database: "seiyu_watch_dev",
   hostname: System.get_env("DB_HOST") || "localhost",
+  charset: "utf8mb4",
   pool_size: 10
