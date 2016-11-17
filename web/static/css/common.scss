@@ -1,8 +1,46 @@
+html {
+  font-size : 75%;
+}
+
+@media screen and (min-width : 768px){
+  html{ font-size : 87.5%;}
+}
+
+@media screen and (min-width : 1024px) {
+  html{ font-size : 100%};
+}
+
+
 @mixin side-margin-container() {
-  width: 982px;
+  max-width: 61.375rem;
+  width: 80%;
   margin: 0 auto;
 }
 
 .controls {
-  margin: 64px 0 48px;
+  margin: 4rem 0 2rem;
+}
+
+h1, .h1 {
+  font-size: 2.5rem;
+}
+
+h2, .h2 {
+  font-size: 2rem;
+}
+
+h3, .h3 {
+  font-size: 1.625rem;
+}
+
+h4, .h4 {
+  font-size: 1.25rem;
+}
+
+h5, .h5 {
+  font-size: 1rem;
+}
+
+h6, .h6 {
+  font-size: 0.8rem;
 }

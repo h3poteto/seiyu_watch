@@ -4,23 +4,23 @@ main[data-controller="page_controller"][data-action="index"] {
     background: url("/images/page/main_background.jpg") no-repeat;
     background-size: cover;
     color: #fff;
-    height: 560px;
+    height: 35rem;
 
     .main-title {
-      padding-top: 180px;
+      padding-top: 11.25rem;
       @include side-margin-container();
 
       h1 {
-        font-size: 56px;
+        font-size: 3.5rem;
       }
     }
 
     .sub-title {
-      padding-top: 36px;
+      padding-top: 2.25rem;
       @include side-margin-container();
 
       h4 {
-        font-size: 20px;
+        font-size: 1.25rem;
       }
     }
   }
@@ -28,17 +28,19 @@ main[data-controller="page_controller"][data-action="index"] {
   .description {
     .topic {
       @include side-margin-container();
-      margin-top: 20px;
-      padding-top: 38px;
+      margin-top: 1.25rem;
+      padding-top: 2.25rem;
 
       .title {
         text-align: center;
-        padding-bottom: 64px;
+        padding-bottom: 4rem;
       }
 
       .content {
         color: rgb(112, 112, 112);
-        padding-bottom: 12px;
+        .substance {
+          padding-bottom: 0.75rem;
+        }
       }
 
       .topic-image {
@@ -52,8 +54,8 @@ main[data-controller="page_controller"][data-action="index"] {
     background-size: cover;
     color: #fff;
 
-    .content-inverse {
-      padding-bottom: 32px;
+    .substance {
+      padding-bottom: 2rem;
     }
 
     .topic-image {

@@ -13,11 +13,11 @@
       <h2>Wikipediaからの情報を取得</h2>
     </div>
     <div class="row content">
-      <div class="col-xs-6">
+      <div class="col-md-6 substance">
         <p>出演情報はWikipediaの更新情報から取得。</p>
         <p>毎日更新情報を取得しているので，最近だれが更新されているのか，誰が新しいアニメに出ているのかもひと目でわかる。</p>
       </div>
-      <div class="col-xs-6">
+      <div class="col-md-6 substance">
         <img class="topic-image" src="/images/page/seiyus.png" />
       </div>
     </div>
@@ -29,10 +29,10 @@
       <h2>一週間以内の更新情報をチェック</h2>
     </div>
     <div class="row content-inverse">
-      <div class="col-xs-6">
+      <div class="col-md-6 substance">
         <img class="topic-image" src="/images/page/imac.png" />
       </div>
-      <div class="col-xs-6">
+      <div class="col-md-6 substance">
         <p>更新された情報の差分が表示されるので，どの情報が新しく追加されたのかが確認でき，最近の動向を把握しやすい。</p>
         <p>Wikipediaの更新を一週間分まとめて表示しているので，頻繁に修正がある声優でも，まとまった修正として確認できる。</p>
       </div>
@@ -45,11 +45,11 @@
       <h2>好きな声優を自由に登録</h2>
     </div>
     <div class="row content">
-      <div class="col-xs-6">
+      <div class="col-md-6 substance">
         <p>自分が気になる声優が見つからなければ，登録フォームから新しく追加することもできる。</p>
         <p>登録が完了すれば，その声優も次の日から自動的に差分が更新される。</p>
       </div>
-      <div class="col-xs-6">
+      <div class="col-md-6 substance">
         <img class="topic-image" src="/images/page/new_seiyu.png" />
       </div>
     </div>
