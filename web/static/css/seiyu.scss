@@ -58,9 +58,9 @@ main[data-controller="seiyu_controller"][data-action="show"] {
   $addedchange-color: rgb(166, 243, 166);
   $border-color: rgb(211, 211, 211);
   $deletedline-color: rgb(255, 236, 236);
+  max-width: 100%;
   padding: 0 1.75rem;
   width: 100%;
-  max-width: 100%;
 
   .wikipedia {
     margin-bottom: 5.75rem;
@@ -74,8 +74,8 @@ main[data-controller="seiyu_controller"][data-action="show"] {
   }
 
   .table-wrapper {
-    overflow: auto;
     margin: 0 -1.75rem;
+    overflow: auto;
   }
 
   @media screen and (min-width: 768px){
