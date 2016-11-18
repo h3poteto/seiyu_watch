@@ -49,7 +49,7 @@
 
     <footer class="footer">
       <div class="container-fluid container">
-        <p class="text-muted">&copy; 2016 Akira Fukushima</p>
+        <p class="text-muted">&copy; 2016 <a href="https://twitter.com/h3_poteto">@h3_poteto</a></p>
       </div>
     </footer>
 

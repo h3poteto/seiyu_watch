@@ -2,8 +2,9 @@
 
 <div class="seiyus">
   <%= for seiyu_groups <- @seiyus do %>
-    <div class="seiyus-ordered">
+    <div class="row">
       <%= for seiyu <- seiyu_groups do %>
+        <div class="col-md-4">
         <div class="seiyu panel panel-default">
           <div class="panel-body">
             <div class="seiyu-name">
@@ -19,6 +20,7 @@
           <div class="panel-footer">
             <%= raw seiyu.wikipedia |> SeiyuWatch.Wikipedia.head %>
           </div>
+        </div>
         </div>
       <% end %>
     </div>

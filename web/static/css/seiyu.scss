@@ -11,18 +11,19 @@ main[data-controller="seiyu_controller"][data-action="index"] {
   }
 
   .seiyu {
-    margin-top: 48px;
-    width: 248px;
+    margin: 3rem auto;
+    max-width: 15.5rem;
+    width: 80%;
 
     .panel-body {
-      padding: 36px 15px;
+      padding: 2.25rem 1rem;
 
       .seiyu-name {
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
         text-align: center;
 
         .name {
-          font-size: 18px;
+          font-size: 1.125rem;
           font-weight: bold;
         }
       }
@@ -32,7 +33,7 @@ main[data-controller="seiyu_controller"][data-action="index"] {
         text-align: center;
 
         img {
-          width: 80px;
+          width: 5rem;
         }
       }
     }
@@ -47,7 +48,7 @@ main[data-controller="seiyu_controller"][data-action="index"] {
     .new {
       color: $brand-primary;
       display: inline-block;
-      margin-left: 8px;
+      margin-left: 0.5rem;
     }
   }
 }
@@ -57,17 +58,29 @@ main[data-controller="seiyu_controller"][data-action="show"] {
   $addedchange-color: rgb(166, 243, 166);
   $border-color: rgb(211, 211, 211);
   $deletedline-color: rgb(255, 236, 236);
-  padding: 0 28px;
+  max-width: 100%;
+  padding: 0 1.75rem;
   width: 100%;
 
   .wikipedia {
-    margin-bottom: 92px;
+    margin-bottom: 5.75rem;
 
     .wikipedia-body {
       a {
         color: rgb(51, 51, 51);
         pointer-events: none;
       }
+    }
+  }
+
+  .table-wrapper {
+    margin: 0 -1.75rem;
+    overflow: auto;
+  }
+
+  @media screen and (min-width: 768px){
+    .table-wrapper {
+      margin: 0;
     }
   }
 
