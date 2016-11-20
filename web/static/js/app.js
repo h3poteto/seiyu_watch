@@ -19,3 +19,21 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+var _click = window.ontouchstart === null ? "touchstart":"click";
+var navbarToggle = {
+  bind: function(selector) {
+    var node = document.querySelector(selector);
+    node.addEventListener(_click, (e) => {
+      var target = document.querySelector(node.dataset.target);
+      if (target.style.display === "block") {
+        target.style.display = "";
+      } else {
+        target.style.display = "block";
+      }
+    });
+  }
+};
+
+navbarToggle.bind(".navbar-toggle");
+
