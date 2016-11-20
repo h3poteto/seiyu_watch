@@ -12,7 +12,6 @@
   </head>
 
   <body>
-
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -32,9 +31,13 @@
           </ul>
           <%= form_for @conn, seiyu_path(@conn, :index), [as: :search, method: :get, class: "navbar-form navbar-right", role: "search"], fn f -> %>
           <div class="form-group">
-            <%= search_input f, :query, class: "form-control" %>
+            <div class="input-group">
+              <%= search_input f, :query, class: "form-control" %>
+              <span class="input-group-btn">
+                <%= submit "検索", class: "btn btn-default" %>
+              </span>
+            </div>
           </div>
-          <%= submit "検索", class: "btn btn-default" %>
           <% end %>
         </div>
       </div>
