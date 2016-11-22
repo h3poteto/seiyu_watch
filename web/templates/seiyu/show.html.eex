@@ -4,7 +4,7 @@
 
 <div class="panel panel-primary wikipedia">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= link "#{@seiyu.name}", to: @seiyu.wiki_url %></h3>
+    <h3 class="panel-title"><%= link "#{@seiyu.name} - wikipedia", to: @seiyu.wiki_url %></h3>
   </div>
   <div class="panel-body">
     <div class="wikipedia-body">
