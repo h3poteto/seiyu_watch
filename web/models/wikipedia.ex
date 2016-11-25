@@ -1,6 +1,8 @@
 defmodule SeiyuWatch.Wikipedia do
   use SeiyuWatch.Web, :model
 
+  require IEx
+
   schema "wikipedias" do
     field :content, :string
     belongs_to :seiyu, SeiyuWatch.Seiyu
@@ -25,19 +27,25 @@ defmodule SeiyuWatch.Wikipedia do
     case wikipedia do
       nil -> "No description"
       _ ->
-        wikipedia.content
+        parse = wikipedia.content
         |> Floki.parse
-        |> Enum.map(fn(c) ->
-          case c do
-            {"p", _, _} -> c
-            _ -> nil
-          end
-        end)
-        |> Enum.reject(fn(x) ->
-          x == nil
-        end)
-        |> Enum.slice(0, 2)
-        |> Floki.raw_html
+
+        case parse |> is_list do
+          false -> "No description"
+          true ->
+            parse
+            |> Enum.map(fn(c) ->
+              case c do
+                {"p", _, _} -> c
+                _ -> nil
+              end
+            end)
+            |> Enum.reject(fn(x) ->
+              x == nil
+            end)
+            |> Enum.slice(0, 2)
+            |> Floki.raw_html
+        end
     end
   end
 end
