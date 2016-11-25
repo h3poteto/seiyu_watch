@@ -20,8 +20,7 @@ defmodule SeiyuWatch.Mixfile do
     [mod: {SeiyuWatch, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison, :ex_aws, :arc,
-                    :arc_ecto, :timex_ecto, :floki, :quinn, :inflex, :logger_file_backend,
-                    :slack_logger_backend]]
+                    :arc_ecto, :timex_ecto, :floki, :quinn, :inflex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -42,7 +41,6 @@ defmodule SeiyuWatch.Mixfile do
      {:cowboy, "~> 1.0"},
      {:timex, "~> 3.0.8"},
      {:timex_ecto, "~> 3.0.4"},
-     {:logger_file_backend, "~> 0.0.8"},
      {:httpoison, "~> 0.10.0"},
      {:poison, "~> 2.2.0"},
      {:quinn, "~> 1.0.0"},
@@ -53,8 +51,7 @@ defmodule SeiyuWatch.Mixfile do
      {:arc, "~> 0.5.2"},
      {:ex_aws, "~> 0.4.10"},
      {:mock, git: "https://github.com/jjh42/mock.git", only: :test},
-     {:exrm, "~> 1.0.8", only: :prod},
-     {:slack_logger_backend, "~> 0.1.16"}
+     {:exrm, "~> 1.0.8", only: :prod}
     ]
   end
 
