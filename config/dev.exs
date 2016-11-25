@@ -26,7 +26,14 @@ config :seiyu_watch, SeiyuWatch.Endpoint,
   ]
 
 # Do not include metadata nor timestamps in development logs
-config :logger, :console, format: "[$level] $message\n"
+#config :logger, :console, format: "[$level] $message\n"
+config :logger, backends: [:console, SlackLogger]
+config :logger, SlackLogger,
+  level: :error,
+  hook_url: System.get_env("SLACK_WEBHOOK_URL"),
+  channel: "#playground",
+  username: "seiyu_watch-develop"
+
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
