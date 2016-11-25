@@ -19,7 +19,12 @@ config :seiyu_watch, SeiyuWatch.Endpoint,
 
 # Do not print debug messages in production
 config :logger, level: :info
-config :logger, backends: [{SlackLoggerBackend.Logger, [:error]}, :console]
+config :logger, backends: [:console, SlackLogger]
+config :logger, SlackLogger,
+  level: :error,
+  hook_url: {:system, "SLACK_WEBHOOK_URL"},
+  channel: "#seiyu_watch",
+  username: "seiyu_watch"
 
 # ## SSL Support
 #

@@ -39,7 +39,7 @@ defmodule SlackLogger do
     Application.put_env(:logger, __MODULE__, opts)
 
     level = Keyword.get(opts, :level)
-    hook_url = Keyword.get(opts, :hook_url)
+    hook_url = retrieve_runtime_value(Keyword.get(opts, :hook_url))
     channel = Keyword.get(opts, :channel)
     username = Keyword.get(opts, :username)
 
@@ -90,5 +90,9 @@ defmodule SlackLogger do
 
   defp escape_message(msg) do
     msg |> HtmlEntities.encode
+  end
+
+  defp retrieve_runtime_value({:system, env_key}) do
+    System.get_env(env_key)
   end
 end
