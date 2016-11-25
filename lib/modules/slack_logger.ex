@@ -1,7 +1,7 @@
 # https://github.com/tuvistavie/elixir-logger-sample/blob/master/lib/logger_starter/slack.ex
 defmodule SlackLogger do
   use GenEvent
-
+  require IEx
   def init(__MODULE__) do
     {:ok, configure([])}
   end
@@ -10,10 +10,9 @@ defmodule SlackLogger do
     {:ok, state}
   end
 
-  def handle_event({level, _gl, {Logger, msg, _timestamps, _details}}, %{level: log_level} = state) do
+  def handle_event({level, _gl, {Logger, msg, timestamps, _details}}, %{level: log_level} = state) do
     if meet_level?(level, log_level) do
-      message = flatten_message(msg) |> Enum.join("\n") |> escape_message
-      post_to_slack(level, message, state)
+      post_to_slack(level, msg, timestamps, state)
     end
 
     {:ok, state}
@@ -46,17 +45,23 @@ defmodule SlackLogger do
     %{state | level: level, hook_url: hook_url, channel: channel, username: username}
   end
 
-  defp post_to_slack(level, message, %{hook_url: hook_url} = state) do
-    payload = slack_payload(level, message, state)
+  defp retrieve_runtime_value({:system, env_key}) do
+    System.get_env(env_key)
+  end
+
+  defp post_to_slack(level, message, timestamps, %{hook_url: hook_url} = state) do
+    message = flatten_message(message) |> Enum.join("\n")
+    {:ok, time} = parse_timex(timestamps) |> Timex.to_datetime |> Timex.format("{ISO:Extended}")
+    payload = slack_payload(level, message, time, state)
     HTTPoison.post(hook_url, payload)
   end
 
-  defp slack_payload(level, message, %{channel: channel, username: username}) do
+  defp slack_payload(level, message, time, %{channel: channel, username: username}) do
     icon = slack_icon(level)
     color = slack_color(level)
     {:ok, event} = %{channel: channel,
       username: username,
-      text: "*#{level}*",
+      text: "*[#{time}] #{level}*",
       icon_emoji: icon,
       attachments: attachments_payload(message, color)
     }
@@ -67,7 +72,10 @@ defmodule SlackLogger do
   defp attachments_payload(message, color) do
     [%{
         color: color,
-        text: message
+        text: "```#{message}```",
+        mrkdwn_in: [
+          "text"
+        ]
      }
     ]
   end
@@ -88,11 +96,8 @@ defmodule SlackLogger do
     end
   end
 
-  defp escape_message(msg) do
-    msg |> HtmlEntities.encode
-  end
-
-  defp retrieve_runtime_value({:system, env_key}) do
-    System.get_env(env_key)
+  def parse_timex(timestamps) do
+    {date, {h, m, s, _min}} = timestamps
+    {date, {h, m, s}}
   end
 end

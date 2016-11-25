@@ -51,8 +51,7 @@ defmodule SeiyuWatch.Mixfile do
      {:arc, "~> 0.5.2"},
      {:ex_aws, "~> 0.4.10"},
      {:mock, git: "https://github.com/jjh42/mock.git", only: :test},
-     {:exrm, "~> 1.0.8", only: :prod},
-     {:html_entities, "~> 0.3"}
+     {:exrm, "~> 1.0.8", only: :prod}
     ]
   end
 
