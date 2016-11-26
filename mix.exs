@@ -20,7 +20,8 @@ defmodule SeiyuWatch.Mixfile do
     [mod: {SeiyuWatch, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison, :ex_aws, :arc,
-                    :arc_ecto, :timex_ecto, :floki, :quinn, :inflex]]
+                    :arc_ecto, :timex_ecto, :floki, :quinn, :inflex, :scrivener,
+                    :scrivener_html, :scrivener_ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -51,7 +52,10 @@ defmodule SeiyuWatch.Mixfile do
      {:arc, "~> 0.5.2"},
      {:ex_aws, "~> 0.4.10"},
      {:mock, git: "https://github.com/jjh42/mock.git", only: :test},
-     {:exrm, "~> 1.0.8", only: :prod}
+     {:exrm, "~> 1.0.8", only: :prod},
+     {:scrivener, "~> 2.0"},
+     {:scrivener_ecto, "~> 1.0"},
+     {:scrivener_html, "~> 1.3.3"}
     ]
   end
 

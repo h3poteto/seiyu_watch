@@ -5,19 +5,19 @@ defmodule SeiyuWatch.SeiyuController do
 
   def index(conn, params) do
     seiyus = case params do
-               %{"search" => query} -> Seiyu.seiyus(query)
-               _ -> Seiyu.seiyus()
+               %{"search" => query} -> Seiyu.seiyus(query, params)
+               _ -> Seiyu.seiyus(params)
              end
     ln = fn
       (1) -> 1
       (2) -> 2
       (_) -> 3
     end
-
+    page = seiyus
     length = seiyus |> Enum.count |> ln.()
 
     seiyus = seiyus |> Enum.chunk(length, length, [])
-    render(conn, "index.html", seiyus: seiyus)
+    render(conn, "index.html", seiyus: seiyus, page: page)
   end
 
   def new(conn, _params) do
