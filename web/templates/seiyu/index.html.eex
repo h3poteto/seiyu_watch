@@ -27,6 +27,9 @@
   <% end %>
 </div>
 
+<div class="scrivener">
+  <%= Scrivener.HTML.pagination_links @page %>
+</div>
 
 <div class="controls">
   <%= link "新規追加", to: seiyu_path(@conn, :new), class: "btn btn-success" %>
