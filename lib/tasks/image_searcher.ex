@@ -52,11 +52,21 @@ defmodule SeiyuWatch.ImageSearcher do
                   "image/jpeg" -> "#{name}.jpg"
                   "image/gif" -> "#{name}.gif"
                   "image/png" -> "#{name}.png"
+                  _ -> case SeiyuWatch.ImageSearcher.extension(url) do
+                         {:ok, ext} -> "#{name}.#{ext}"
+                       end
                 end
     file_path = "#{@file_dir}/#{file_name}"
     case File.write!(file_path, body) do
       :ok -> {:ok, file_name}
       error -> {error, nil}
+    end
+  end
+
+  def extension(url) do
+    case Regex.named_captures(~r/\.(?<ext>...)$/, url) do
+      %{"ext" => ext} -> {:ok, ext}
+      _ -> {:error, nil}
     end
   end
 
