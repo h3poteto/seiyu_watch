@@ -8,7 +8,7 @@ defmodule SeiyuWatch.Seiyu do
     field :name, :string
     field :icon, SeiyuWatch.Icon.Type
     field :wiki_page_id, :integer
-    field :diffs_updated_at, Ecto.DateTime
+    field :diffs_updated_at, Timex.Ecto.DateTime
     field :wiki_url, :string
     has_many :differences, SeiyuWatch.Difference
     has_one :wikipedia, SeiyuWatch.Wikipedia

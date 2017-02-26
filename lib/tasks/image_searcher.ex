@@ -2,7 +2,7 @@ defmodule SeiyuWatch.ImageSearcher do
 
   alias SeiyuWatch.Repo
   alias SeiyuWatch.GoogleResponse
-
+  require IEx
   @file_dir "/tmp"
 
   def update_seiyu_images() do
@@ -38,7 +38,7 @@ defmodule SeiyuWatch.ImageSearcher do
   # 画像
   # https://40.media.tumblr.com/dcfce2754e8c4d8917373f0a1e905686/tumblr_npjs1wR1UQ1ux6tqqo1_1280.jpg
   def download(url) do
-    result = HTTPoison.get!(url)
+    result = HTTPoison.get!(url, [], follow_redirect: true)
     case result do
       %{status_code: 200, headers: headers, body: body} -> SeiyuWatch.ImageSearcher.save(url, headers, body)
       %{status_code: _code} -> {:error, nil}
