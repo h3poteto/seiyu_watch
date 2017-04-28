@@ -10,7 +10,7 @@ services:
       GOOGLE_API_KEY: $GOOGLE_API_KEY
       GOOGLE_CUSTOM_SEARCH_ID: $GOOGLE_CUSTOM_SEARCH_ID
       SLACK_WEBHOOK_URL: $SLACK_WEBHOOK_URL
-      RELX_REPLACE_OS_VARS: true
+      RELX_REPLACE_OS_VARS: $RELX_REPLACE_OS_VARS
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:8080"]
       interval: 20s
@@ -28,7 +28,7 @@ services:
         delay: 20s
     stop_grace_period: 20s
   nginx:
-    image: nginx:stable-alipne
+    image: nginx:1.11-alpine
     depends_on:
       - phoenix
     ports:
@@ -36,18 +36,13 @@ services:
       - "443:443"
     environment:
       SERVER_ADDR: phoenix
-      SERVER_PORT: 4000
+      SERVER_PORT: 8080
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf.template:ro
       - /var/log/nginx/:/var/log/nginx/
     command: /bin/sh -c "envsubst '$$SERVER_ADDR$$SERVER_PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
-      interval: 20s
-      timeout: 10s
-      retries: 3
     deploy:
-      replicas: 2
+      replicas: 1
       update_config:
         parallelism: 1
         delay: 20s
