@@ -1,0 +1,119 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: h3poteto/phoenix
+        environment:
+          DB_HOST: 127.0.0.1
+          # MySQLの起動チェック用
+          HEALTH_CHECK_RETRY_LIMIT: 10
+          HEALTH_CHECK_RETRY_WAIT: 3
+      - image: mysql:5.7
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+
+    working_directory: /var/opt/app
+    steps:
+      - checkout
+      - run:
+          name: Check elixir version
+          command: elixir --version
+      - run:
+          name: Check node version
+          command: node --version
+      - restore_cache:
+          name: Restoring cache - deps
+          keys:
+            - vendor-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+            - vendor-{{ checksum "mix.exs" }}-
+      - restore_cache:
+          name: Restoring cache - _build
+          keys:
+            - _build-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+            - _build-{{ checksum "mix.exs" }}
+      - restore_cache:
+          name: Restoring cache - node_modules
+          keys:
+            - node_modules-{{ checksum "package.json" }}
+            - node_modules-
+      - run:
+          name: Mix packages install
+          command: mix deps.get
+      - save_cache:
+          name: Saving cache - deps
+          key: vendor-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+          paths:
+            - "deps"
+      - run:
+          name: Compile deps packages
+          command: |
+            mix local.hex --force
+            mix local.rebar --force
+            mix deps.compile
+      - save_cache:
+          name: Saving cache - _build
+          key: _build-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+          paths:
+            - "_build"
+      - run:
+          name: Node packages install
+          command: npm install
+      - save_cache:
+          name: Saving cache - node_modules
+          key: node_modules-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
+      - run:
+          name: Checking mysql connection
+          command: |
+            for i in $(seq $HEALTH_CHECK_RETRY_LIMIT)
+            do
+              mysql -u root -h 127.0.0.1 -e 'show databases' || (sleep $HEALTH_CHECK_RETRY_WAIT; false) && break
+            done
+          name: Migration database
+          command: |
+            mix ecto.create
+            mix ecto.migrate
+      - run:
+          name: test
+          command: mix test
+      - deploy:
+          name: conditionally run a deploy job
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              curl --user ${CIRCLE_API_TOKEN}: \
+                --data build_parameters[CIRCLE_JOB]=deploy \
+                --data revision=$CIRCLE_SHA1 \
+                https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
+            fi
+
+  deploy:
+    docker:
+      - image: h3poteto/phoenix
+        user: root
+    working_directory: /var/opt/app
+    branches:
+      only:
+        - master
+    steps:
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+          exclusive: true
+      - run:
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+      - run:
+          name: Build production docker image
+          command: docker build -t h3poteto/seiyu_watch .
+      - run:
+          name: Docker login
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: Docker push
+          command: docker push h3poteto/seiyu_watch
