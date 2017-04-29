@@ -13,7 +13,7 @@ defmodule SeiyuWatch.Seiyu do
     has_many :differences, SeiyuWatch.Difference
     has_one :wikipedia, SeiyuWatch.Wikipedia
 
-    timestamps
+    timestamps()
   end
 
   @doc """

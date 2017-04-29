@@ -7,7 +7,7 @@ defmodule SeiyuWatch.Difference do
     field :to, :integer
     belongs_to :seiyu, SeiyuWatch.Seiyu
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(wiki_diff from to seiyu_id)
