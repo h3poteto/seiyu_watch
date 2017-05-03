@@ -70,6 +70,7 @@ jobs:
             do
               mysql -u root -h 127.0.0.1 -e 'show databases' || (sleep $HEALTH_CHECK_RETRY_WAIT; false) && break
             done
+      - run:
           name: Migration database
           command: |
             mix ecto.create
