@@ -2,7 +2,8 @@ defmodule SeiyuWatch.WikipediaResponse do
 
   def get_response(request) do
     url = request
-    result = HTTPoison.get! url
+    options = [:timeout, 60000, :recv_timeout, 60000]
+    result = HTTPoison.get!(url, [], options)
     case result do
       %{status_code: 200, body: body} -> Poison.decode!(body)
       %{status_code: _code} -> nil
