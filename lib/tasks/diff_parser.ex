@@ -9,7 +9,12 @@ defmodule SeiyuWatch.DiffParser do
     |> Repo.all
     |> Enum.each(
     fn(s) ->
-      Task.start(fn -> SeiyuWatch.DiffParser.update_diff(s.id, -7) end)
+      Task.start(fn ->
+        :rand.uniform() * 300000
+        |> round()
+        |> :timer.sleep
+        SeiyuWatch.DiffParser.update_diff(s.id, -7)
+      end)
     end
     )
   end
