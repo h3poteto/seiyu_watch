@@ -31,21 +31,39 @@ defmodule SeiyuWatch.Wikipedia do
         |> Floki.parse
 
         case parse |> is_list do
-          false -> "No description"
-          true ->
-            parse
-            |> Enum.map(fn(c) ->
-              case c do
-                {"p", _, _} -> c
-                _ -> nil
-              end
-            end)
-            |> Enum.reject(fn(x) ->
-              x == nil
-            end)
-            |> Enum.slice(0, 2)
-            |> Floki.raw_html
+          false -> wrap_parser(parse)
+          true -> list_parser(parse)
         end
     end
+  end
+
+  # wikipediaのhtml構造として，ラッパーとなるdivが存在するケース
+  # divの中に<p>...</p>や<table>が眠っている
+  def wrap_parser({"div", _class, list}) do
+    list
+    |> list_parser()
+  end
+
+  # wrapされているが，想定されていないhtml構造の場合のハンドリング
+  def wrap_parser(_) do
+    "No description"
+  end
+
+  # wikipediaのhtml構造として，ラッパーとなるdivが存在しない場合のパース
+  # <p>...</p><p>...</p>の羅列で構成されている場合が多いので
+  # その先頭のp要素をいくつか取得する
+  def list_parser(parse) do
+    parse
+    |> Enum.map(fn(c) ->
+      case c do
+        {"p", _, _} -> c
+        _ -> nil
+      end
+    end)
+    |> Enum.reject(fn(x) ->
+      x == nil
+    end)
+    |> Enum.slice(0, 2)
+    |> Floki.raw_html
   end
 end
