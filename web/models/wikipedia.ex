@@ -49,6 +49,11 @@ defmodule SeiyuWatch.Wikipedia do
     "No description"
   end
 
+  def list_parser([{"div", class, list}|_tail]) do
+    {"div", class, list}
+    |> wrap_parser()
+  end
+
   # wikipediaのhtml構造として，ラッパーとなるdivが存在しない場合のパース
   # <p>...</p><p>...</p>の羅列で構成されている場合が多いので
   # その先頭のp要素をいくつか取得する
