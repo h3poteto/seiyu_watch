@@ -49,9 +49,21 @@ defmodule SeiyuWatch.Wikipedia do
     "No description"
   end
 
-  def list_parser([{"div", class, list}|_tail]) do
-    {"div", class, list}
-    |> wrap_parser()
+  def list_parser([{"div", class, list}|tail]) do
+    if list
+    |> Enum.any?(
+    fn(l) ->
+      case l do
+        {"p", _, _} -> true
+        _ -> false
+      end
+    end) do
+      {"div", class, list}
+      |> wrap_parser()
+    else
+      tail
+      |> list_parser()
+    end
   end
 
   # wikipediaのhtml構造として，ラッパーとなるdivが存在しない場合のパース

@@ -47,3 +47,7 @@ config :seiyu_watch, SeiyuWatch.Repo,
   hostname: System.get_env("DB_HOST") || "localhost",
   charset: "utf8mb4",
   pool_size: 10
+
+
+config :seiyu_watch, :subscriber_delay,
+  update_diff: 1
