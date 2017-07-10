@@ -48,6 +48,9 @@ config :ex_aws,
 config :scrivener_html,
   routes_helper: SeiyuWatch.Router.Helpers
 
+config :seiyu_watch, :subscriber_delay,
+  update_diff: 300000
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

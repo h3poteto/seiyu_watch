@@ -10,7 +10,7 @@ defmodule SeiyuWatch.DiffParser do
     |> Enum.each(
     fn(s) ->
       Task.start(fn ->
-        :rand.uniform() * 300000
+        :rand.uniform() * Application.get_env(:seiyu_watch, :subscriber_delay)[:update_diff]
         |> round()
         |> :timer.sleep
         SeiyuWatch.DiffParser.update_diff(s.id, -7)
