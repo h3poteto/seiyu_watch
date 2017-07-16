@@ -1,7 +1,7 @@
 version: '3'
 services:
   phoenix:
-    image: h3poteto/seiyu_watch
+    image: 564677439943.dkr.ecr.ap-northeast-1.amazonaws.com/h3poteto/seiyu_watch
     environment:
       DB_HOST: $DB_HOST
       DB_USER: $DB_USER
