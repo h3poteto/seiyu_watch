@@ -13,7 +13,7 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
   elixir:
-    image: h3poteto/phoenix
+    image: h3poteto/phoenix:1.5.1
     env_file: .docker-env
     volumes:
       - .:/var/opt/app

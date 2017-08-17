@@ -1,4 +1,4 @@
-FROM h3poteto/phoenix:latest
+FROM h3poteto/phoenix:1.5.1
 
 USER root
 

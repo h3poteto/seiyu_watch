@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: h3poteto/phoenix
+      - image: h3poteto/phoenix:1.5.1
         environment:
           DB_HOST: 127.0.0.1
           # MySQLの起動チェック用
