@@ -1,5 +1,5 @@
-defmodule SeiyuWatch.Router do
-  use SeiyuWatch.Web, :router
+defmodule SeiyuWatchWeb.Router do
+  use SeiyuWatchWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,7 +13,7 @@ defmodule SeiyuWatch.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", SeiyuWatch do
+  scope "/", SeiyuWatchWeb do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index

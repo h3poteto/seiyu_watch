@@ -1,7 +1,5 @@
 defmodule SeiyuWatch.Wikipedia do
-  use SeiyuWatch.Web, :model
-
-  require IEx
+  use SeiyuWatchWeb, :model
 
   schema "wikipedias" do
     field :content, :string

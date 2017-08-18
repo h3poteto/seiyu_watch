@@ -1,4 +1,4 @@
-defmodule SeiyuWatch.ConnCase do
+defmodule SeiyuWatchWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,10 +25,10 @@ defmodule SeiyuWatch.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import SeiyuWatch.Router.Helpers
+      import SeiyuWatchWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint SeiyuWatch.Endpoint
+      @endpoint SeiyuWatchWeb.Endpoint
     end
   end
 

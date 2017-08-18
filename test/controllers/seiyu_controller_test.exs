@@ -1,5 +1,5 @@
-defmodule SeiyuWatch.SeiyuControllerTest do
-  use SeiyuWatch.ConnCase
+defmodule SeiyuWatchWeb.SeiyuControllerTest do
+  use SeiyuWatchWeb.ConnCase
 
   import Mock
   alias SeiyuWatch.Seiyu

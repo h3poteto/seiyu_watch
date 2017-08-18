@@ -1,5 +1,5 @@
-defmodule SeiyuWatch.SeiyuView do
-  use SeiyuWatch.Web, :view
+defmodule SeiyuWatchWeb.SeiyuView do
+  use SeiyuWatchWeb, :view
   use Scrivener.HTML
 
   def recently_updated?(seiyu) do

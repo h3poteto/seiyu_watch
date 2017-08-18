@@ -1,4 +1,4 @@
-defmodule SeiyuWatch do
+defmodule SeiyuWatch.Application do
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -11,7 +11,7 @@ defmodule SeiyuWatch do
       # Start the Ecto repository
       supervisor(SeiyuWatch.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(SeiyuWatch.Endpoint, []),
+      supervisor(SeiyuWatchWeb.Endpoint, []),
       # Start your own worker by calling: SeiyuWatch.Worker.start_link(arg1, arg2, arg3)
       # worker(SeiyuWatch.Worker, [arg1, arg2, arg3]),
     ]

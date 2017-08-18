@@ -1,5 +1,5 @@
-defmodule SeiyuWatch.ErrorView do
-  use SeiyuWatch.Web, :view
+defmodule SeiyuWatchWeb.ErrorView do
+  use SeiyuWatchWeb, :view
 
   def render("404.html", _assigns) do
     "Page not found"

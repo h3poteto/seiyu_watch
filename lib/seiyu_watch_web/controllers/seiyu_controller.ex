@@ -1,5 +1,5 @@
-defmodule SeiyuWatch.SeiyuController do
-  use SeiyuWatch.Web, :controller
+defmodule SeiyuWatchWeb.SeiyuController do
+  use SeiyuWatchWeb, :controller
 
   alias SeiyuWatch.Seiyu
 
