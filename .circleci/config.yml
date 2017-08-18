@@ -34,14 +34,14 @@ jobs:
       - restore_cache:
           name: Restoring cache - node_modules
           keys:
-            - node_modules-{{ checksum "package.json" }}
+            - node_modules-{{ checksum "assets/package-lock.json" }}
             - node_modules-
       - run:
           name: Mix packages install
           command: mix deps.get
       - save_cache:
           name: Saving cache - deps
-          key: vendor-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+          key: deps-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
           paths:
             - "deps"
       - run:
@@ -57,12 +57,13 @@ jobs:
             - "_build"
       - run:
           name: Node packages install
-          command: npm install
+          command: |
+            cd assets && npm install
       - save_cache:
           name: Saving cache - node_modules
-          key: node_modules-{{ checksum "package.json" }}
+          key: node_modules-{{ checksum "assets/package-lock.json" }}
           paths:
-            - "node_modules"
+            - "assets/node_modules"
       - run:
           name: Checking mysql connection
           command: |
