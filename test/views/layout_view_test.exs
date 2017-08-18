@@ -1,3 +1,3 @@
-defmodule SeiyuWatch.LayoutViewTest do
-  use SeiyuWatch.ConnCase, async: true
+defmodule SeiyuWatchWeb.LayoutViewTest do
+  use SeiyuWatchWeb.ConnCase, async: true
 end

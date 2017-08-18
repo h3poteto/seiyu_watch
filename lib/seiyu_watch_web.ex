@@ -1,12 +1,12 @@
-defmodule SeiyuWatch.Web do
+defmodule SeiyuWatchWeb do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use SeiyuWatch.Web, :controller
-      use SeiyuWatch.Web, :view
+      use SeiyuWatchWeb, :controller
+      use SeiyuWatchWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -29,20 +29,21 @@ defmodule SeiyuWatch.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller
+      use Phoenix.Controller, namespace: SeiyuWatchWeb
 
       alias SeiyuWatch.Repo
       import Ecto
       import Ecto.Query
 
-      import SeiyuWatch.Router.Helpers
-      import SeiyuWatch.Gettext
+      import SeiyuWatchWeb.Router.Helpers
+      import SeiyuWatchWeb.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: "lib/seiyu_watch_web/templates",
+        namespace: SeiyuWatchWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1, controller_module: 1, action_name: 1]
@@ -50,9 +51,9 @@ defmodule SeiyuWatch.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import SeiyuWatch.Router.Helpers
-      import SeiyuWatch.ErrorHelpers
-      import SeiyuWatch.Gettext
+      import SeiyuWatchWeb.Router.Helpers
+      import SeiyuWatchWeb.ErrorHelpers
+      import SeiyuWatchWeb.Gettext
     end
   end
 
@@ -69,7 +70,7 @@ defmodule SeiyuWatch.Web do
       alias SeiyuWatch.Repo
       import Ecto
       import Ecto.Query
-      import SeiyuWatch.Gettext
+      import SeiyuWatchWeb.Gettext
     end
   end
 

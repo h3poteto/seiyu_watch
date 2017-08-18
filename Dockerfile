@@ -1,4 +1,4 @@
-FROM h3poteto/phoenix:latest
+FROM h3poteto/phoenix:1.5.1
 
 USER root
 
@@ -16,11 +16,12 @@ RUN mix deps.get --only prod
 RUN mix deps.compile
 RUN mix compile
 
-RUN npm install \
+RUN cd assets \
+  && npm install \
   && npm run compile \
   && rm -rf node_modules
 
-RUN mix phoenix.digest
+RUN mix phx.digest
 RUN mix release
 
 CMD rel/seiyu_watch/bin/seiyu_watch foreground

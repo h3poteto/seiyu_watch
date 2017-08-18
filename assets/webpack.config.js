@@ -3,11 +3,11 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: {
-    "css/app.css": "./web/static/css/app.scss",
-    "js/app.js": "./web/static/js/app.js"
+    "css/app.css": "./css/app.scss",
+    "js/app.js": "./js/app.js"
   },
   output: {
-    path: "./priv/static",
+    path: "../priv/static",
     filename: "[name]"
   },
   module: {
@@ -17,7 +17,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel",
         query: {
-          presets: ["es2015"]
+          presets: ["babel-preset-es2016"]
         }
       },
       {
@@ -44,11 +44,11 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("[name]"),
-    new CopyWebpackPlugin([{ from: "./web/static/assets" }])
+    new CopyWebpackPlugin([{ from: "./static" }])
   ],
   resolve: {
     extensions: ["", ".css", ".scss", ".js"],
-    root: path.resolve(__dirname, "web/static")
+    root: path.resolve(__dirname, "./")
   }
 };
 

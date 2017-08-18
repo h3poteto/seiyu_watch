@@ -1,3 +1,3 @@
-defmodule SeiyuWatch.PageViewTest do
-  use SeiyuWatch.ConnCase, async: true
+defmodule SeiyuWatchWeb.PageViewTest do
+  use SeiyuWatchWeb.ConnCase, async: true
 end

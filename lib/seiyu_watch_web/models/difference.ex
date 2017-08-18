@@ -1,5 +1,5 @@
 defmodule SeiyuWatch.Difference do
-  use SeiyuWatch.Web, :model
+  use SeiyuWatchWeb, :model
 
   schema "differences" do
     field :wiki_diff, :string

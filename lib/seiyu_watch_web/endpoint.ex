@@ -1,7 +1,7 @@
-defmodule SeiyuWatch.Endpoint do
+defmodule SeiyuWatchWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :seiyu_watch
 
-  socket "/socket", SeiyuWatch.UserSocket
+  socket "/socket", SeiyuWatchWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -38,5 +38,5 @@ defmodule SeiyuWatch.Endpoint do
     key: "_seiyu_watch_key",
     signing_salt: "zJcGhI25"
 
-  plug SeiyuWatch.Router
+  plug SeiyuWatchWeb.Router
 end

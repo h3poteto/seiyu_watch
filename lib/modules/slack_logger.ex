@@ -1,7 +1,7 @@
 # https://github.com/tuvistavie/elixir-logger-sample/blob/master/lib/logger_starter/slack.ex
 defmodule SlackLogger do
   use GenEvent
-  require IEx
+
   def init(__MODULE__) do
     {:ok, configure([])}
   end

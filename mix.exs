@@ -17,7 +17,7 @@ defmodule SeiyuWatch.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {SeiyuWatch, []},
+    [mod: {SeiyuWatch.Application, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison, :ex_aws, :arc,
                     :arc_ecto, :timex_ecto, :floki, :quinn, :inflex, :scrivener,
@@ -25,37 +25,37 @@ defmodule SeiyuWatch.Mixfile do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_),     do: ["lib", "web"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
 
   # Specifies your project dependencies.
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.1"},
+    [{:phoenix, "~> 1.3.0"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
+     {:phoenix_ecto, "~> 3.2"},
      {:mariaex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.6"},
+     {:phoenix_html, "~> 2.10"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"},
-     {:timex, "~> 3.1.13"},
-     {:timex_ecto, "~> 3.1.1"},
-     {:httpoison, "~> 0.11.2"},
-     {:poison, "~> 2.2.0"},
-     {:quinn, "~> 1.0.0"},
-     {:floki, "~> 0.10.0"},
-     {:inflex, "~> 1.7.0"},
-     {:quantum, "~> 1.9.1"},
-     {:arc_ecto, "~> 0.4.4"},
-     {:arc, "~> 0.5.2"},
-     {:ex_aws, "~> 0.4.10"},
-     {:mock, git: "https://github.com/jjh42/mock.git", only: :test},
+     {:gettext, "~> 0.13"},
+     {:cowboy, "~> 1.1"},
+     {:timex, "~> 3.1"},
+     {:timex_ecto, "~> 3.1"},
+     {:httpoison, "~> 0.13"},
+     {:poison, "~> 2.2"},
+     {:quinn, "~> 1.0"},
+     {:floki, "~> 0.18"},
+     {:inflex, "~> 1.8"},
+     {:quantum, "~> 2.0.0"},
+     {:arc_ecto, "~> 0.7"},
+     {:arc, "~> 0.8"},
+     {:ex_aws, "~> 1.1"},
+     {:mock, "~> 0.2", only: :test},
      {:exrm, "~> 1.0.8", only: :prod},
-     {:scrivener, "~> 2.0"},
-     {:scrivener_ecto, "~> 1.0"},
-     {:scrivener_html, "~> 1.3.3"}
+     {:scrivener, "~> 2.3"},
+     {:scrivener_ecto, "~> 1.2"},
+     {:scrivener_html, "~> 1.7"}
     ]
   end
 

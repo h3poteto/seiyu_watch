@@ -6,22 +6,23 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :seiyu_watch, SeiyuWatch.Endpoint,
+config :seiyu_watch, SeiyuWatchWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/webpack/bin/webpack.js", "--watch-stdin", "--progress", "--colors"]]
+  watchers: [node: ["node_modules/webpack/bin/webpack.js", "--watch-stdin", "--progress", "--colors",
+                    cd: Path.expand("../assets", __DIR__)]]
 
 
 # Watch static and templates for browser reloading.
-config :seiyu_watch, SeiyuWatch.Endpoint,
+config :seiyu_watch, SeiyuWatchWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{web/views/.*(ex)$},
-      ~r{web/templates/.*(eex)$}
+      ~r{lib/seiyu_watch_web/views/.*(ex)$},
+      ~r{lib/seiyu_watch_web/templates/.*(eex)$}
     ]
   ]
 

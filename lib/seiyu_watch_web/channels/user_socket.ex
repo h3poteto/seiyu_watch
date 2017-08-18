@@ -1,4 +1,4 @@
-defmodule SeiyuWatch.UserSocket do
+defmodule SeiyuWatchWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels

@@ -1,5 +1,5 @@
 defmodule SeiyuWatch.Seiyu do
-  use SeiyuWatch.Web, :model
+  use SeiyuWatchWeb, :model
   use Arc.Ecto.Schema
   alias SeiyuWatch.Repo
   import Ecto.Query, only: [from: 2, order_by: 2, preload: 2]

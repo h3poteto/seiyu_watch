@@ -1,5 +1,5 @@
-defmodule SeiyuWatch.PageControllerTest do
-  use SeiyuWatch.ConnCase
+defmodule SeiyuWatchWeb.PageControllerTest do
+  use SeiyuWatchWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

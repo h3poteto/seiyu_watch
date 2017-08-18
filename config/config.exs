@@ -10,10 +10,10 @@ config :seiyu_watch,
   ecto_repos: [SeiyuWatch.Repo]
 
 # Configures the endpoint
-config :seiyu_watch, SeiyuWatch.Endpoint,
+config :seiyu_watch, SeiyuWatchWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "yH0lM398JsfQTovy2xvyxJaFF6N/ExnGDmv+GlmLw69pZVb87shhS67PP0eNbU9i",
-  render_errors: [view: SeiyuWatch.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: SeiyuWatchWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: SeiyuWatch.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

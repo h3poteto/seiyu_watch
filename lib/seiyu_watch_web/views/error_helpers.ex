@@ -1,4 +1,4 @@
-defmodule SeiyuWatch.ErrorHelpers do
+defmodule SeiyuWatchWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule SeiyuWatch.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(SeiyuWatch.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(SeiyuWatchWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(SeiyuWatch.Gettext, "errors", msg, opts)
+      Gettext.dgettext(SeiyuWatchWeb.Gettext, "errors", msg, opts)
     end
   end
 end
