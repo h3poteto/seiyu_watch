@@ -20,7 +20,7 @@ defmodule SeiyuWatch.Mixfile do
     [mod: {SeiyuWatch.Application, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison, :ex_aws, :arc,
-                    :arc_ecto, :timex_ecto, :floki, :quinn, :inflex, :scrivener,
+                    :arc_ecto, :timex_ecto, :floki, :quinn, :inflex, :scrivener, :poison,
                     :scrivener_html, :scrivener_ecto]]
   end
 
@@ -43,7 +43,7 @@ defmodule SeiyuWatch.Mixfile do
      {:timex, "~> 3.1"},
      {:timex_ecto, "~> 3.1"},
      {:httpoison, "~> 0.13"},
-     {:poison, "~> 2.2"},
+     {:poison, "~> 3.1"},
      {:quinn, "~> 1.0"},
      {:floki, "~> 0.18"},
      {:inflex, "~> 1.8"},
@@ -55,7 +55,8 @@ defmodule SeiyuWatch.Mixfile do
      {:exrm, "~> 1.0.8", only: :prod},
      {:scrivener, "~> 2.3"},
      {:scrivener_ecto, "~> 1.2"},
-     {:scrivener_html, "~> 1.7"}
+     {:scrivener_html, "~> 1.7"},
+     {:sweet_xml, "~> 0.6"}
     ]
   end
 
