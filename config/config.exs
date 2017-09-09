@@ -23,13 +23,13 @@ config :logger, :console,
   metadata: [:request_id]
 
 # Configures quantum
-config :quantum, seiyu_watch: [
-  cron: [
+config :seiyu_watch, SeiyuWatch.Scheduler,
+  jobs: [
     # Every day
-    "12 16 * * *": {SeiyuWatch.DiffParser, :parse_all_seiyus},
-    "29 16 * * *": {SeiyuWatch.ImageSearcher, :update_seiyu_images}
+    {"12 16 * * *", {SeiyuWatch.DiffParser, :parse_all_seiyus, []}},
+    {"29 16 * * *", {SeiyuWatch.ImageSearcher, :update_seiyu_images, []}}
   ]
-]
+
 
 config :arc,
   bucket: "seiyu-watch-dev",

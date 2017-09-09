@@ -14,6 +14,7 @@ defmodule SeiyuWatch.Application do
       supervisor(SeiyuWatchWeb.Endpoint, []),
       # Start your own worker by calling: SeiyuWatch.Worker.start_link(arg1, arg2, arg3)
       # worker(SeiyuWatch.Worker, [arg1, arg2, arg3]),
+      worker(SeiyuWatch.Scheduler, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
