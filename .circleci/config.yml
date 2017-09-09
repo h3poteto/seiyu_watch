@@ -32,6 +32,11 @@ jobs:
             - _build-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
             - _build-{{ checksum "mix.exs" }}
       - restore_cache:
+          name: Restoring cache - mix
+          keys:
+            - mix-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+            - mix-{{ checksum "mix.exs" }}
+      - restore_cache:
           name: Restoring cache - node_modules
           keys:
             - node_modules-{{ checksum "assets/package-lock.json" }}
@@ -55,6 +60,11 @@ jobs:
           key: _build-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
           paths:
             - "_build"
+      - save_cache:
+          name: Saving cache - mix
+          key: mix-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+          paths:
+            - "/home/elixir/.mix"
       - run:
           name: Node packages install
           command: |
