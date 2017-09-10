@@ -32,18 +32,14 @@ config :seiyu_watch, SeiyuWatch.Scheduler,
 
 
 config :arc,
-  bucket: "seiyu-watch-dev",
-  asset_host: "https://s3-ap-northeast-1.amazonaws.com/seiyu-watch-dev"
+  storage: Arc.Storage.S3,
+  virtual_host: true,
+  bucket: {:system, "AWS_S3_BUCKET"}
 
 config :ex_aws,
   access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role],
   secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :instance_role],
-  region: "seiyu-watch-dev",
-  s3: [
-    scheme: "https://",
-    host: "s3-ap-northeast-1.amazonaws.com",
-    region: "ap-northeast-1"
-  ]
+  region: "ap-northeast-1"
 
 config :scrivener_html,
   routes_helper: SeiyuWatch.Router.Helpers
