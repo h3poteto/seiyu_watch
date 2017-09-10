@@ -21,7 +21,7 @@ defmodule SeiyuWatch.Mixfile do
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :mariaex, :timex, :quantum, :httpoison, :ex_aws, :arc,
                     :arc_ecto, :timex_ecto, :floki, :quinn, :inflex, :scrivener, :poison,
-                    :scrivener_html, :scrivener_ecto]]
+                    :scrivener_html, :scrivener_ecto, :sweet_xml]]
   end
 
   # Specifies which paths to compile per environment.
