@@ -79,15 +79,6 @@ jobs:
       - run:
           name: test
           command: mix test
-      - deploy:
-          name: conditionally run a deploy job
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              curl --user ${CIRCLE_API_TOKEN}: \
-                --data build_parameters[CIRCLE_JOB]=deploy \
-                --data revision=$CIRCLE_SHA1 \
-                https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
-            fi
 
   deploy:
     docker:
@@ -123,3 +114,16 @@ jobs:
             $(aws ecr get-login --region ap-northeast-1)
             docker build -t $AWS_ECR_REPOSITORY:latest .
             docker push $AWS_ECR_REPOSITORY:latest
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - build
