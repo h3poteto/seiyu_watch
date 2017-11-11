@@ -87,9 +87,6 @@ jobs:
         environment:
           AWS_ECR_REPOSITORY: 564677439943.dkr.ecr.ap-northeast-1.amazonaws.com/h3poteto/seiyu_watch
     working_directory: /var/opt/app
-    branches:
-      only:
-        - master
     steps:
       - checkout
       - setup_remote_docker:
@@ -99,8 +96,8 @@ jobs:
           name: Install Docker client
           command: |
             set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+            VER="17.09.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
       - run:
@@ -127,3 +124,4 @@ workflows:
                 - master
           requires:
             - build
+
