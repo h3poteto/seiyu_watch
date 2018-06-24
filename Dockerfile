@@ -5,6 +5,9 @@ USER root
 COPY . ${APP_DIR}
 
 RUN chown -R elixir:elixir ${APP_DIR}
+RUN set -x \
+  && curl -fsSL https://github.com/minamijoyo/myaws/releases/download/v0.3.0/myaws_v0.3.0_linux_amd64.tar.gz \
+  | tar -xzC /usr/local/bin && chmod +x /usr/local/bin/myaws
 
 USER elixir
 
@@ -23,5 +26,9 @@ RUN cd assets \
 
 RUN mix phx.digest
 RUN mix release
+
+EXPOSE 8080:8080
+
+ENTRYPOINT ["entrypoint.sh"]
 
 CMD rel/seiyu_watch/bin/seiyu_watch foreground
