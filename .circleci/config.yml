@@ -137,5 +137,4 @@ workflows:
                 - master
           requires:
             - image
-            - build
 
