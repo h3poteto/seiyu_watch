@@ -8,7 +8,7 @@ defmodule SeiyuWatch.Wikipedia do
     timestamps()
   end
 
-  @required_fields ~w(content)
+  @required_fields [:content]
   @optional_fields ~w()
 
   @doc """
@@ -17,6 +17,7 @@ defmodule SeiyuWatch.Wikipedia do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_required(@required_fields)
     |> assoc_constraint(:seiyu)
   end
 

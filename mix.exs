@@ -34,9 +34,9 @@ defmodule SeiyuWatch.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.3.0"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.2"},
-     {:mariaex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.10"},
+     {:phoenix_ecto, "~> 3.6.0"},
+     {:mariaex, "~> 0.8.4"},
+     {:phoenix_html, "~> 2.10.5"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.1"},
@@ -47,7 +47,7 @@ defmodule SeiyuWatch.Mixfile do
      {:quinn, "~> 1.0"},
      {:floki, "~> 0.18"},
      {:inflex, "~> 1.8"},
-     {:quantum, "~> 2.0"},
+     {:quantum, "~> 2.3.4"},
      {:arc_ecto, "~> 0.7"},
      {:arc, "~> 0.8"},
      {:ex_aws, "~> 1.1"},
@@ -56,7 +56,8 @@ defmodule SeiyuWatch.Mixfile do
      {:scrivener, "~> 2.3"},
      {:scrivener_ecto, "~> 1.2"},
      {:scrivener_html, "~> 1.7"},
-     {:sweet_xml, "~> 0.6"}
+     {:sweet_xml, "~> 0.6"},
+     {:plug_cowboy, "~> 1.0"}
     ]
   end
 
@@ -69,6 +70,6 @@ defmodule SeiyuWatch.Mixfile do
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
      "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+     test: ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end
