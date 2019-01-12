@@ -34,9 +34,9 @@ defmodule SeiyuWatch.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.3.0"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.2"},
+     {:phoenix_ecto, "~> 3.6.0"},
      {:mariaex, "~> 0.8.4"},
-     {:phoenix_html, "~> 2.10"},
+     {:phoenix_html, "~> 2.10.5"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.1"},
@@ -56,7 +56,8 @@ defmodule SeiyuWatch.Mixfile do
      {:scrivener, "~> 2.3"},
      {:scrivener_ecto, "~> 1.2"},
      {:scrivener_html, "~> 1.7"},
-     {:sweet_xml, "~> 0.6"}
+     {:sweet_xml, "~> 0.6"},
+     {:plug_cowboy, "~> 1.0"}
     ]
   end
 
