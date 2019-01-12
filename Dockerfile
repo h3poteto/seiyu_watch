@@ -1,4 +1,4 @@
-FROM h3poteto/phoenix:1.5.1
+FROM h3poteto/phoenix-node:1.7.3-10.15.0
 
 USER root
 

@@ -11,7 +11,7 @@ defmodule SeiyuWatch.GoogleResponseHelpers do
                        "thumbnailLink" => "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzJd9MPnaimqpXnJ39kNx0kOZXdDYbNVnKn5AxyvEDd5mQAidH3s_FFSg",
                        "thumbnailWidth" => 110, "width" => 935},
           "kind" => "customsearch#result",
-          "link" => "http://pic.prepics-cdn.com/asumin/16756694.jpeg",
+          "link" => "https://www.81produce.co.jp/dcms_media/image/asumi_kana.jpg",
           "mime" => "image/jpeg",
           "snippet" => "【声優】阿澄佳奈が演じたアニメ ...",
           "title" => "声優】阿澄佳奈が演じたアニメキャラまとめ - NAVER まとめ"},
