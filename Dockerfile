@@ -13,11 +13,15 @@ USER elixir
 
 ENV MIX_ENV=prod
 
+ENV PATH=$PATH:~/.mix/escripts
+
 RUN mix local.hex --force
 RUN mix local.rebar --force
 RUN mix deps.get --only prod
 RUN mix deps.compile
 RUN mix compile
+
+RUN mix escript.install github h3poteto/ecs_erlang_cluster --force
 
 RUN cd assets \
   && npm install \
@@ -25,10 +29,9 @@ RUN cd assets \
   && rm -rf node_modules
 
 RUN mix phx.digest
-RUN mix release
 
 EXPOSE 8080:8080
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 
-CMD rel/seiyu_watch/bin/seiyu_watch foreground
+CMD iex --name $ONESELF --erl "-config sys.config" -S mix phx.server
