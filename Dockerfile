@@ -34,4 +34,5 @@ EXPOSE 8080:8080
 
 ENTRYPOINT ["./entrypoint.sh"]
 
-CMD iex --name $ONESELF --erl "-config sys.config" -S mix phx.server
+# CMD iex --name $ONESELF --erl "-config sys.config" -S mix phx.server
+CMD mix phx.server
