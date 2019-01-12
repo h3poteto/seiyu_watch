@@ -51,7 +51,7 @@ defmodule SeiyuWatch.Mixfile do
      {:arc_ecto, "~> 0.7"},
      {:arc, "~> 0.8"},
      {:ex_aws, "~> 1.1"},
-     {:mock, "~> 0.2", only: :test},
+     {:mock, "~> 0.3", only: :test},
      {:exrm, "~> 1.0.8", only: :prod},
      {:scrivener, "~> 2.3"},
      {:scrivener_ecto, "~> 1.2"},
