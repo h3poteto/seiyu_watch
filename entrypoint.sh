@@ -12,6 +12,5 @@ export SLACK_WEBHOOK_URL=`myaws ssm parameter get seiyu_watch.$SERVICE_ENV.slack
 export RELX_REPLACE_OS_VARS=true
 ecs_erlang_cluster generate --cluster base-default-prd --service seiyuwatch-web-prd --region ap-northeast-1
 export ONESELF=`ecs_erlang_cluster oneself`
-export ERL_AFLANGS="-kernel inet_dist_listen_min 4370 inet_dist_listen_max 4370"
 
 exec "$@"
