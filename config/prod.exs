@@ -64,7 +64,7 @@ config :logger, SlackLogger,
 #
 
 config :seiyu_watch, SeiyuWatchWeb.Endpoint,
-  secret_key_base: "${SECRET_KEY_BASE}"
+  secret_key_base: System.get_env("SECRET_KEY_BASE") || "${SECRET_KEY_BASE}"
 
 # Configure your database
 config :seiyu_watch, SeiyuWatch.Repo,
