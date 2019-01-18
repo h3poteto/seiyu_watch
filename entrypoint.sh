@@ -10,7 +10,7 @@ export GOOGLE_API_KEY=`myaws ssm parameter get seiyu_watch.$SERVICE_ENV.google_a
 export GOOGLE_CUSTOM_SEARCH_ID=`myaws ssm parameter get seiyu_watch.$SERVICE_ENV.google_custom_search_id --region $AWS_DEFAULT_REGION`
 export SLACK_WEBHOOK_URL=`myaws ssm parameter get seiyu_watch.$SERVICE_ENV.slack_webhook_url --region $AWS_DEFAULT_REGION`
 export RELX_REPLACE_OS_VARS=true
-ecs_erlang_cluster generate --cluster base-default-prd --service seiyuwatch-web-prd --region ap-northeast-1
+ecs_erlang_cluster generate --cluster base-default-prd --service seiyuwatch-web-prd --region ap-northeast-1 --minport 4370 --maxport 4370
 export ONESELF=`ecs_erlang_cluster oneself`
 
 exec "$@"
