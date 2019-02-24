@@ -15,6 +15,11 @@ services:
   elixir:
     image: h3poteto/phoenix-node:1.7.3-10.15.0
     environment:
+      AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+      GOOGLE_CUSTOM_SEARCH_ID: $GOOGLE_CUSTOM_SEARCH_ID
+      GOOGLE_API_KEY: $GOOGLE_API_KEY
+      AWS_S3_BUCKET: seiyu-watch-dev
       DB_HOST: mysql
       DB_USER: root
     volumes:
