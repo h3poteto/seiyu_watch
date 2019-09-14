@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: h3poteto/phoenix-node:1.7.3-10.15.0
+      - image: h3poteto/elixir-node:1.8.2-node10-slim-stretch
         environment:
           DB_HOST: 127.0.0.1
           # MySQLの起動チェック用
@@ -113,8 +113,8 @@ jobs:
       - run:
           name: install kube-job
           command: |
-            wget https://github.com/h3poteto/kube-job/releases/download/v0.1.1/kube-job_0.1.1_linux_amd64.zip
-            unzip kube-job_0.1.1_linux_amd64.zip
+            wget https://github.com/h3poteto/kube-job/releases/download/v0.2.2/kube-job_0.2.2_linux_amd64.zip
+            unzip kube-job_0.2.2_linux_amd64.zip
             ./kube-job version
       - run:
           name: Clone k8s services
