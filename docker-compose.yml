@@ -13,7 +13,7 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
   elixir:
-    image: h3poteto/elixir-node:1.8.2-node10-slim-stretch
+    image: h3poteto/elixir-node:1.9.1-node10-slim-stretch
     environment:
       AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
       AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY

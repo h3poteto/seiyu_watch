@@ -1,4 +1,4 @@
-FROM h3poteto/elixir-node:1.8.2-node10-slim-stretch
+FROM h3poteto/elixir-node:1.9.1-node10-slim-stretch
 
 USER root
 
