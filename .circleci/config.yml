@@ -38,7 +38,9 @@ jobs:
             - node_modules-node10-
       - run:
           name: Mix packages install
-          command: mix deps.get --force
+          command: |
+            mix local.hex --force
+            mix deps.get
       - save_cache:
           name: Saving cache - deps
           key: deps-elixir1.8.2-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
@@ -47,7 +49,6 @@ jobs:
       - run:
           name: Compile deps packages
           command: |
-            mix local.hex --force
             mix local.rebar --force
             mix deps.compile
       - save_cache:
