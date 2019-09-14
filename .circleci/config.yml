@@ -103,7 +103,7 @@ jobs:
     docker:
       - image: h3poteto/kubectl:latest
         environment:
-          CLUSTER_NAME: external-prd.cluster.k8s.local
+          CLUSTER_NAME: external-prd.k8s.h3poteto.dev
     working_directory: /var/opt/kube
     steps:
       - run:
