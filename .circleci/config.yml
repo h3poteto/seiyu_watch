@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: h3poteto/elixir-node:1.8.2-node10-slim-stretch
+      - image: h3poteto/elixir-node:1.9.1-node10-slim-stretch
         environment:
           DB_HOST: 127.0.0.1
           # MySQLの起動チェック用
@@ -24,13 +24,13 @@ jobs:
       - restore_cache:
           name: Restoring cache - deps
           keys:
-            - vendor-elixir1.8.2-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
-            - vendor-elixir1.8.2-{{ checksum "mix.exs" }}-
+            - vendor-elixir1.9.1-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+            - vendor-elixir1.9.1-{{ checksum "mix.exs" }}-
       - restore_cache:
           name: Restoring cache - _build
           keys:
-            - _build-elixir1.8.2-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
-            - _build-elixir1.8.2-{{ checksum "mix.exs" }}
+            - _build-elixir1.9.1-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+            - _build-elixir1.9.1-{{ checksum "mix.exs" }}
       - restore_cache:
           name: Restoring cache - node_modules
           keys:
@@ -43,7 +43,7 @@ jobs:
             mix deps.get
       - save_cache:
           name: Saving cache - deps
-          key: deps-elixir1.8.2-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+          key: deps-elixir1.9.1-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
           paths:
             - "deps"
       - run:
@@ -53,7 +53,7 @@ jobs:
             mix deps.compile
       - save_cache:
           name: Saving cache - _build
-          key: _build-elixir1.8.2-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+          key: _build-elixir1.9.1-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
           paths:
             - "_build"
       - run:
