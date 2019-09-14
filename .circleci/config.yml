@@ -24,24 +24,24 @@ jobs:
       - restore_cache:
           name: Restoring cache - deps
           keys:
-            - vendor-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
-            - vendor-{{ checksum "mix.exs" }}-
+            - vendor-elixir1.8.2-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+            - vendor-elixir1.8.2-{{ checksum "mix.exs" }}-
       - restore_cache:
           name: Restoring cache - _build
           keys:
-            - _build-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
-            - _build-{{ checksum "mix.exs" }}
+            - _build-elixir1.8.2-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+            - _build-elixir1.8.2-{{ checksum "mix.exs" }}
       - restore_cache:
           name: Restoring cache - node_modules
           keys:
-            - node_modules-{{ checksum "assets/package-lock.json" }}
-            - node_modules-
+            - node_modules-node10-{{ checksum "assets/package-lock.json" }}
+            - node_modules-node10-
       - run:
           name: Mix packages install
-          command: mix deps.get
+          command: mix deps.get --force
       - save_cache:
           name: Saving cache - deps
-          key: deps-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+          key: deps-elixir1.8.2-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
           paths:
             - "deps"
       - run:
@@ -52,7 +52,7 @@ jobs:
             mix deps.compile
       - save_cache:
           name: Saving cache - _build
-          key: _build-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
+          key: _build-elixir1.8.2-{{ checksum "mix.exs" }}-{{ checksum "mix.lock" }}
           paths:
             - "_build"
       - run:
@@ -61,7 +61,7 @@ jobs:
             cd assets && npm install
       - save_cache:
           name: Saving cache - node_modules
-          key: node_modules-{{ checksum "assets/package-lock.json" }}
+          key: node_modules-node10-{{ checksum "assets/package-lock.json" }}
           paths:
             - "assets/node_modules"
       - run:
