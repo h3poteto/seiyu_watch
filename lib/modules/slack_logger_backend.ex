@@ -1,6 +1,5 @@
-# https://github.com/tuvistavie/elixir-logger-sample/blob/master/lib/logger_starter/slack.ex
-defmodule SlackLogger do
-  use GenEvent
+defmodule SlackLoggerBackend do
+  @behaviour :gen_event
 
   def init(__MODULE__) do
     {:ok, configure([])}
@@ -18,13 +17,22 @@ defmodule SlackLogger do
     {:ok, state}
   end
 
+  def handle_event(:flush, state) do
+    {:ok, state}
+  end
+
+  def handle_info({:io_reply, _, :ok}, state) do
+    {:ok, state}
+  end
+
+
   defp meet_level?(_lvl, nil), do: true
   defp meet_level?(lvl, min) do
     Logger.compare_levels(lvl, min) != :lt
   end
 
   def handle_call({:configure, opts}, state) do
-    {:ok, :ok, configure(opts, state)}
+    {:ok, {:ok, configure(opts, state), configure(opts, state)}}
   end
 
   defp configure(opts) do
@@ -56,6 +64,18 @@ defmodule SlackLogger do
     HTTPoison.post(hook_url, payload)
   end
 
+  defp flatten_message(msg) do
+    case msg do
+      [n | body] -> ["#{n}: #{body}"]
+      _ -> [msg]
+    end
+  end
+
+  def parse_timex(timestamps) do
+    {date, {h, m, s, _min}} = timestamps
+    {date, {h, m, s}}
+  end
+
   defp slack_payload(level, message, time, %{channel: channel, username: username}) do
     icon = slack_icon(level)
     color = slack_color(level)
@@ -69,17 +89,6 @@ defmodule SlackLogger do
     event
   end
 
-  defp attachments_payload(message, color) do
-    [%{
-        color: color,
-        text: "```#{message}```",
-        mrkdwn_in: [
-          "text"
-        ]
-     }
-    ]
-  end
-
   defp slack_icon(:debug), do: ":thought_balloon:"
   defp slack_icon(:info), do: ":speaker:"
   defp slack_icon(:warn), do: ":warning:"
@@ -89,15 +98,14 @@ defmodule SlackLogger do
   defp slack_color(:warn), do: "warning"
   defp slack_color(:error), do: "danger"
 
-  defp flatten_message(msg) do
-    case msg do
-      [n | body] -> ["#{n}: #{body}"]
-      _ -> msg
-    end
-  end
-
-  def parse_timex(timestamps) do
-    {date, {h, m, s, _min}} = timestamps
-    {date, {h, m, s}}
+  defp attachments_payload(message, color) do
+    [%{
+        color: color,
+        text: "```#{message}```",
+        mrkdwn_in: [
+          "text"
+        ]
+     }
+    ]
   end
 end
