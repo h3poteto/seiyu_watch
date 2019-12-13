@@ -22,7 +22,7 @@
     "babel-preset-es2016": "^6.24.1",
     "bootstrap-sass": "^3.4.1",
     "bootswatch": "^3.3.7",
-    "file-loader": "^0.9.0",
+    "file-loader": "^0.11.2",
     "url-loader": "^0.5.7"
   }
 }
