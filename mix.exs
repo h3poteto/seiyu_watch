@@ -21,32 +21,7 @@ defmodule SeiyuWatch.Mixfile do
   def application do
     [
       mod: {SeiyuWatch.Application, []},
-      applications: [
-        :phoenix,
-        :phoenix_pubsub,
-        :phoenix_html,
-        :cowboy,
-        :logger,
-        :gettext,
-        :phoenix_ecto,
-        :mariaex,
-        :timex,
-        :quantum,
-        :httpoison,
-        :ex_aws,
-        :arc,
-        :arc_ecto,
-        :timex_ecto,
-        :floki,
-        :quinn,
-        :inflex,
-        :scrivener,
-        :poison,
-        :scrivener_html,
-        :scrivener_ecto,
-        :sweet_xml,
-        :plug_cowboy
-      ]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -63,6 +38,7 @@ defmodule SeiyuWatch.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.6.0"},
       {:mariaex, "~> 0.8.4"},
+      {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.10.5"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.13"},
