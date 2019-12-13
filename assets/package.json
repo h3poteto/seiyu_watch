@@ -20,7 +20,7 @@
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2016": "^6.24.1",
-    "bootstrap-sass": "^3.3.7",
+    "bootstrap-sass": "^3.4.1",
     "bootswatch": "^3.3.7",
     "file-loader": "^0.9.0",
     "url-loader": "^0.5.7"
