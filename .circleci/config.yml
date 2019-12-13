@@ -5,12 +5,10 @@ jobs:
       - image: h3poteto/elixir-node:1.9.1-node10-slim-stretch
         environment:
           DB_HOST: 127.0.0.1
-          # MySQLの起動チェック用
-          HEALTH_CHECK_RETRY_LIMIT: 10
-          HEALTH_CHECK_RETRY_WAIT: 3
-      - image: mysql:5.7
+      - image: postgres:11.2-alpine
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          POSTGRES_USER: postgres
+          POSTGRES_DB: seiyu_watch_test
 
     working_directory: /var/opt/app
     steps:
@@ -65,13 +63,6 @@ jobs:
           key: node_modules-node10-{{ checksum "assets/package-lock.json" }}
           paths:
             - "assets/node_modules"
-      - run:
-          name: Checking mysql connection
-          command: |
-            for i in $(seq $HEALTH_CHECK_RETRY_LIMIT)
-            do
-              mysql -u root -h 127.0.0.1 -e 'show databases' || (sleep $HEALTH_CHECK_RETRY_WAIT; false) && break
-            done
       - run:
           name: Migration database
           command: |

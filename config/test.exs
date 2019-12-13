@@ -11,7 +11,7 @@ config :logger, level: :warn
 
 # Configure your database
 config :seiyu_watch, SeiyuWatch.Repo,
-  adapter: Ecto.Adapters.MySQL,
+  adapter: Ecto.Adapters.Postgres,
   username: System.get_env("DB_USER") || "postgres",
   password: System.get_env("DB_PASSWORD") || "",
   database: "seiyu_watch_test",
