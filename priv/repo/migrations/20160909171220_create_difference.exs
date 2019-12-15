@@ -4,11 +4,11 @@ defmodule SeiyuWatch.Repo.Migrations.CreateDifference do
   def up do
     create table(:differences) do
       add(:wiki_diff, :text)
-      add(:from, :integer)
-      add(:to, :integer)
+      add(:from, :bigint)
+      add(:to, :bigint)
       add(:seiyu_id, references(:seiyus, on_delete: :nothing))
 
-      timestamps()
+      timestamps(type: :utc_datetime)
     end
 
     create(index(:differences, [:seiyu_id]))
