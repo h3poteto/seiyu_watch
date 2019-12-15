@@ -12,6 +12,7 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+
   elixir:
     image: h3poteto/elixir-node:1.9.1-node10-slim-stretch
     environment:
@@ -21,12 +22,38 @@ services:
       GOOGLE_API_KEY: $GOOGLE_API_KEY
       SLACK_WEBHOOK_URL: $SLACK_WEBHOOK_URL
       AWS_S3_BUCKET: seiyu-watch-dev
-      DB_HOST: mysql
-      DB_USER: root
+      DB_HOST: postgres
+      DB_USER: postgres
     volumes:
       - .:/var/opt/app
     links:
       - mysql:mysql
+      - postgres:postgres
     ports:
       - "4000:4000"
     command: /bin/bash
+
+  postgres:
+    image: postgres:11.2-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: seiyu_watch_dev
+    volumes:
+      - storage:/var/lib/postgres/data
+    ports:
+      - "5432:5432"
+
+
+  pgloader:
+    image: dimitri/pgloader:latest
+    working_dir: /var/opt/app
+    security_opt:
+      - seccomp:unconfined
+    links:
+      - mysql:mysql
+      - postgres:postgres
+    volumes:
+      - .:/var/opt/app
+
+volumes:
+  storage:

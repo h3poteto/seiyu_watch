@@ -20,6 +20,7 @@ config :seiyu_watch, SeiyuWatchWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 config :logger, backends: [:console, SlackLoggerBackend]
+
 config :logger, SlackLoggerBackend,
   level: :error,
   hook_url: {:system, "SLACK_WEBHOOK_URL"},
@@ -68,15 +69,14 @@ config :seiyu_watch, SeiyuWatchWeb.Endpoint,
 
 # Configure your database
 config :seiyu_watch, SeiyuWatch.Repo,
-  adapter: Ecto.Adapters.MySQL,
+  adapter: Ecto.Adapters.Postgres,
   username: System.get_env("DB_USER") || "${DB_USER}",
   password: System.get_env("DB_PASSWORD") || "${DB_PASSWORD}",
   database: "seiyu_watch",
   hostname: System.get_env("DB_HOST") || "${DB_HOST}",
-  charset: "utf8mb4",
-  port: 3306,
+  show_sensitive_data_on_connection_error: true,
+  port: 5432,
   pool_size: 5
-
 
 config :arc,
   bucket: "seiyu-watch",

@@ -11,9 +11,15 @@ config :seiyu_watch, SeiyuWatchWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/webpack/bin/webpack.js", "--watch-stdin", "--progress", "--colors",
-                    cd: Path.expand("../assets", __DIR__)]]
-
+  watchers: [
+    node: [
+      "node_modules/webpack/bin/webpack.js",
+      "--watch-stdin",
+      "--progress",
+      "--colors",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+  ]
 
 # Watch static and templates for browser reloading.
 config :seiyu_watch, SeiyuWatchWeb.Endpoint,
@@ -28,12 +34,12 @@ config :seiyu_watch, SeiyuWatchWeb.Endpoint,
 
 # Do not include metadata nor timestamps in development logs
 config :logger, backends: [:console, SlackLoggerBackend]
+
 config :logger, SlackLoggerBackend,
   level: :error,
   hook_url: {:system, "SLACK_WEBHOOK_URL"},
   channel: "#playground",
   username: "seiyu_watch-develop"
-
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
@@ -41,14 +47,12 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :seiyu_watch, SeiyuWatch.Repo,
-  adapter: Ecto.Adapters.MySQL,
-  username: System.get_env("DB_USER") || "root",
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("DB_USER") || "postgres",
   password: System.get_env("DB_PASSWORD") || "",
   database: "seiyu_watch_dev",
-  hostname: System.get_env("DB_HOST") || "localhost",
-  charset: "utf8mb4",
+  hostname: System.get_env("DB_HOST") || "postgres",
+  show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
-
-config :seiyu_watch, :subscriber_delay,
-  update_diff: 1
+config :seiyu_watch, :subscriber_delay, update_diff: 1

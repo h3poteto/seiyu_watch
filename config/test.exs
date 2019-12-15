@@ -11,10 +11,10 @@ config :logger, level: :warn
 
 # Configure your database
 config :seiyu_watch, SeiyuWatch.Repo,
-  adapter: Ecto.Adapters.MySQL,
-  username: System.get_env("DB_USER") || "root",
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("DB_USER") || "postgres",
   password: System.get_env("DB_PASSWORD") || "",
   database: "seiyu_watch_test",
   hostname: System.get_env("DB_HOST") || "localhost",
-  charset: "utf8mb4",
+  show_sensitive_data_on_connection_error: true,
   pool: Ecto.Adapters.SQL.Sandbox

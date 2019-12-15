@@ -1,0 +1,6 @@
+load database
+    from mysql://root@mysql/seiyu_watch_dev
+    into pgsql://postgres@postgres/seiyu_watch_dev
+    with prefetch rows = 1000
+    cast type bigint with extra auto_increment to bigserial drop typemod,
+      type bigint when (= 20 precision) to bigint drop typemod;
