@@ -43,5 +43,17 @@ services:
     ports:
       - "5432:5432"
 
+
+  pgloader:
+    image: dimitri/pgloader:latest
+    working_dir: /var/opt/app
+    security_opt:
+      - seccomp:unconfined
+    links:
+      - mysql:mysql
+      - postgres:postgres
+    volumes:
+      - .:/var/opt/app
+
 volumes:
   storage:
