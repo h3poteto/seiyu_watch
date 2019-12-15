@@ -6,7 +6,7 @@ defmodule SeiyuWatch.Repo.Migrations.CreateWikipedia do
       add(:content, :text)
       add(:seiyu_id, references(:seiyus, on_delete: :nothing))
 
-      timestamps()
+      timestamps(type: :utc_datetime)
     end
 
     create(unique_index(:wikipedias, [:seiyu_id]))
