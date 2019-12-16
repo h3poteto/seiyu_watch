@@ -1,18 +1,5 @@
 version: '2'
 services:
-  storage:
-    image: busybox
-    volumes:
-      - /var/lib/mysql
-  mysql:
-    image: mysql:5.7
-    volumes_from:
-      - storage
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-
   elixir:
     image: h3poteto/elixir-node:1.9.1-node10-slim-stretch
     environment:
@@ -27,7 +14,6 @@ services:
     volumes:
       - .:/var/opt/app
     links:
-      - mysql:mysql
       - postgres:postgres
     ports:
       - "4000:4000"
@@ -42,18 +28,6 @@ services:
       - storage:/var/lib/postgres/data
     ports:
       - "5432:5432"
-
-
-  pgloader:
-    image: dimitri/pgloader:latest
-    working_dir: /var/opt/app
-    security_opt:
-      - seccomp:unconfined
-    links:
-      - mysql:mysql
-      - postgres:postgres
-    volumes:
-      - .:/var/opt/app
 
 volumes:
   storage:
