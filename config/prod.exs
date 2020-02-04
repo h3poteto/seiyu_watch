@@ -19,13 +19,7 @@ config :seiyu_watch, SeiyuWatchWeb.Endpoint,
 
 # Do not print debug messages in production
 config :logger, level: :info
-config :logger, backends: [:console, SlackLoggerBackend]
-
-config :logger, SlackLoggerBackend,
-  level: :error,
-  hook_url: {:system, "SLACK_WEBHOOK_URL"},
-  channel: "#seiyu_watch",
-  username: "seiyu_watch"
+config :logger, backends: [:console]
 
 # ## SSL Support
 #
@@ -91,3 +85,9 @@ config :ex_aws,
     host: "s3-ap-northeast-1.amazonaws.com",
     region: "ap-northeast-1"
   ]
+
+config :rollbax,
+  access_token: System.get_env("ROLLBAR_ACCESS_TOKEN"),
+  environment: "production",
+  enable_crash_reports: true,
+  enabled: true

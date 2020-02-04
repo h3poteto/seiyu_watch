@@ -61,7 +61,8 @@ defmodule SeiyuWatch.Mixfile do
       {:scrivener_ecto, "~> 1.2"},
       {:scrivener_html, "~> 1.7"},
       {:sweet_xml, "~> 0.6"},
-      {:plug_cowboy, "~> 1.0"}
+      {:plug_cowboy, "~> 1.0"},
+      {:rollbax, "~> 0.11"}
     ]
   end
 
