@@ -14,8 +14,7 @@ config :seiyu_watch, SeiyuWatchWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "yH0lM398JsfQTovy2xvyxJaFF6N/ExnGDmv+GlmLw69pZVb87shhS67PP0eNbU9i",
   render_errors: [view: SeiyuWatchWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: SeiyuWatch.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: SeiyuWatch.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -30,7 +29,6 @@ config :seiyu_watch, SeiyuWatch.Scheduler,
     {"29 16 * * *", {SeiyuWatch.ImageSearcher, :update_seiyu_images, []}}
   ]
 
-
 config :arc,
   storage: Arc.Storage.S3,
   virtual_host: true,
@@ -44,9 +42,10 @@ config :ex_aws,
 config :scrivener_html,
   routes_helper: SeiyuWatch.Router.Helpers
 
-config :seiyu_watch, :subscriber_delay,
-  update_diff: 300000
+config :seiyu_watch, :subscriber_delay, update_diff: 300_000
+
+config :rollbax, enabled: false
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
