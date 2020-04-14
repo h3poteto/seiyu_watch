@@ -77,14 +77,16 @@ config :arc,
   asset_host: "https://s3-ap-northeast-1.amazonaws.com/seiyu-watch"
 
 config :ex_aws,
-  access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role],
-  secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :instance_role],
-  region: "ap-northeast-1",
-  s3: [
-    scheme: "https://",
-    host: "s3-ap-northeast-1.amazonaws.com",
-    region: "ap-northeast-1"
-  ]
+  # We have to set dummy profile to use web identity adapter.
+  # So this profile does not exist and don't prepare it.
+  secret_access_key: [{:awscli, "profile_name", 30}],
+  access_key_id: [{:awscli, "profile_name", 30}],
+  awscli_auth_adapter: ExAws.STS.AuthCache.AssumeRoleWebIdentityAdapter
+
+config :ex_aws, :s3,
+  scheme: "https://",
+  host: "s3-ap-northeast-1.amazonaws.com",
+  region: "ap-northeast-1"
 
 config :rollbax,
   access_token: System.get_env("ROLLBAR_ACCESS_TOKEN"),
