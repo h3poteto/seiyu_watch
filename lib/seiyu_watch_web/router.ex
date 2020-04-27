@@ -27,6 +27,10 @@ defmodule SeiyuWatchWeb.Router do
   #   pipe_through :api
   # end
 
+  defp handle_errors(conn, %{reason: %Phoenix.Router.NoRouteError{}}) do
+    conn
+  end
+
   defp handle_errors(conn, %{kind: kind, reason: reason, stack: stacktrace}) do
     conn =
       conn
