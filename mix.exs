@@ -39,7 +39,7 @@ defmodule SeiyuWatch.Mixfile do
       {:phoenix_ecto, "~> 3.6.0"},
       {:mariaex, "~> 0.8.4"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.10.5"},
+      {:phoenix_html, "~> 2.14.1"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.13"},
       {:cowboy, "~> 1.1"},
