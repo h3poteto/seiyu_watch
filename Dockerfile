@@ -5,15 +5,10 @@ USER root
 COPY . ${APP_DIR}
 
 RUN chown -R elixir:elixir ${APP_DIR}
-RUN set -x \
-  && curl -fsSL https://github.com/minamijoyo/myaws/releases/download/v0.3.0/myaws_v0.3.0_linux_amd64.tar.gz \
-  | tar -xzC /usr/local/bin && chmod +x /usr/local/bin/myaws
 
 USER elixir
 
 ENV MIX_ENV=prod
-
-ENV PATH=$PATH:~/.mix/escripts
 
 RUN mix local.hex --force
 RUN mix local.rebar --force
