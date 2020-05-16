@@ -1,7 +1,7 @@
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-@import "~bootswatch/cosmo/variables";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
-@import "~bootswatch/cosmo/bootswatch";
+@import "~bootswatch/dist/cosmo/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/cosmo/bootswatch";
 @import "common";
 @import "page";
 @import "seiyu";
