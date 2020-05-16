@@ -2,8 +2,8 @@ defmodule SeiyuWatch.Wikipedia do
   use SeiyuWatchWeb, :model
 
   schema "wikipedias" do
-    field :content, :string
-    belongs_to :seiyu, SeiyuWatch.Seiyu
+    field(:content, :string)
+    belongs_to(:seiyu, SeiyuWatch.Seiyu)
 
     timestamps()
   end
@@ -24,10 +24,13 @@ defmodule SeiyuWatch.Wikipedia do
   # table要素ではなく最初のp要素を取る
   def head(wikipedia) do
     case wikipedia do
-      nil -> "No description"
+      nil ->
+        "No description"
+
       _ ->
-        parse = wikipedia.content
-        |> Floki.parse
+        parse =
+          wikipedia.content
+          |> Floki.parse_document!()
 
         case parse |> is_list do
           false -> wrap_parser(parse)
@@ -48,15 +51,14 @@ defmodule SeiyuWatch.Wikipedia do
     "No description"
   end
 
-  def list_parser([{"div", class, list}|tail]) do
+  def list_parser([{"div", class, list} | tail]) do
     if list
-    |> Enum.any?(
-    fn(l) ->
-      case l do
-        {"p", _, _} -> true
-        _ -> false
-      end
-    end) do
+       |> Enum.any?(fn l ->
+         case l do
+           {"p", _, _} -> true
+           _ -> false
+         end
+       end) do
       {"div", class, list}
       |> wrap_parser()
     else
@@ -70,16 +72,16 @@ defmodule SeiyuWatch.Wikipedia do
   # その先頭のp要素をいくつか取得する
   def list_parser(parse) do
     parse
-    |> Enum.map(fn(c) ->
+    |> Enum.map(fn c ->
       case c do
         {"p", _, _} -> c
         _ -> nil
       end
     end)
-    |> Enum.reject(fn(x) ->
+    |> Enum.reject(fn x ->
       x == nil
     end)
     |> Enum.slice(0, 2)
-    |> Floki.raw_html
+    |> Floki.raw_html()
   end
 end
