@@ -40,7 +40,8 @@ config :ex_aws,
   region: "ap-northeast-1"
 
 config :scrivener_html,
-  routes_helper: SeiyuWatch.Router.Helpers
+  routes_helper: SeiyuWatch.Router.Helpers,
+  view_style: :bootstrap_v4
 
 config :seiyu_watch, :subscriber_delay, update_diff: 300_000
 
