@@ -34,7 +34,7 @@
       </div>
     </nav>
 
-    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <p class="alert alert-primary" role="alert"><%= get_flash(@conn, :info) %></p>
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
     <main role="main" data-controller=<%= controller_module(@conn) |> Inflex.underscore |> String.split(~r/\./) |> Enum.at(1) %> data-action=<%= action_name(@conn) %>>
@@ -42,7 +42,7 @@
     </main>
 
     <footer class="footer">
-      <div class="container-fluid container">
+      <div class="container">
         <p class="text-muted">&copy; 2020 <a href="https://twitter.com/h3_poteto">@h3_poteto</a></p>
       </div>
     </footer>

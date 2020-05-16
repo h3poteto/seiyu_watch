@@ -1,4 +1,4 @@
-<div class="well bs-component">
+<div class="jumbotron mt-3">
   <%= form_for @changeset, @action, fn f -> %>
     <%= if @changeset.action do %>
       <div class="alert alert-danger">

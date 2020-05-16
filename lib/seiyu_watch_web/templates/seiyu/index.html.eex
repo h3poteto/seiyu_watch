@@ -1,12 +1,12 @@
-<h2>声優一覧</h2>
+<h2 class="pt-4">声優一覧</h2>
 
 <div class="seiyus">
   <%= for seiyu_groups <- @seiyus do %>
     <div class="row">
       <%= for seiyu <- seiyu_groups do %>
         <div class="col-md-4">
-        <div class="seiyu panel panel-default">
-          <div class="panel-body">
+        <div class="seiyu card">
+          <div class="card-body">
             <div class="seiyu-name">
               <%= link seiyu.name, to: seiyu_path(@conn, :show, seiyu), class: "name" %>
               <%= if recently_updated?(seiyu) do %>
@@ -17,7 +17,7 @@
               <img src="<%= SeiyuWatch.Icon.url({seiyu.icon, seiyu}, :small) %>" />
             </div>
           </div>
-          <div class="panel-footer">
+          <div class="card-footer">
             <%= raw seiyu.wikipedia |> SeiyuWatch.Wikipedia.head %>
           </div>
         </div>
