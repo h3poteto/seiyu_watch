@@ -15,7 +15,7 @@ main[data-controller="seiyu_controller"][data-action="index"] {
     max-width: 15.5rem;
     width: 80%;
 
-    .panel-body {
+    .card-body {
       padding: 2.25rem 1rem;
 
       .seiyu-name {
@@ -38,7 +38,7 @@ main[data-controller="seiyu_controller"][data-action="index"] {
       }
     }
 
-    .panel-footer {
+    .card-footer {
       a {
         color: rgb(51, 51, 51);
         pointer-events: none;
@@ -46,7 +46,7 @@ main[data-controller="seiyu_controller"][data-action="index"] {
     }
 
     .new {
-      color: $brand-primary;
+      color: #1a6dca;
       display: inline-block;
       margin-left: 0.5rem;
     }
@@ -68,6 +68,17 @@ main[data-controller="seiyu_controller"][data-action="show"] {
 
   .wikipedia {
     margin-bottom: 5.75rem;
+
+    a {
+      color: #ffffff;
+
+      &:hover,
+      &:link,
+      &:visited {
+        color: #ffffff;
+        text-decoration: none;
+      }
+    }
 
     .wikipedia-body {
       a {

@@ -1,21 +1,19 @@
-<div class="page-header">
-  <h2><%= @seiyu.name %></h2>
-</div>
+ <h2 class="pt-4" ><%= @seiyu.name %></h2>
+ <hr class="mb-4 mt-0" />
 
-<div class="panel panel-primary wikipedia">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= link "#{@seiyu.name} - wikipedia", to: @seiyu.wiki_url %></h3>
+<div class="card wikipedia">
+  <div class="card-header bg-primary text-white">
+    <%= link "#{@seiyu.name} - wikipedia", to: @seiyu.wiki_url %>
   </div>
-  <div class="panel-body">
+  <div class="card-body">
     <div class="wikipedia-body">
       <%= raw @wiki_head %>
     </div>
   </div>
 </div>
 
-<div class="page-header">
-  <h3>更新情報</h3>
-</div>
+<h3>更新情報</h3>
+<hr class="mb-4 mt-0" />
 <p><%= @seiyu.name %>のWikipediaから，最近更新された情報を表示しています．</p>
 
 <div class="table-wrapper">
@@ -25,5 +23,5 @@
 </div>
 
 <div class="controls">
-  <%= link "戻る", to: seiyu_path(@conn, :index), class: "btn btn-default" %>
+  <%= link "戻る", to: seiyu_path(@conn, :index), class: "btn btn-primary" %>
 </div>

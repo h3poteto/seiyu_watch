@@ -12,38 +12,29 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%=  link "SeiyuWatch", to: page_path(@conn, :index), class: "navbar-brand" %>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <%=  link "SeiyuWatch", to: page_path(@conn, :index), class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><%= link "声優一覧", to: seiyu_path(@conn, :index) %></li>
-            <li><%= link "声優追加", to: seiyu_path(@conn, :new) %></li>
-          </ul>
-          <%= form_for @conn, seiyu_path(@conn, :index), [as: :search, method: :get, class: "navbar-form navbar-right", role: "search"], fn f -> %>
-          <div class="form-group">
-            <div class="input-group">
-              <%= search_input f, :query, class: "form-control" %>
-              <span class="input-group-btn">
-                <%= submit "検索", class: "btn btn-default" %>
-              </span>
-            </div>
-          </div>
-          <% end %>
-        </div>
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link "声優一覧", to: seiyu_path(@conn, :index), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link "声優追加", to: seiyu_path(@conn, :new), class: "nav-link" %>
+          </li>
+        </ul>
+        <%= form_for @conn, seiyu_path(@conn, :index), [as: :search, method: :get, class: "form-inline my-2 my-lg-0", role: "search"], fn f -> %>
+          <%= search_input f, :query, class: "form-control mr-sm-2" %>
+          <%= submit "検索", class: "btn btn-secondary my-2 my-sm-0" %>
+        <% end %>
       </div>
     </nav>
 
-    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <p class="alert alert-primary" role="alert"><%= get_flash(@conn, :info) %></p>
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
     <main role="main" data-controller=<%= controller_module(@conn) |> Inflex.underscore |> String.split(~r/\./) |> Enum.at(1) %> data-action=<%= action_name(@conn) %>>
@@ -51,8 +42,8 @@
     </main>
 
     <footer class="footer">
-      <div class="container-fluid container">
-        <p class="text-muted">&copy; 2016 <a href="https://twitter.com/h3_poteto">@h3_poteto</a></p>
+      <div class="container">
+        <p class="text-muted">&copy; 2020 <a href="https://twitter.com/h3_poteto">@h3_poteto</a></p>
       </div>
     </footer>
 
