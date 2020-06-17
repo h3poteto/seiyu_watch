@@ -50,7 +50,7 @@ defmodule SeiyuWatch.Mixfile do
       {:quinn, "~> 1.0"},
       {:floki, "~> 0.18"},
       {:inflex, "~> 1.8"},
-      {:quantum, "~> 2.4.0"},
+      {:quantum, "~> 3.0.1"},
       {:arc_ecto, "~> 0.11.1"},
       {:arc, "~> 0.11.0"},
       {:ex_aws, "~> 2.1"},
