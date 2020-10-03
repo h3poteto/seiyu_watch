@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: h3poteto/elixir-node:1.9.1-node10-slim-stretch
+      - image: ghcr.io/h3poteto/elixir-node:1.10.4-node12-slim-buster
         environment:
           DB_HOST: 127.0.0.1
       - image: postgres:11.2-alpine

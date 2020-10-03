@@ -1,7 +1,7 @@
 version: '2'
 services:
   elixir:
-    image: h3poteto/elixir-node:1.9.1-node10-slim-stretch
+    image: ghcr.io/h3poteto/elixir-node:1.10.4-node12-slim-buster
     environment:
       AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
       AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
