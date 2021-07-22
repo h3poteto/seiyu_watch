@@ -1,54 +1,70 @@
 const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: {
     "css/app.css": "./css/app.scss",
-    "js/app.js": "./js/app.js"
+    "js/app.js": "./js/app.js",
   },
   output: {
-    path: "../priv/static",
-    filename: "[name]"
+    path: path.resolve(__dirname, "../priv/static"),
+    filename: "[name]",
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel",
-        query: {
-          presets: ["babel-preset-es2016"]
-        }
+        use: ["babel-loader"],
       },
       {
         test: /\.(scss|css)$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              esModule: false,
+            },
+          },
+          "sass-loader",
+        ],
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=application/font-woff"
+        use: "url-loader?limit=10000&mimetype=application/font-woff",
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=application/octet-stream"
+        use: "url-loader?limit=10000&mimetype=application/octet-stream",
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file"
+        use: "file-loader",
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=image/svg+xml"
-      }
-    ]
+        use: "url-loader?limit=10000&mimetype=image/svg+xml",
+      },
+      {
+        test: /\.(jpg|jpeg|png)$/,
+        use: "url-loader",
+      },
+    ],
   },
   plugins: [
-    new ExtractTextPlugin("[name]"),
-    new CopyWebpackPlugin([{ from: "./static" }])
+    new MiniCssExtractPlugin({ filename: "css/style.css" }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.join(__dirname, "./static"),
+          to: path.join(__dirname, "../priv/static"),
+        },
+      ],
+    }),
   ],
   resolve: {
     extensions: ["", ".css", ".scss", ".js"],
-    root: path.resolve(__dirname, "./")
-  }
+    roots: [path.resolve(__dirname, "./"), path.resolve(__dirname, "./static")],
+  },
 };
-

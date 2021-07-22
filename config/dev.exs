@@ -14,9 +14,9 @@ config :seiyu_watch, SeiyuWatchWeb.Endpoint,
   watchers: [
     node: [
       "node_modules/webpack/bin/webpack.js",
-      "--watch-stdin",
-      "--progress",
-      "--colors",
+      "--mode",
+      "development",
+      "--watch",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
