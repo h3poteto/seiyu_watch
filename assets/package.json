@@ -6,7 +6,7 @@
     "watch": "webpack --progress --color --watch --mode development"
   },
   "dependencies": {
-    "copy-webpack-plugin": "^10.0.0",
+    "copy-webpack-plugin": "^10.2.1",
     "mini-css-extract-plugin": "^2.3.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
