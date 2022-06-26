@@ -64,6 +64,10 @@ jobs:
           paths:
             - "assets/node_modules"
       - run:
+          name: Node build
+          command: |
+            cd assets && npm run compile
+      - run:
           name: Migration database
           command: |
             mix ecto.create
