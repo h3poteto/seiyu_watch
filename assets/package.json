@@ -10,7 +10,7 @@
     "mini-css-extract-plugin": "^2.6.1",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
-    "webpack": "^5.73.0"
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
