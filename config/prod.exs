@@ -70,7 +70,7 @@ config :seiyu_watch, SeiyuWatch.Repo,
   hostname: System.get_env("DB_HOST") || "${DB_HOST}",
   show_sensitive_data_on_connection_error: true,
   port: 5432,
-  pool_size: 5
+  pool_size: 3
 
 config :arc,
   bucket: "seiyu-watch",
