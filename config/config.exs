@@ -9,6 +9,8 @@ use Mix.Config
 config :seiyu_watch,
   ecto_repos: [SeiyuWatch.Repo]
 
+config :phoenix, :json_library, Jason
+
 # Configures the endpoint
 config :seiyu_watch, SeiyuWatchWeb.Endpoint,
   url: [host: "localhost"],
