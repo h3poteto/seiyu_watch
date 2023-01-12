@@ -4,19 +4,17 @@ defmodule SeiyuWatch.Application do
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
-    import Supervisor.Spec
-
     # Define workers and child supervisors to be supervised
     children = [
-      # Start the Ecto repository
-      supervisor(SeiyuWatch.Repo, []),
       # Start the PubSub system
       {Phoenix.PubSub, name: SeiyuWatch.PubSub},
+      # Start the Ecto repository
+      SeiyuWatch.Repo,
       # Start the endpoint when the application starts
-      supervisor(SeiyuWatchWeb.Endpoint, []),
+      SeiyuWatchWeb.Endpoint,
       # Start your own worker by calling: SeiyuWatch.Worker.start_link(arg1, arg2, arg3)
       # worker(SeiyuWatch.Worker, [arg1, arg2, arg3]),
-      worker(SeiyuWatch.Scheduler, [])
+      SeiyuWatch.Scheduler
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
