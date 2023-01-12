@@ -34,15 +34,15 @@ defmodule SeiyuWatch.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.17"},
-      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix, "~> 1.5.14"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 3.6.0"},
       {:mariaex, "~> 0.8.4"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.10.5"},
+      {:phoenix_html, "~> 2.13"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.13"},
-      {:cowboy, "~> 1.1"},
+      {:cowboy, "~> 2.7"},
       {:timex, "~> 3.1"},
       {:timex_ecto, "~> 3.1"},
       {:httpoison, "~> 1.8.0"},
@@ -62,9 +62,9 @@ defmodule SeiyuWatch.Mixfile do
       {:exrm, "~> 1.0.8", only: :prod},
       {:scrivener, "~> 2.3"},
       {:scrivener_ecto, "~> 1.2"},
-      {:scrivener_html, "~> 1.8"},
+      {:scrivener_html, github: "mgwidmann/scrivener_html"},
       {:sweet_xml, "~> 0.6"},
-      {:plug_cowboy, "~> 1.0"},
+      {:plug_cowboy, "~> 2.1"},
       {:rollbax, "~> 0.11"}
     ]
   end
