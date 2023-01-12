@@ -1,7 +1,7 @@
 version: '2'
 services:
   elixir:
-    image: ghcr.io/h3poteto/elixir-node:1.10.4-node12-slim-buster
+    image: ghcr.io/h3poteto/elixir-node:1.11.3-node14-slim-buster
     environment:
       AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
       AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
@@ -11,6 +11,7 @@ services:
       AWS_S3_BUCKET: seiyu-watch-dev
       DB_HOST: postgres
       DB_USER: postgres
+      DB_PASSWORD: password
     volumes:
       - .:/var/opt/app
     links:
@@ -23,6 +24,7 @@ services:
     image: postgres:13.5-alpine
     environment:
       POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: seiyu_watch_dev
     volumes:
       - storage:/var/lib/postgres/data

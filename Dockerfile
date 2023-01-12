@@ -1,4 +1,4 @@
-FROM ghcr.io/h3poteto/elixir-node:1.10.4-node12-slim-buster
+FROM ghcr.io/h3poteto/elixir-node:1.11.4-node14-slim-buster
 
 USER root
 

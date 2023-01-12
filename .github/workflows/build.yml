@@ -30,8 +30,8 @@ jobs:
       - uses: actions/checkout@master
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: "22.2"
-          elixir-version: "1.10.4"
+          otp-version: "23.0"
+          elixir-version: "1.11.3"
       - uses: actions/setup-node@v3
         with:
           node-version: 12
