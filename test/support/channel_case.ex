@@ -18,13 +18,13 @@ defmodule SeiyuWatchWeb.ChannelCase do
   using do
     quote do
       # Import conveniences for testing with channels
-      use Phoenix.ChannelTest
+      import Plug.Conn
+      import Phoenix.ConnTest
 
       alias SeiyuWatch.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-
 
       # The default endpoint for testing
       @endpoint SeiyuWatchWeb.Endpoint
