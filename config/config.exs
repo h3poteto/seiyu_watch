@@ -14,7 +14,7 @@ config :seiyu_watch, SeiyuWatchWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "yH0lM398JsfQTovy2xvyxJaFF6N/ExnGDmv+GlmLw69pZVb87shhS67PP0eNbU9i",
   render_errors: [view: SeiyuWatchWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: SeiyuWatch.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: SeiyuWatch.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
