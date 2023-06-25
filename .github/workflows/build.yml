@@ -31,10 +31,10 @@ jobs:
       - uses: erlef/setup-beam@v1
         with:
           otp-version: "24.2"
-          elixir-version: "1.12.3"
+          elixir-version: "1.13.4"
       - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 18
       - name: Mix install
         run: |
           mix local.hex --force
