@@ -5,7 +5,7 @@ defmodule SeiyuWatch.Mixfile do
     [
       app: :seiyu_watch,
       version: "0.0.1",
-      elixir: "~> 1.11",
+      elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
@@ -59,7 +59,6 @@ defmodule SeiyuWatch.Mixfile do
       {:hackney, "~> 1.9"},
       {:configparser_ex, "~> 4.0"},
       {:mock, "~> 0.3", only: :test},
-      {:exrm, "~> 1.0.8", only: :prod},
       {:scrivener, "~> 2.3"},
       {:scrivener_ecto, "~> 1.2"},
       {:scrivener_html, github: "mgwidmann/scrivener_html"},
