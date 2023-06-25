@@ -1,7 +1,7 @@
 version: '2'
 services:
   elixir:
-    image: ghcr.io/h3poteto/elixir-node:1.12.3-node16-slim-buster
+    image: ghcr.io/h3poteto/elixir-node:1.13.4-node18-slim-buster
     user: root
     environment:
       AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
