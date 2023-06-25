@@ -3,7 +3,9 @@
 
 <div class="card wikipedia">
   <div class="card-header bg-primary text-white">
-    <%= link "#{@seiyu.name} - wikipedia", to: @seiyu.wiki_url %>
+    <a href=<%= "#{@seiyu.wiki_url}" %>>
+      <%= "#{@seiyu.name} - wikipedia" %>
+    </a>
   </div>
   <div class="card-body">
     <div class="wikipedia-body">
