@@ -1,4 +1,4 @@
 defmodule SeiyuWatch.Scheduler do
-  use Quantum.Scheduler,
+  use Quantum,
     otp_app: :seiyu_watch
 end
