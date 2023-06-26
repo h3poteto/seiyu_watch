@@ -50,3 +50,9 @@ config :seiyu_watch, SeiyuWatch.Repo,
   pool_size: 10
 
 config :seiyu_watch, :subscriber_delay, update_diff: 1
+
+config :seiyu_watch, SeiyuWatch.Scheduler,
+  jobs: [
+    {"*/10 * * * *", {SeiyuWatch.DiffParser, :parse_all_seiyus, []}},
+    {"*/15 * * * *", {SeiyuWatch.ImageSearcher, :update_seiyu_images, []}}
+  ]
