@@ -47,7 +47,7 @@ defmodule SeiyuWatch.Mixfile do
       {:httpoison, "~> 2.1.0"},
       {:poison, "~> 3.1"},
       {:quinn, "~> 1.0"},
-      {:floki, "~> 0.18"},
+      {:floki, "~> 0.34"},
       {:inflex, "~> 2.1"},
       {:quantum, "~> 3.0"},
       {:arc_ecto, "~> 0.11.1"},
