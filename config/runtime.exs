@@ -2,7 +2,7 @@ import Config
 
 if config_env() == :prod do
   config :seiyu_watch, SeiyuWatchWeb.Endpoint,
-    http: [port: String.to_integer(System.get_env("PORT") || "4000")],
+    http: [port: String.to_integer(System.get_env("PORT") || "8080")],
     secret_key_base: System.fetch_env!("SECRET_KEY_BASE")
 
   config :rollbax,
