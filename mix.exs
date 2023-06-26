@@ -41,7 +41,7 @@ defmodule SeiyuWatch.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 3.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:gettext, "~> 0.20"},
+      {:gettext, "~> 0.22"},
       {:cowboy, "~> 2.7"},
       {:timex, "~> 3.5"},
       {:httpoison, "~> 2.1.0"},
