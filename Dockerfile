@@ -2,6 +2,9 @@ FROM ghcr.io/h3poteto/elixir-node:1.13.4-node18-slim-buster
 
 USER root
 
+RUN apt-get update && \
+    apt-get install -y imagemagick
+
 COPY . ${APP_DIR}
 
 RUN chown -R elixir:elixir ${APP_DIR}

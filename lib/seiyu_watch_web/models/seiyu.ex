@@ -5,13 +5,13 @@ defmodule SeiyuWatch.Seiyu do
   import Ecto.Query, only: [from: 2, order_by: 2, preload: 2]
 
   schema "seiyus" do
-    field :name, :string
-    field :icon, SeiyuWatch.Icon.Type
-    field :wiki_page_id, :integer
-    field :diffs_updated_at, Timex.Ecto.DateTime
-    field :wiki_url, :string
-    has_many :differences, SeiyuWatch.Difference
-    has_one :wikipedia, SeiyuWatch.Wikipedia
+    field(:name, :string)
+    field(:icon, SeiyuWatch.Icon.Type)
+    field(:wiki_page_id, :integer)
+    field(:diffs_updated_at, :naive_datetime)
+    field(:wiki_url, :string)
+    has_many(:differences, SeiyuWatch.Difference)
+    has_one(:wikipedia, SeiyuWatch.Wikipedia)
 
     timestamps()
   end
@@ -30,15 +30,16 @@ defmodule SeiyuWatch.Seiyu do
   def update_diff_timestamp(seiyu_id) do
     SeiyuWatch.Seiyu
     |> Repo.get!(seiyu_id)
-    |> changeset(%{"diffs_updated_at" => Timex.now})
-    |> Repo.update
+    |> changeset(%{"diffs_updated_at" => Timex.now()})
+    |> Repo.update()
   end
 
   def recent_diff(seiyu) do
     case (seiyu
-    |> Repo.preload(differences: (from a in SeiyuWatch.Difference, order_by: [desc: a.inserted_at]))
-    ).differences
-    |> Enum.at(0) do
+          |> Repo.preload(
+            differences: from(a in SeiyuWatch.Difference, order_by: [desc: a.inserted_at])
+          )).differences
+         |> Enum.at(0) do
       nil -> {:error, ""}
       value -> {:ok, value.wiki_diff}
     end
@@ -57,8 +58,10 @@ defmodule SeiyuWatch.Seiyu do
 
   defp search_query(source, query) do
     q = "%#{query}%"
-    from s in source,
+
+    from(s in source,
       where: like(s.name, ^q)
+    )
   end
 
   defp seiyus_query(source, params) do
