@@ -5,7 +5,7 @@
   ],
   "packageRules": [
     {
-    "matchManagers": ["npm"],
+      "matchManagers": ["npm"],
       "matchUpdateTypes": ["patch", "pin", "digest"],
       "automerge": true
     }
