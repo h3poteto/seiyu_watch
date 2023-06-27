@@ -25,7 +25,7 @@ services:
     command: /bin/bash
 
   postgres:
-    image: postgres:13.5-alpine
+    image: postgres:13.11-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
