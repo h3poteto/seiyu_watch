@@ -30,11 +30,11 @@ jobs:
       - uses: actions/checkout@master
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: "25.3"
-          elixir-version: "1.14.5"
+          otp-version: "26.0"
+          elixir-version: "1.15.1"
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - name: Mix install
         run: |
           mix local.hex --force
