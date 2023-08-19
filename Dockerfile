@@ -1,20 +1,4 @@
-# Find eligible builder and runner images on Docker Hub. We use Ubuntu/Debian
-# instead of Alpine to avoid DNS resolution issues in production.
-#
-# https://hub.docker.com/r/hexpm/elixir/tags?page=1&name=ubuntu
-# https://hub.docker.com/_/ubuntu?tab=tags
-#
-# This file is based on these images:
-#
-#   - https://hub.docker.com/r/hexpm/elixir/tags - for the build image
-#   - https://hub.docker.com/_/debian?tab=tags&page=1&name=bullseye-20230109-slim - for the release image
-#   - https://pkgs.org/ - resource for finding needed packages
-#   - Ex: hexpm/elixir:1.14.5-erlang-25.2.2-debian-bullseye-20230109-slim
-#
-ARG ELIXIR_VERSION=1.14.5
-ARG OTP_VERSION=25.2.2
-
-FROM ghcr.io/h3poteto/elixir-node:1.14.5-node18-slim as builder
+FROM ghcr.io/h3poteto/elixir-node:1.15.1-node20-slim as builder
 
 USER root
 
