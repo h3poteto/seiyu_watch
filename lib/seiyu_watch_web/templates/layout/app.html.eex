@@ -19,7 +19,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarColor02">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <%= link "声優一覧", to: seiyu_path(@conn, :index), class: "nav-link" %>
           </li>
@@ -27,9 +27,9 @@
             <%= link "声優追加", to: seiyu_path(@conn, :new), class: "nav-link" %>
           </li>
         </ul>
-        <%= form_for @conn, seiyu_path(@conn, :index), [as: :search, method: :get, class: "form-inline my-2 my-lg-0", role: "search"], fn f -> %>
-          <%= search_input f, :query, class: "form-control mr-sm-2" %>
-          <%= submit "検索", class: "btn btn-secondary my-2 my-sm-0" %>
+        <%= form_for @conn, seiyu_path(@conn, :index), [as: :search, method: :get, class: "d-flex", role: "search"], fn f -> %>
+          <%= search_input f, :query, class: "form-control me-sm-2" %>
+          <%= submit "Search", class: "btn btn-secondary my-2 my-sm-0" %>
         <% end %>
       </div>
     </nav>
