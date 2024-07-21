@@ -45,7 +45,7 @@ defmodule SeiyuWatch.Mixfile do
       {:gettext, "~> 0.24"},
       {:cowboy, "~> 2.7"},
       {:timex, "~> 3.5"},
-      {:httpoison, "~> 2.1.0"},
+      {:httpoison, "~> 2.2.0"},
       {:poison, "~> 3.1"},
       {:quinn, "~> 1.0"},
       {:floki, "~> 0.36"},
