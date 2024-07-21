@@ -1,4 +1,4 @@
-FROM ghcr.io/h3poteto/elixir-node:1.15.1-node20-slim as builder
+FROM ghcr.io/h3poteto/elixir-node:1.17.2-node20-slim as builder
 
 USER root
 

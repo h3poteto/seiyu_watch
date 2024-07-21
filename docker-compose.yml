@@ -1,7 +1,7 @@
 version: '2'
 services:
   elixir:
-    image: ghcr.io/h3poteto/elixir-node:1.15.1-node20-slim
+    image: ghcr.io/h3poteto/elixir-node:1.17.2-node20-slim
     user: root
     environment:
       AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
@@ -25,7 +25,7 @@ services:
     command: /bin/bash
 
   postgres:
-    image: postgres:13.12-alpine
+    image: postgres:13-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
