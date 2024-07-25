@@ -31,8 +31,8 @@ config :seiyu_watch, SeiyuWatch.Scheduler,
     {"29 16 * * *", {SeiyuWatch.ImageSearcher, :update_seiyu_images, []}}
   ]
 
-config :arc,
-  storage: Arc.Storage.S3,
+config :waffle,
+  storage: Waffle.Storage.S3,
   virtual_host: true,
   bucket: {:system, "AWS_S3_BUCKET"}
 

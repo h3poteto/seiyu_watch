@@ -1,6 +1,6 @@
 defmodule SeiyuWatch.Icon do
-  use Arc.Definition
-  use Arc.Ecto.Definition
+  use Waffle.Definition
+  use Waffle.Ecto.Definition
 
   # To add a thumbnail version:
   @versions [:original, :small]
