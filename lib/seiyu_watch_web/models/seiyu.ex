@@ -1,6 +1,6 @@
 defmodule SeiyuWatch.Seiyu do
   use SeiyuWatchWeb, :model
-  use Arc.Ecto.Schema
+  use Waffle.Ecto.Schema
   alias SeiyuWatch.Repo
   import Ecto.Query, only: [from: 2, order_by: 2, preload: 2]
 

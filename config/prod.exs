@@ -58,7 +58,7 @@ config :logger, backends: [:console]
 #     config :seiyu_watch, SeiyuWatch.Endpoint, server: true
 #
 
-config :arc,
+config :waffle,
   bucket: "seiyu-watch",
   asset_host: "https://s3-ap-northeast-1.amazonaws.com/seiyu-watch"
 
