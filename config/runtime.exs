@@ -21,4 +21,10 @@ if config_env() == :prod do
     show_sensitive_data_on_connection_error: true,
     port: 5432,
     pool_size: 3
+
+  config :opentelemetry, :processors,
+    otel_batch_processor: %{
+      exporter:
+        {:opentelemetry_exporter, %{endpoints: [System.fetch_env!("OTEL_EXPORTER_ENDPOINT")]}}
+    }
 end
