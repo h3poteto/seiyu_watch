@@ -10,6 +10,11 @@ defmodule SeiyuWatch.Mixfile do
       compilers: Mix.compilers(),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
+      releases: [
+        seiyu_watch: [
+          applications: [opentelemetry: :temporary]
+        ]
+      ],
       aliases: aliases(),
       deps: deps()
     ]
@@ -65,7 +70,12 @@ defmodule SeiyuWatch.Mixfile do
       {:sweet_xml, "~> 0.7"},
       {:plug_cowboy, "~> 2.1"},
       {:rollbax, "~> 0.11"},
-      {:jason, "~> 1.0"}
+      {:jason, "~> 1.0"},
+      {:opentelemetry, "~> 1.4.0"},
+      {:opentelemetry_phoenix, "~> 1.2.0"},
+      {:opentelemetry_cowboy, "~> 0.3.0"},
+      {:opentelemetry_exporter, "~> 1.7.0"},
+      {:opentelemetry_ecto, "~> 1.2.0"}
     ]
   end
 

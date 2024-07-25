@@ -56,3 +56,5 @@ config :seiyu_watch, SeiyuWatch.Scheduler,
     {"*/10 * * * *", {SeiyuWatch.DiffParser, :parse_all_seiyus, []}},
     {"*/15 * * * *", {SeiyuWatch.ImageSearcher, :update_seiyu_images, []}}
   ]
+
+config :opentelemetry, traces_exporter: {:otel_exporter_stdout, []}
