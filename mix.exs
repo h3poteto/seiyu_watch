@@ -65,7 +65,7 @@ defmodule SeiyuWatch.Mixfile do
       {:configparser_ex, "~> 4.0"},
       {:mock, "~> 0.3", only: :test},
       {:scrivener, "~> 2.7"},
-      {:scrivener_ecto, "~> 2.7"},
+      {:scrivener_ecto, "~> 3.0"},
       {:scrivener_html, github: "mgwidmann/scrivener_html"},
       {:sweet_xml, "~> 0.7"},
       {:plug_cowboy, "~> 2.1"},
