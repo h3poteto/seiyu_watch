@@ -75,7 +75,10 @@ defmodule SeiyuWatch.Mixfile do
       {:opentelemetry_phoenix, "~> 2.0.0"},
       {:opentelemetry_cowboy, "~> 1.0.0"},
       {:opentelemetry_exporter, "~> 1.8.0"},
-      {:opentelemetry_ecto, "~> 1.2.0"}
+      {:opentelemetry_ecto, "~> 1.2.0"},
+      {:oban, "~> 2.19"},
+      {:igniter, "~> 0.5", only: [:dev]},
+      {:credo, "~> 1.7.7", only: [:dev, :test], runtime: false}
     ]
   end
 

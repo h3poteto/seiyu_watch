@@ -5,6 +5,12 @@
 # is restricted to this project.
 import Config
 
+config :seiyu_watch, Oban,
+  engine: Oban.Engines.Basic,
+  notifier: Oban.Notifiers.Postgres,
+  queues: [default: 10],
+  repo: SeiyuWatch.Repo
+
 # General application configuration
 config :seiyu_watch,
   ecto_repos: [SeiyuWatch.Repo]

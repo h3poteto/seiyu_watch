@@ -16,6 +16,7 @@ defmodule SeiyuWatch.Application do
       SeiyuWatch.Repo,
       # Start the endpoint when the application starts
       SeiyuWatchWeb.Endpoint,
+      {Oban, Application.fetch_env!(:seiyu_watch, Oban)},
       # Start your own worker by calling: SeiyuWatch.Worker.start_link(arg1, arg2, arg3)
       # worker(SeiyuWatch.Worker, [arg1, arg2, arg3]),
       SeiyuWatch.Scheduler
