@@ -5,6 +5,12 @@
 # is restricted to this project.
 import Config
 
+config :seiyu_watch, Oban,
+  engine: Oban.Engines.Basic,
+  notifier: Oban.Notifiers.Postgres,
+  queues: [default: 10],
+  repo: SeiyuWatch.Repo
+
 # General application configuration
 config :seiyu_watch,
   ecto_repos: [SeiyuWatch.Repo]
@@ -23,12 +29,14 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Configures quantum
-config :seiyu_watch, SeiyuWatch.Scheduler,
-  jobs: [
-    # Every day
-    {"12 16 * * *", {SeiyuWatch.DiffParser, :parse_all_seiyus, []}},
-    {"29 16 * * *", {SeiyuWatch.ImageSearcher, :update_seiyu_images, []}}
+# Configures oban
+config :seiyu_watch, Oban,
+  plugins: [
+    {Oban.Plugins.Cron,
+     crontab: [
+       {"12 16 * * *", SeiyuWatch.Workers.ParseSeiyus, args: %{}, queue: :default},
+       {"29 16 * * *", SeiyuWatch.Workers.FillAllImages, args: %{}, queue: :default}
+     ]}
   ]
 
 config :waffle,

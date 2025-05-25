@@ -6,8 +6,7 @@ defmodule SeiyuWatch.GoogleResponseTest do
 
   describe "#parse_images" do
     test "response has images" do
-      assert response() |> GoogleResponse.parse_images |> Enum.count == 2
+      assert response() |> GoogleResponse.parse_images() |> Enum.count() == 2
     end
   end
 end
-

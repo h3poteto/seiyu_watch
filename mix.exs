@@ -55,7 +55,6 @@ defmodule SeiyuWatch.Mixfile do
       {:quinn, "~> 1.0"},
       {:floki, "~> 0.37"},
       {:inflex, "~> 2.1"},
-      {:quantum, "~> 3.0"},
       {:waffle, "~> 1.1"},
       {:waffle_ecto, "~> 0.0"},
       {:ex_aws, "~> 2.1"},
@@ -75,7 +74,9 @@ defmodule SeiyuWatch.Mixfile do
       {:opentelemetry_phoenix, "~> 2.0.0"},
       {:opentelemetry_cowboy, "~> 1.0.0"},
       {:opentelemetry_exporter, "~> 1.8.0"},
-      {:opentelemetry_ecto, "~> 1.2.0"}
+      {:opentelemetry_ecto, "~> 1.2.0"},
+      {:oban, "~> 2.19"},
+      {:credo, "~> 1.7.7", only: [:dev, :test], runtime: false}
     ]
   end
 

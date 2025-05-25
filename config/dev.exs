@@ -51,10 +51,14 @@ config :seiyu_watch, SeiyuWatch.Repo,
 
 config :seiyu_watch, :subscriber_delay, update_diff: 1
 
-config :seiyu_watch, SeiyuWatch.Scheduler,
-  jobs: [
-    {"*/10 * * * *", {SeiyuWatch.DiffParser, :parse_all_seiyus, []}},
-    {"*/15 * * * *", {SeiyuWatch.ImageSearcher, :update_seiyu_images, []}}
+config :seiyu_watch, Oban,
+  plugins: [
+    {Oban.Plugins.Cron,
+     crontab: [
+       {"*/10 * * * *", SeiyuWatch.Workers.ParseSeiyus, args: %{}, queue: :default},
+       {"*/15 * * * *", SeiyuWatch.Workers.FillAllImages, args: %{}, queue: :default}
+     ]}
   ]
 
-config :opentelemetry, traces_exporter: {:otel_exporter_stdout, []}
+# config :opentelemetry, traces_exporter: {:otel_exporter_stdout, []}
+config :opentelemetry, traces_exporter: :none
