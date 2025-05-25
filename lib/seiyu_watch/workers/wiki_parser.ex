@@ -5,6 +5,12 @@ defmodule SeiyuWatch.Workers.WikiParser do
 
   @impl Oban.Worker
   def perform(%Oban.Job{args: %{"seiyu_id" => seiyu_id}}) do
+    update_wiki(seiyu_id)
+
+    :ok
+  end
+
+  def update_wiki(seiyu_id) do
     seiyu =
       SeiyuWatch.Seiyu
       |> Repo.get!(seiyu_id)
@@ -28,8 +34,6 @@ defmodule SeiyuWatch.Workers.WikiParser do
         Ecto.Changeset.change(wiki, content: content)
         |> Repo.update!()
     end
-
-    :ok
   end
 
   def wikipedia_page_request(wiki_page_id) do

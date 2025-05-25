@@ -1,7 +1,6 @@
 defmodule SeiyuWatchWeb.SeiyuControllerTest do
   use SeiyuWatchWeb.ConnCase
 
-  import Mock
   alias SeiyuWatch.Seiyu
   @valid_attrs %{name: "阿澄佳奈"}
   @invalid_attrs %{}
@@ -26,24 +25,18 @@ defmodule SeiyuWatchWeb.SeiyuControllerTest do
 
   describe "#create" do
     test "creates resource and redirects when data is valid", %{conn: conn} do
-      with_mock SeiyuWatch.SeiyuParser, save: fn name -> name end do
-        conn = post(conn, seiyu_path(conn, :create), seiyu: @valid_attrs)
-        assert redirected_to(conn) == seiyu_path(conn, :index)
-      end
+      conn = post(conn, seiyu_path(conn, :create), seiyu: @valid_attrs)
+      assert redirected_to(conn) == seiyu_path(conn, :index)
     end
 
     test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-      with_mock SeiyuWatch.SeiyuParser, save: fn name -> name end do
-        conn = post(conn, seiyu_path(conn, :create), seiyu: @invalid_attrs)
-        assert html_response(conn, 200) =~ "声優追加"
-      end
+      conn = post(conn, seiyu_path(conn, :create), seiyu: @invalid_attrs)
+      assert html_response(conn, 200) =~ "声優追加"
     end
 
     test "does not create resource and renders errors when name is white space", %{conn: conn} do
-      with_mock SeiyuWatch.SeiyuParser, save: fn name -> name end do
-        conn = post(conn, seiyu_path(conn, :create), seiyu: %{name: " "})
-        assert html_response(conn, 200) =~ "声優追加"
-      end
+      conn = post(conn, seiyu_path(conn, :create), seiyu: %{name: " "})
+      assert html_response(conn, 200) =~ "声優追加"
     end
   end
 

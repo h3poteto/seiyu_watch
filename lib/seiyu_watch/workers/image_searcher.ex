@@ -7,6 +7,12 @@ defmodule SeiyuWatch.Workers.ImageSearcher do
 
   @impl Oban.Worker
   def perform(%Oban.Job{args: %{"seiyu_id" => seiyu_id}}) do
+    save_image(seiyu_id)
+
+    :ok
+  end
+
+  def save_image(seiyu_id) do
     seiyu =
       SeiyuWatch.Seiyu
       |> Repo.get!(seiyu_id)
@@ -23,8 +29,6 @@ defmodule SeiyuWatch.Workers.ImageSearcher do
       {:ok, file_name} -> SeiyuWatch.Workers.ImageSearcher.upload(file_name, seiyu)
       _ -> :error
     end
-
-    :ok
   end
 
   # ダウンロードでつかえそうなもの
