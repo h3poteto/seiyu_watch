@@ -61,7 +61,7 @@ defmodule SeiyuWatch.Mixfile do
       {:ex_aws_s3, "~> 2.0"},
       {:ex_aws_sts, "~>2.1"},
       {:hackney, "~> 1.9"},
-      {:configparser_ex, "~> 4.0"},
+      {:configparser_ex, "~> 5.0"},
       {:mock, "~> 0.3", only: :test},
       {:scrivener, "~> 2.7"},
       {:scrivener_ecto, "~> 2.7"},
