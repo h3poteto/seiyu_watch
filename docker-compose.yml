@@ -21,6 +21,7 @@ services:
       - postgres:postgres
     ports:
       - "4000:4000"
+      - "9568:9568"
     command: /bin/bash
 
   postgres:
