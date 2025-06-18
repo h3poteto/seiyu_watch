@@ -81,7 +81,7 @@ jobs:
           cd k8s-services
           git init
           git checkout -b update-seiyuwatch-image-${{ github.sha }}
-          cd external-prd/services/seiyuwatch
+          cd external/services/seiyuwatch
           kustomize edit set image "phoenix=${{ env.ECR }}:sha-${{ github.sha }}"
           git add .
           git commit -m "Update docker image for seiyuwatch to ${{ github.sha }}"
